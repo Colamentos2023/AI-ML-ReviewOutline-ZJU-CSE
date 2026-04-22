@@ -1,0 +1,834 @@
+\documentclass[../main.tex]{subfiles}
+\begin{document}
+\section{贝叶斯学习}
+贝叶斯推理提供了推理的一种概率手段，基于如下的假定：待考察的量遵循某概率分布，且可根据这些概率及已观察到的数据进行推理，以作出最优的决策。为衡量多个假设的置信度提供定量的方法，为直接操作概率的学习算法提供了基础，也为其它算法的分析提供了理论框架\footnote{这一章的ppt写的巨史无比，混乱不堪，总而言之其实就是用我们小学二年级就学过的贝叶斯公式，通过已知条件计算条件概率，完全是高中概率题的难度。我们知道，机器学习的任务就是在给定训练数据D时，确定假设空间H中的最佳假设，最佳假设是指一种方法是把它定义为在给定数据D以及H中不同假设的先验概率的有关知识下的最可能假设。我们最终用来比较在先验知识下哪种假设更加好。}。难度主要在于：
+\begin{itemize}
+    \item 需要概率的初始知识
+    \item 确定贝叶斯最优假设的计算代价比较大
+\end{itemize}
+
+\subsection{贝叶斯理论}
+\begin{enumerate}
+    \item 三种信息：总体信息、样本信息、先验信息；
+    \begin{itemize}
+        \item \textbf{总体信息：}设随机变量 $X$ 的密度函数为
+        $$
+        p(x\mid \theta)
+        $$
+        其中 $\theta$ 为参数，它提供关于参数 $\theta$ 的总体信息。
+    
+        \item \textbf{样本信息：}在给定 $\theta$ 后，从总体 $p(x\mid \theta)$ 中随机抽取样本
+        $$
+        X_1,\cdots,X_n
+        $$
+        样本中包含关于 $\theta$ 的信息，这种信息称为样本信息。
+    
+        \item \textbf{先验信息：}根据已有资料、经验与背景知识，可以得到关于参数 $\theta$ 的先验信息。
+    \end{itemize}
+    \item 三种分布：先验分布、联合分布、后验分布；
+    \begin{itemize}
+        \item \textbf{先验分布：}从贝叶斯观点看，未知参数 $\theta$ 是一个随机变量；由先验信息归纳出的分布称为先验分布，记为
+        $$
+        \pi(\theta)
+        $$
+    
+        \item \textbf{联合分布：}
+        $$
+        p(x_1,\cdots,x_n,\theta)=p(x_1,\cdots,x_n\mid \theta)\pi(\theta)
+        $$
+    
+        \item \textbf{后验分布：}
+        $$
+        \pi(\theta\mid x_1,\cdots,x_n)
+        =\frac{p(x_1,\cdots,x_n,\theta)}{p(x_1,\cdots,x_n)}
+        $$
+        即
+        $$
+        \pi(\theta\mid x_1,\cdots,x_n)
+        =\frac{p(x_1,\cdots,x_n\mid \theta)\pi(\theta)}
+        {\int p(x_1,\cdots,x_n\mid \theta)\pi(\theta)\,d\theta}
+        $$
+    
+        \item \textbf{含义：}后验分布是先验信息与样本信息综合后的结果，即利用样本将对 $\theta$ 的认识由先验分布 $\pi(\theta)$ 调整为后验分布 $\pi(\theta\mid x_1,\cdots,x_n)$。对参数 $\theta$ 的统计推断应建立在后验分布
+        $
+        \pi(\theta\mid x_1,\cdots,x_n)
+        $
+        的基础上。
+    \end{itemize}
+    \item \textbf{两种概率：}先验概率、后验概率。
+    \begin{itemize}
+        \item \textbf{先验概率：}在没有训练数据前，假设 $h$ 拥有的初始概率，记为
+        $$
+        P(h)
+        $$
+        它反映关于 $h$ 为正确假设的背景知识；若没有先验知识，可给各候选假设赋予相同的先验概率。
+
+        \item \textbf{后验概率：}在给定训练数据 $D$ 后，假设 $h$ 成立的概率，记为
+        $$
+        P(h\mid D)
+        $$
+        这是机器学习中真正关心的概率。
+    \end{itemize}
+
+    \item \textbf{贝叶斯公式：}
+    \begin{itemize}
+        \item 贝叶斯公式给出了由先验概率计算后验概率的方法：
+        $$
+        P(h\mid D)=\frac{P(D\mid h)P(h)}{P(D)}
+        $$
+        \item 其中：
+        \begin{itemize}
+            \item $P(h)$：先验概率；
+            \item $P(D\mid h)$：似然，即假设 $h$ 成立时观测到数据 $D$ 的概率；
+            \item $P(D)$：证据；
+            \item $P(h\mid D)$：后验概率。
+        \end{itemize}
+    \end{itemize}
+\end{enumerate}
+
+
+\subsection{极大后验假设和极大似然假设}
+\begin{enumerate}
+    \item \textbf{极大后验假设（MAP）：}在候选假设集合 $H$ 中，寻找给定数据 $D$ 时后验概率最大的假设：
+    $$
+    h_{\mathrm{MAP}}=\arg\max_{h\in H}P(h\mid D)
+    =\arg\max_{h\in H}\frac{P(D\mid h)P(h)}{P(D)}
+    =\arg\max_{h\in H}P(D\mid h)P(h)
+    $$
+    其中，$P(D)$ 与 $h$ 无关，因此可省去。
+
+    \item \textbf{极大似然假设（ML）：}若假设空间 $H$ 中每个假设具有相同的先验概率，则只需比较似然：
+    $$
+    h_{\mathrm{ML}}=\arg\max_{h\in H}P(D\mid h)
+    $$
+    即使 $P(D\mid h)$ 最大的假设称为极大似然假设。
+    
+    \textcolor{red}{记忆：PhD是后验。PDh是模仿PhD的，所以是似然（}
+    
+    \item \textbf{基本概率公式：}
+    $$
+    P(A\land B)=P(A\mid B)P(B)=P(B\mid A)P(A)
+    $$
+    $$
+    P(A\lor B)=P(A)+P(B)-P(A\land B)
+    $$
+    $$
+    P(h\mid D)=\frac{P(D\mid h)P(h)}{P(D)}
+    $$
+    若事件 $A_1,\dots,A_n$ 互斥，且满足
+    $$
+    \sum_{i=1}^{n}P(A_i)=1
+    $$
+    则
+    $$
+    P(B)=\sum_{i=1}^{n}P(B\mid A_i)P(A_i)
+    $$
+
+    {\small\kaishu
+    \item \textbf{例：一个医疗诊断问题}
+
+    有两个可选假设：病人有癌症、病人无癌症。化验结果有正、负两种。已知：
+    $$
+    P(\mathrm{cancer})=0.008,\qquad P(\neg \mathrm{cancer})=0.992
+    $$
+    $$
+    P(+\mid \mathrm{cancer})=0.98,\qquad P(-\mid \mathrm{cancer})=0.02
+    $$
+    $$
+    P(+\mid \neg \mathrm{cancer})=0.03,\qquad P(-\mid \neg \mathrm{cancer})=0.97
+    $$
+
+    现有一个新病人，化验结果为正，求后验概率 $P(\mathrm{cancer}\mid +)$ 和 $P(\neg \mathrm{cancer}\mid +)$。
+
+    先比较极大后验假设：
+    $$
+    P(+\mid \mathrm{cancer})P(\mathrm{cancer})=0.98\times 0.008=0.00784
+    $$
+    $$
+    P(+\mid \neg \mathrm{cancer})P(\neg \mathrm{cancer})=0.03\times 0.992=0.02976
+    $$
+    因此
+    $$
+    h_{\mathrm{MAP}}=\neg \mathrm{cancer}
+    $$
+
+    再由全概率公式：
+    $$
+    P(+)=P(+\mid \mathrm{cancer})P(\mathrm{cancer})+P(+\mid \neg \mathrm{cancer})P(\neg \mathrm{cancer})
+    $$
+    $$
+    =0.00784+0.02976=0.03760
+    $$
+    所以
+    $$
+    P(\mathrm{cancer}\mid +)=\frac{P(+\mid \mathrm{cancer})P(\mathrm{cancer})}{P(+)}
+    =\frac{0.00784}{0.03760}\approx 0.21
+    $$
+    $$
+    P(\neg \mathrm{cancer}\mid +)=\frac{P(+\mid \neg \mathrm{cancer})P(\neg \mathrm{cancer})}{P(+)}
+    =\frac{0.02976}{0.03760}\approx 0.79
+    $$
+
+    若医生决定给该病人做第二次化验，且结果仍为正。假设两次测试相互独立，则
+    $$
+    P(++\mid \mathrm{cancer})=0.98^2=0.9604
+    $$
+    $$
+    P(++\mid \neg \mathrm{cancer})=0.03^2=0.0009
+    $$
+    因而
+    $$
+    P(\mathrm{cancer}\mid ++)
+    =\frac{P(++\mid \mathrm{cancer})P(\mathrm{cancer})}
+    {P(++\mid \mathrm{cancer})P(\mathrm{cancer})+P(++\mid \neg \mathrm{cancer})P(\neg \mathrm{cancer})}
+    $$
+    $$
+    =\frac{0.9604\times 0.008}{0.9604\times 0.008+0.0009\times 0.992}
+    =\frac{0.0076832}{0.008576}\approx 0.896
+    $$
+    $$
+    P(\neg \mathrm{cancer}\mid ++)=1-P(\mathrm{cancer}\mid ++)\approx 0.104
+    $$
+    }
+
+    \item \textbf{结论：}
+    \begin{itemize}
+        \item MAP 综合考虑先验概率与似然；
+        \item ML 只考虑似然，是 MAP 在等先验条件下的特例；
+        \item 贝叶斯推理不会完全接受或拒绝假设，而是根据数据不断调整假设的概率。
+    \end{itemize}
+    \item \textbf{Brute-Force 贝叶斯概念学习：}如上例，在有限假设空间 $H$ 上，对每个假设 $h$ 计算后验概率
+    $$
+    P(h\mid D)=\frac{P(D\mid h)P(h)}{P(D)}
+    $$
+    并输出后验概率最大的假设
+    $$
+    h_{\mathrm{MAP}}=\arg\max_{h\in H}P(h\mid D)
+    $$
+    该方法计算量较大\footnote{在特定条件下，与概念学习相比，贝叶斯学习也得到相同的假设；不同的是概念学习不显式计算概率，且效率通常更高。这与归纳偏置的思想一致，即学习器的输出由输入数据和隐含的归纳偏置共同决定。}，但为判断其他概念学习算法的性能提供了标准。
+
+    \item \textbf{特定情况下的 MAP 假设：}
+    \begin{itemize}
+        \item \textbf{假设条件：}
+        \begin{itemize}
+            \item 训练数据 $D$ 无噪声，即 $d_i=c(x_i)$；
+            \item 目标概念 $c$ 包含在假设空间 $H$ 中；
+            \item 每个假设的先验概率相同。
+        \end{itemize}
+
+        \item \textbf{结论：}由于所有假设先验相同，
+        $$
+        P(h)=\frac{1}{|H|}
+        $$
+        又由于训练数据无噪声，
+        $$
+        P(D\mid h)=
+        \begin{cases}
+        1, & \forall d_i,\ d_i=h(x_i) \\
+        0, & \text{otherwise}
+        \end{cases}
+        $$
+        因此：
+        \begin{itemize}
+            \item 若 $h$ 与 $D$ 不一致，则
+            $$
+            P(h\mid D)=0
+            $$
+            \item 若 $h$ 与 $D$ 一致，则
+            $$
+            P(h\mid D)=\frac{1\cdot \frac{1}{|H|}}{P(D)}
+            =\frac{\frac{1}{|H|}}{\frac{|VS_{H,D}|}{|H|}}
+            =\frac{1}{|VS_{H,D}|}
+            $$
+        \end{itemize}
+        其中 $VS_{H,D}$ 为关于 $D$ 的版本空间，即与 $D$ 一致的假设集合。
+
+
+    \item \textbf{$P(D)$ 的推导：}
+    $$
+    P(D)=\sum_{h_i\in H}P(D\mid h_i)P(h_i)
+    $$
+    在上述条件下，
+    $$
+    P(D)=\sum_{h_i\in VS_{H,D}}1\cdot \frac{1}{|H|}+\sum_{h_i\notin VS_{H,D}}0\cdot \frac{1}{|H|}
+    =\frac{|VS_{H,D}|}{|H|}
+    $$
+
+    \item \textbf{结论：}在均匀先验、无噪声、目标概念属于 $H$ 的条件下，每个与 $D$ 一致的假设都是 MAP 假设。
+    \end{itemize}
+    \item \textbf{MAP 假设和一致学习器：}
+    \begin{itemize}
+        \item \textbf{一致学习器：}若某学习器输出的假设在训练样例上错误率为 $0$，则称其为一致学习器。
+        \item 若 $H$ 上先验概率均匀，且训练数据确定、无噪声，则任意一致学习器都将输出一个 MAP 假设\footnote{因为所有假设得到的$P(D\mid h)$全都一样}。
+        \item Find-S 算法按照“特殊到一般”的顺序搜索 $H$，输出一个极大特殊的一致假设，因此在上述概率分布下它输出 MAP 假设。
+        \item 更一般地，若先验概率偏向于更特殊的假设，则 Find-S 输出的假设也可视为 MAP 假设。
+    \end{itemize}
+
+
+\item \textbf{极大似然与损失函数的关系：}
+\begin{itemize}
+    \item \textbf{结论一：}若目标值是在真实值基础上加入独立高斯噪声得到的，则极大似然假设等价于误差平方和最小的假设\footnote{这说明最小二乘法不是凭空规定的；它对应的隐含假设是：训练样例的目标值由真实函数值再加上独立同分布的高斯噪声得到。}。
+    
+    {\small\kaishu
+    设训练集为
+    $$
+    D=\{\langle x_1,d_1\rangle,\ldots,\langle x_m,d_m\rangle\}
+    $$
+    且每个训练值满足
+    $$
+    d_i=f(x_i)+e_i
+    $$
+    其中噪声 $e_i$ 相互独立，并服从均值为 $0$、方差为 $\sigma^2$ 的正态分布：
+    $$
+    e_i\sim N(0,\sigma^2)
+    $$
+    若各假设先验概率相同，则
+    $$
+    h_{\mathrm{ML}}=\arg\max_{h\in H}P(D\mid h)
+    $$
+    由于训练样例相互独立，
+    $$
+    P(D\mid h)=\prod_{i=1}^{m}p(d_i\mid h)
+    $$
+    又因为高斯分布下
+    $$
+    p(d_i\mid h)\propto \exp\!\left(-\frac{(d_i-h(x_i))^2}{2\sigma^2}\right)
+    $$
+    所以最大化 $P(D\mid h)$ 等价于最小化
+    $$
+    \sum_{i=1}^{m}(d_i-h(x_i))^2
+    $$
+    因而
+    $$
+    h_{\mathrm{ML}}=\arg\min_{h\in H}\sum_{i=1}^{m}(d_i-h(x_i))^2
+    $$
+    即极大似然假设等价于误差平方和最小的假设。
+    }
+
+    \item \textbf{结论二：}若输出是伯努利随机变量，即样本标签服从概率分布，则极大似然假设等价于交叉熵最小化\footnote{这说明交叉熵损失也不是随便定义的；它对应的隐含假设是：对每个输入 $x$，标签 $d\in\{0,1\}$ 服从参数为 $h(x)$ 的伯努利分布，因此神经网络输出的是“属于正类的概率”。}。
+    
+    {\small\kaishu
+    设训练集为
+    $$
+    D=\{\langle x_1,d_1\rangle,\ldots,\langle x_m,d_m\rangle\},\qquad d_i\in\{0,1\}
+    $$
+    且训练样例相互独立。设假设 $h(x)$ 表示在输入 $x$ 下输出 $1$ 的概率，则对单个样例有
+    $$
+    P(d_i\mid h,x_i)=
+    \begin{cases}
+    h(x_i), & d_i=1\\
+    1-h(x_i), & d_i=0
+    \end{cases}
+    $$
+    统一写为
+    $$
+    P(d_i\mid h,x_i)=h(x_i)^{d_i}(1-h(x_i))^{1-d_i}
+    $$
+    因此整个训练集的似然为
+    $$
+    P(D\mid h)=\prod_{i=1}^{m}h(x_i)^{d_i}(1-h(x_i))^{1-d_i}
+    $$
+    若各假设先验概率相同，则
+    $$
+    h_{\mathrm{ML}}=\arg\max_{h\in H}P(D\mid h)
+    $$
+    对似然取对数，可得等价目标
+    $$
+    \arg\max_{h\in H}\sum_{i=1}^{m}\Bigl[d_i\ln h(x_i)+(1-d_i)\ln\bigl(1-h(x_i)\bigr)\Bigr]
+    $$
+    因而等价于最小化其相反数
+    $$
+    -\sum_{i=1}^{m}\Bigl[d_i\ln h(x_i)+(1-d_i)\ln\bigl(1-h(x_i)\bigr)\Bigr]
+    $$
+    这正是二分类中常用的交叉熵损失。
+    }
+    \item 使误差平方最小化的法则寻找到极大似然假设的前提是：训练数据可以由目标函数值加上正态分布噪声来模拟
+    \item 使交叉熵最小化的法则寻找极大似然假设基于的前提是：观察到的布尔值为输入实例的概率函数
+\end{itemize}
+\item \textbf{最小描述长度准则：}
+\begin{itemize}
+    \item \textbf{核心思想：}最小描述长度准则（Minimum Description Length, MDL）：选择对训练数据总解释长度最短的假设。这里“总解释长度”包括两部分：
+    \begin{itemize}
+        \item \textbf{假设本身的描述长度：}假设越复杂，编码它所需的长度通常越大；
+        \item \textbf{给定假设后数据的描述长度：}若假设不能很好解释训练数据，就需要额外记录更多纠错信息，因此这部分长度也会变大。
+    \end{itemize}
+
+    \item \textbf{形式化表示：}若用 $L(h)$ 表示假设 $h$ 的描述长度，用 $L(D\mid h)$ 表示在给定假设 $h$ 后训练数据 $D$ 的描述长度，则 MDL 选择
+    $$
+    h_{\mathrm{MDL}}=\arg\min_{h\in H}\bigl[L(h)+L(D\mid h)\bigr]
+    $$
+    \item \textbf{理解：}
+    \begin{itemize}
+        \item 若一个假设非常复杂，虽然它可能把训练数据拟合得很好，但它本身的描述长度 $L(h)$ 会很大；
+        \item 若一个假设非常简单，虽然它本身很短，但可能拟合较差，从而使 $L(D\mid h)$ 很大；
+        \item 因而 MDL 不会盲目选择“最复杂且零训练误差”的假设，也不会盲目选择“最短但错误很多”的假设，而是选择两者总和最小的那个。
+    \end{itemize}
+    
+    因此，MDL 本质上是在\textbf{假设复杂度}与\textbf{数据拟合程度}之间做折中。
+    
+    \item \textbf{与 MAP 的关系：}由极大后验假设
+    $$
+    h_{\mathrm{MAP}}=\arg\max_{h\in H}P(D\mid h)P(h)
+    $$
+    两边取负对数，可得
+    $$
+    h_{\mathrm{MAP}}
+    =\arg\min_{h\in H}\bigl[-\log_2 P(D\mid h)-\log_2 P(h)\bigr]
+    $$
+    其中：
+    \begin{itemize}
+        \item $-\log_2 P(h)$ 可理解为假设 $h$ 的描述长度；
+        \item $-\log_2 P(D\mid h)$ 可理解为给定假设 $h$ 后训练数据 $D$ 的描述长度。
+    \end{itemize}
+    因此，从信息论角度看，\textbf{MAP 假设等价于使“假设描述长度 + 数据描述长度”最小的假设}。
+
+    \item \textbf{意义：}
+    \begin{itemize}
+        \item MDL 为“优先选择较简单假设”提供了信息论解释；
+        \item MDL 提供了一种处理过拟合的方法，因为它会惩罚过于复杂的假设；
+        \item 在决策树中，可将树本身看作假设编码，将训练误分类样本所需的附加信息看作数据编码，从而选择在两者之间平衡最好的树。
+    \end{itemize}
+\end{itemize}
+\end{enumerate}
+
+
+
+    
+
+
+\subsection{贝叶斯最优分类器}
+\begin{enumerate}
+    \item \textbf{问题：}前面讨论的是：\textbf{给定训练数据，哪个假设最可能？}  
+    但更直接的问题是：\textbf{给定训练数据，对新实例的最可能分类是什么？}
+
+    \item \textbf{为什么不能只用 MAP 假设：}
+    直接用 MAP 假设去分类新实例，并不总是最优的。  
+    因为有时虽然某一个假设后验概率最大，但把\textbf{所有假设的预测按后验概率加权后}，得到的总体最可能分类可能与 MAP 假设的分类不同。
+
+    \item \textbf{核心思想：}
+    对新实例 $x$ 的分类，不应只看单个最可能假设，而应综合所有假设的预测，并按后验概率加权。
+
+    \item \textbf{定义：}
+    若新实例的可能分类取自集合 $V=\{v_1,\ldots,v_k\}$，则
+    \[
+    P(v_j\mid D)=\sum_{h_i\in H}P(v_j\mid h_i)\,P(h_i\mid D)
+    \]
+    因此，贝叶斯最优分类器输出
+    \[
+    v_{\mathrm{Bayes}}
+    =
+    \arg\max_{v_j\in V}\sum_{h_i\in H}P(v_j\mid h_i)\,P(h_i\mid D)
+    \]
+
+    其中：
+    \begin{itemize}
+        \item $P(h_i\mid D)$ 表示假设 $h_i$ 在观察训练数据后成立的概率；
+        \item $P(v_j\mid h_i)$ 表示在假设 $h_i$ 下，新实例被分为 $v_j$ 的概率；
+        \item 因而贝叶斯最优分类器本质上是在做：\textbf{对所有假设的预测结果进行后验加权平均。}
+    \end{itemize}
+    {\small\kaishu
+    \item \textbf{例子：}
+    设假设空间中有三个假设 $h_1,h_2,h_3$，它们的后验概率分别为
+    \[
+    P(h_1\mid D)=0.4,\qquad P(h_2\mid D)=0.3,\qquad P(h_3\mid D)=0.3
+    \]
+    若对新实例 $x$：
+    \begin{itemize}
+        \item $h_1$ 预测为正例；
+        \item $h_2,h_3$ 都预测为反例。
+    \end{itemize}
+    则
+    \[
+    P(+\mid D)=0.4,\qquad P(-\mid D)=0.6
+    \]
+    所以
+    \[ \underset{{v}_{j} \in  \{ +, - \} ,{h}_{i} \in  H}{\arg \max }\mathop{\sum }\limits_{{{h}_{i} \in  H}}P\left( {{v}_{j} \mid  {h}_{i}}\right) P\left( {{h}_{i} \mid  D}\right)  =  - \]
+    因而最可能分类是反例，而不是 MAP 假设 $h_1$ 给出的正例。  
+    }
+    \item \textbf{属性：}
+    \begin{itemize}
+        \item 它所做的分类可以对应于H中不存在的假设;
+    \end{itemize}
+    \item \textbf{不足：}
+    \begin{itemize}
+        \item 需要计算所有假设的后验概率并进行加权，计算代价通常很高；
+        \item 因而它更多是一个理论上的最优标准，实际中常用近似方法代替。
+    \end{itemize}
+\end{enumerate}
+
+
+\subsection{Gibbs算法}
+\begin{enumerate}
+    \item \textbf{地位：}替代贝叶斯最优分类器的、非最优的方法；
+    \item \textbf{定义：}按照H上的后验概率分布，从H中随机选择假设h，使用h来预言下一个实例x的分类
+    \item \textbf{结论：}
+    \begin{itemize}
+        \item 在一定条件\footnote{对固定训练数据 $D$，设 Gibbs 分类器按后验分布 $P(h\mid D)$ 随机抽取假设 $h$ 并进行分类，贝叶斯最优分类器则按所有假设的后验加权结果进行最优分类。}下，Gibbs算法的误分类率的期望值最多为贝叶斯最优分类器的两倍。
+        \item 如果学习器假定H上有均匀的先验概率，而且如果目标概念实际上也按该分布抽取，那么当前变型空间中随机抽取的假设对下一实例分类的期望误差最多为贝叶斯分类器的两倍。
+    \end{itemize}
+\end{enumerate}
+\subsection{朴素贝叶斯分类器\texorpdfstring{\protect\footnote{\href{https://www.bilibili.com/video/BV1eT411V7jM?spm_id_from=333.788.videopod.sections&vd_source=5deca47094767260f853b759a625a68f}{推荐看B站参考视频：朴素贝叶斯分类器}}}{}}
+\begin{enumerate}
+    \item \textbf{应用的学习任务：}每个实例 $x$ 可由属性值的合取描述，而目标函数 $f(x)$ 从某有限集合 $V$ 中取值。
+
+    \item \textbf{分类目标：}对新实例
+    $$
+    x=\langle a_1,\ldots,a_n\rangle
+    $$
+    求其最可能的目标值，即
+    $$
+    v_{\mathrm{MAP}}=\arg\max_{v_j\in V}P(v_j\mid a_1,\ldots,a_n)
+    $$
+    由贝叶斯公式可得
+    $$
+    v_{\mathrm{MAP}}
+    =\arg\max_{v_j\in V}\frac{P(a_1,\ldots,a_n\mid v_j)P(v_j)}{P(a_1,\ldots,a_n)}
+    =\arg\max_{v_j\in V}P(a_1,\ldots,a_n\mid v_j)P(v_j)
+    $$
+
+    \item \textbf{困难：}
+    \begin{itemize}
+        \item 估计先验概率 $P(v_j)$ 较容易，只需统计各类别在训练数据中的频率；
+        \item 直接估计
+        $$
+        P(a_1,\ldots,a_n\mid v_j)
+        $$
+        往往会遇到\textbf{数据稀疏问题}，因为属性组合太多，训练数据通常不足以可靠估计每一种组合的概率。
+    \end{itemize}
+
+    \item \textbf{朴素假设：}在给定目标值 $v_j$ 的条件下，各属性值相互条件独立\footnote{    这就是“朴素”二字的来源。}，即
+    $$
+    P(a_1,\ldots,a_n\mid v_j)=\prod_{i=1}^{n}P(a_i\mid v_j)
+    $$
+
+
+    \item \textbf{朴素贝叶斯分类规则：}代入上式后，可得朴素贝叶斯分类器
+    $$
+    v_{\mathrm{NB}}=\arg\max_{v_j\in V}P(v_j)\prod_{i=1}^{n}P(a_i\mid v_j)
+    $$
+    若条件独立假设严格成立，则
+    $$
+    v_{\mathrm{NB}}=v_{\mathrm{MAP}}
+    $$
+    否则它是对 MAP 分类的一个近似。
+
+    \item \textbf{概率估计：}
+    \begin{itemize}
+        \item 先验概率：
+        $$
+        P(v_j)=\frac{\#\{x\in D:f(x)=v_j\}}{|D|}
+        $$
+        \item 条件概率：
+        $$
+        P(a_i\mid v_j)=\frac{\#\{x\in D:a_i(x)=a_i,\ f(x)=v_j\}}{\#\{x\in D:f(x)=v_j\}}
+        $$
+        \item 当样本较小或某事件未出现时，可采用平滑技术，例如 m-估计：
+        $$
+        \hat{P}=\frac{n_c+mp}{n+m}
+        $$
+        其中：
+        \begin{itemize}
+            \item $n$ 是样本总数；
+            \item $n_c$ 是目标事件出现次数；
+            \item $p$ 是该概率的先验估计；
+            \item $m$ 是等效样本大小。
+        \end{itemize}
+        若缺少其它信息，常取均匀先验；若某属性有 $k$ 个可能值，则通常取
+        $$
+        p=\frac{1}{k}
+        $$
+    \end{itemize}
+
+    \item \textbf{特点：}
+    \begin{itemize}
+        \item 优点：模型简单、训练和预测都很快、对高维数据较有效；
+        \item 缺点：条件独立假设通常不严格成立，因此它本质上是近似分类器；
+        \item 与前面学习方法的区别：它\textbf{没有显式搜索假设空间}，而是直接通过统计频率来完成分类。
+    \end{itemize}
+\end{enumerate}
+
+\subsection{贝叶斯信念网}
+\begin{enumerate}
+    \item \textbf{贝叶斯信念网（Bayesian Belief Network, Bayesian Network）：}
+    \begin{itemize}
+        \item \textbf{引入动机：}朴素贝叶斯分类器假定各属性在给定目标值下\textbf{两两条件独立}，这一假设大大简化了计算，但在很多实际问题中往往过强。
+        \item \textbf{基本思想：}贝叶斯信念网用\textbf{一组局部条件概率}和\textbf{一组条件独立假设}来描述一组随机变量的联合概率分布，因此它比朴素贝叶斯更灵活，又比直接处理完整联合分布更可行。
+    \end{itemize}
+
+    \item \textbf{联合概率分布：}
+    \begin{itemize}
+        \item 设随机变量集合为
+        $$
+        Y_1,\ldots,Y_n
+        $$
+        其中每个 $Y_i$ 的取值集合为 $V(Y_i)$；
+        \item 则变量集合的联合空间为
+        $$
+        V(Y_1)\times\cdots\times V(Y_n)
+        $$
+        \item 在该联合空间上的概率分布称为\textbf{联合概率分布}，它给出了每个变量取值组合出现的概率；
+        \item 贝叶斯信念网的任务，就是更紧凑地表示这一联合概率分布。
+    \end{itemize}
+
+    \item \textbf{条件独立性：}
+    \begin{itemize}
+        \item \textbf{定义：}若给定 $Z$ 后，随机变量 $X$ 的分布与 $Y$ 无关，则称 $X$ 在给定 $Z$ 时条件独立于 $Y$，记为
+        $$
+        P(X\mid Y,Z)=P(X\mid Z)
+        $$
+        \item 更一般地，若在给定变量集合 $Z_1,\ldots,Z_n$ 时，变量集合 $X_1,\ldots,X_\ell$ 条件独立于变量集合 $Y_1,\ldots,Y_m$，则有
+        $$
+        P(X_1,\ldots,X_\ell\mid Y_1,\ldots,Y_m,Z_1,\ldots,Z_n)
+        =
+        P(X_1,\ldots,X_\ell\mid Z_1,\ldots,Z_n)
+        $$
+    \end{itemize}
+
+    \item \textbf{贝叶斯信念网的表示：}
+    \begin{itemize}
+        \item 贝叶斯信念网用一个\textbf{有向无环图（DAG）}表示一组变量之间的依赖关系；
+        \item 图中每个结点对应一个随机变量；
+        \item 有向边表示直接的概率依赖关系；
+        \item 对每个变量 $Y_i$，都需要给出一个\textbf{条件概率表（CPT）}，描述在其父结点取值给定时 $Y_i$ 的概率分布；
+        \item 图结构表达的核心是：\textbf{每个变量在给定其直接前驱（父结点）时，条件独立于其其它非后继变量。}
+    \end{itemize}
+
+    若网络中变量为 $Y_1,\ldots,Y_n$，且 $\mathrm{Parents}(Y_i)$ 表示 $Y_i$ 的父结点集合，则整个联合概率分布可分解为
+    $$
+    P(y_1,\ldots,y_n)=\prod_{i=1}^{n}P\bigl(y_i\mid \mathrm{Parents}(Y_i)\bigr)
+    $$
+    结论：贝叶斯信念网不直接存整张联合概率表，而是存储若干局部条件概率表，再借助条件独立假设恢复整体联合分布。
+
+    \item \textbf{与朴素贝叶斯的关系：}
+    \begin{itemize}
+        \item 朴素贝叶斯可看作贝叶斯信念网的一个特殊情形；
+        \item 在朴素贝叶斯中，目标变量 $V$ 是所有属性 $A_1,\ldots,A_n$ 的共同父结点，且假设各属性在给定 $V$ 时彼此条件独立；
+        \item 贝叶斯信念网则允许只在\textbf{部分变量之间}设定条件独立关系，因此表达能力更强。
+    \end{itemize}
+
+    \item \textbf{推理任务：}
+    \begin{itemize}
+        \item 贝叶斯信念网不仅能表示概率分布，还能用于推理；
+        \item 所谓推理，就是在给定部分变量观测值的条件下，计算另一些目标变量的后验概率分布；
+        \item 一般来说，真正需要求的是目标变量的\textbf{概率分布}，而不只是一个确定值。
+    \end{itemize}
+
+    \item \textbf{学习贝叶斯信念网：}
+    \begin{itemize}
+        \item 从训练数据中学习贝叶斯信念网，通常包含两部分：
+        \begin{itemize}
+            \item 学习网络结构；
+            \item 学习条件概率表中的参数。
+        \end{itemize}
+        \item 若网络结构已知且所有变量都能观测到，则只需从数据中估计各条件概率表即可；
+        \item 若有些变量不可观测，则学习会更困难；
+        \item 若网络结构未知，则还需要在不同结构之间进行搜索和比较。
+    \end{itemize}
+
+     \item \textbf{结构学习：}
+        \begin{itemize}
+            \item 若贝叶斯网结构未知，则需要从数据中学习图结构；
+            \item 常见思路包括：
+            \begin{itemize}
+                \item 基于评分函数，在候选网络之间搜索最优结构；
+                \item 基于条件独立关系，从数据中推导变量间的依赖与独立关系，再构造网络。
+            \end{itemize}
+            \item 这类问题通常比参数学习更困难，因为它同时涉及组合搜索与概率估计。
+        \end{itemize}
+    
+    \item \textbf{参数学习：}
+    \begin{itemize}
+        \item 条件概率表中的参数也可通过极大似然思想来学习；
+        \item 一种方法是对对数似然
+        $$
+        \ln P(D\mid h)
+        $$
+        做梯度上升；
+        \item 这种方法通常只能保证找到\textbf{局部最优解}；
+        \item 在含隐变量或部分变量不可观测时，常用的替代方法是 \textbf{EM 算法}。
+    \end{itemize}
+\end{enumerate}
+\subsection{EM算法\texorpdfstring{\protect\footnote{\href{https://www.bilibili.com/video/BV1RT411G7jJ?spm_id_from=333.788.videopod.sections&vd_source=5deca47094767260f853b759a625a68f}{推荐看B站参考视频：EM算法}}}{}}
+\begin{enumerate}
+    \item \textbf{基本思想：}EM（Expectation Maximization）即\textbf{期望最大化算法}，用于处理\textbf{含有未观测变量（隐变量）}的极大似然估计问题。
+
+    \item \textbf{适用场景：}
+    \begin{itemize}
+        \item 要估计一组概率模型参数；
+        \item 但训练数据并不完整，只能观测到全部数据的一部分；
+        \item 未观测到的那部分可看作隐变量。
+    \end{itemize}
+
+    \item \textbf{一般问题形式：}
+    \begin{itemize}
+        \item 设待估计参数为 $\theta$；
+        \item 全部数据记为
+        $$
+        Y=X\cup Z
+        $$
+        其中 $X$ 为可观测数据，$Z$ 为未观测数据；
+        \item 我们真正想最大化的是完整数据的似然
+        $$
+        P(Y\mid \theta)
+        $$
+        但由于 $Z$ 未知，无法直接计算，只能转而利用其条件期望。
+    \end{itemize}
+
+    \item \textbf{核心函数：}定义
+    $$
+    Q(\theta'\mid \theta)=E\bigl[\ln P(Y\mid \theta')\mid X,\theta\bigr]
+    $$
+    其中：
+    \begin{itemize}
+        \item $\theta$ 是当前参数；
+        \item $\theta'$ 是准备更新到的新参数；
+        \item $Q(\theta'\mid \theta)$ 表示：在当前参数 $\theta$ 下，对隐变量分布取期望后，完整数据对数似然的期望值。
+    \end{itemize}
+
+    \item \textbf{两步迭代\footnote{EM 的要点是当前假设用于估计未知变量，未知变量的期望值再用于改进当前假设；在高斯混合模型中，E步给出“每个点属于哪个分量”的软分配，M步据此重新计算各分量参数。}：}
+    \begin{itemize}
+        \item \textbf{E步（Expectation）：}在当前参数 $\theta$ 下，计算隐变量的条件分布或条件期望，从而得到
+        $$
+        Q(\theta'\mid \theta)
+        $$
+        \item \textbf{M步（Maximization）：}选择使 $Q$ 最大的新参数
+        $$
+        \theta\leftarrow \arg\max_{\theta'}Q(\theta'\mid \theta)
+        $$
+    \end{itemize}
+
+    \item \textbf{性质：}
+    \begin{itemize}
+        \item EM 每次迭代都不会降低观测数据的似然值；
+        \item 它通常收敛到一个\textbf{局部极大似然解}；
+        \item 因此结果与初始化有关，未必得到全局最优。
+    \end{itemize}
+
+    \item \textbf{例：估计 $k$ 个高斯分布的均值。}
+    
+    {\small\kaishu
+    设数据集
+    $$
+    D=\{x_1,\ldots,x_m\}
+    $$
+    由 $k$ 个正态分布混合生成，并假设：
+    \begin{itemize}
+        \item 每个样本先从 $k$ 个高斯分布中随机选一个分量；
+        \item 再由该分量生成观测值 $x_i$；
+        \item 各分量先验相同；
+        \item 各分量方差相同且已知；
+        \item 只需估计各分量均值
+        $$
+        \theta=\langle \mu_1,\ldots,\mu_k\rangle
+        $$
+    \end{itemize}
+
+    对每个样本 $x_i$，引入隐变量
+    $$
+    z_{ij}=
+    \begin{cases}
+    1, & x_i \text{ 由第 } j \text{ 个高斯分量生成}\\
+    0, & \text{否则}
+    \end{cases}
+    $$
+    因而完整数据可看作
+    $$
+    \langle x_i,z_{i1},\ldots,z_{ik}\rangle
+    $$
+
+    在 E 步中，在当前均值 $\mu_1,\ldots,\mu_k$ 下，计算每个样本来自第 $j$ 个高斯分量的概率：
+    $$
+    E[z_{ij}]
+    =
+    \frac{p(x_i\mid \mu_j)}
+    {\sum_{n=1}^{k}p(x_i\mid \mu_n)}
+    =
+    \frac{\exp\!\left(-\frac{1}{2\sigma^2}(x_i-\mu_j)^2\right)}
+    {\sum_{n=1}^{k}\exp\!\left(-\frac{1}{2\sigma^2}(x_i-\mu_n)^2\right)}
+    $$
+    它表示样本 $x_i$ 属于第 $j$ 个分量的软归属度。
+
+    在 M 步中，利用上一步得到的软归属度重新估计各均值：
+    $$
+    \mu_j
+    \leftarrow
+    \frac{\sum_{i=1}^{m}E[z_{ij}]\,x_i}
+    {\sum_{i=1}^{m}E[z_{ij}]}
+    $$
+    }
+
+\end{enumerate}
+
+\subsection{K均值（k-Means）算法}
+\begin{enumerate}
+    \item \textbf{目标：}将样本划分为 $k$ 个簇，并求每个簇的中心，使样本到所属簇中心的平方误差尽可能小。
+
+    \item \textbf{优化目标：}
+    设第 $j$ 个簇中心为 $\mu_j$，样本 $x_i$ 对应的簇指示变量为 $z_{ij}\in\{0,1\}$，其中
+    $$
+    z_{ij}=
+    \begin{cases}
+    1, & x_i \text{ 属于第 } j \text{ 个簇}\\
+    0, & \text{否则}
+    \end{cases}
+    $$
+    则 k-Means 最小化的目标函数为
+    $$
+    \sum_{i=1}^{m}\sum_{j=1}^{k}z_{ij}\|x_i-\mu_j\|^2
+    $$
+
+    \item \textbf{与 EM 的关系：}
+    \begin{itemize}
+        \item k-Means 可以看作 EM 在一种特殊情形下的特例；
+        \item 该特殊情形是：样本由 $k$ 个高斯分量生成，且
+        \begin{itemize}
+            \item 各分量先验相同；
+            \item 各分量方差相同且固定；
+            \item 在 E 步中不再使用软分配，而是改成硬分配，即强制归类为某一个簇
+        \end{itemize}
+    \end{itemize}
+
+    \item \textbf{E步对应的硬分配：}
+    对每个样本 $x_i$，直接分配给最近的中心，即
+    $$
+    z_{ij}=
+    \begin{cases}
+    1, & j=\arg\min\limits_{n}\|x_i-\mu_n\|^2\\
+    0, & \text{否则}
+    \end{cases}
+    $$
+
+    \item \textbf{M步对应的中心更新：}
+    固定样本分配后，第 $j$ 个簇中心更新为该簇样本的均值：
+    $$
+    \mu_j
+    \leftarrow
+    \frac{\sum_{i=1}^{m}z_{ij}x_i}{\sum_{i=1}^{m}z_{ij}}
+    $$
+
+    \item \textbf{算法流程：}
+    \begin{enumerate}
+        \item 初始化 $k$ 个簇中心 $\mu_1,\ldots,\mu_k$；
+        \item 将每个样本分配给最近的簇中心；
+        \item 根据当前分配结果重新计算每个簇中心；
+        \item 重复上述两步，直到簇中心或样本分配不再变化。
+    \end{enumerate}
+
+    \item \textbf{性质：}
+    \begin{itemize}
+        \item 每次迭代都会使目标函数不增；
+        \item 最终收敛到一个局部最优解；
+        \item 对初始中心较敏感，因此常采用多次随机初始化或 k-means++ 改进初始化。
+    \end{itemize}
+
+\end{enumerate}
+
+\textbf{总结：}
+\begin{itemize}
+    \item 贝叶斯方法提供了概率学习方法的基础，基于这些先验和数据观察假定，赋予每个假设一个后验概率；贝叶斯方法确定的极大后验概率假设是最可能成为最优假设的假设。
+    \item 朴素贝叶斯分类器增加了简化假定：属性值在给定实例的分类时条件独立
+    \item 贝叶斯信念网能够表示属性的子集上的一组条件独立性假定
+    \item 贝叶斯推理框架可对其他不直接应用贝叶斯公式的学习方法的分析提供理论基础
+    \item 最小描述长度准则建议选取这样的假设，它使假设的描述长度和给定假设下数据的描述长度的和最小化。贝叶斯公式和信息论中的基本结论提供了此准则的根据
+\end{itemize}
+\end{document}

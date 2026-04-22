@@ -1,0 +1,56 @@
+\documentclass[../main.tex]{subfiles}
+\begin{document}
+\section{多模态大模型}
+\subsection{模型架构}
+\begin{enumerate}
+    \item \textbf{主要模块：}常见的MLLM可分为四个主要模块
+    \begin{itemize}
+        \item Preprocessor：图像预处理
+        \item Encoder：接收且有效编码
+        \item Projector：多模态数据对齐
+        \item LLM：执行推理
+    \end{itemize}
+    \begin{enumerate}
+        \item \textbf{图像预处理：}将图像转换为适合ViT模型输入数据的过程，包括视频的抽帧、图像颜色空间转换、尺寸调整(Resize)、划分图像块(Patch Partitioning)、归一化(Normalize)等步骤
+        \begin{itemize}
+            \item \textbf{Patch：}将图像分割成固定大小的“补丁”(patches)并排成序列，可以解决原始图像直接输入Transformer 面临的维度高、结构不匹配等问题
+        \end{itemize}
+        \item \textbf{编码器：}对不同模态的输入进行编码，来获得相应的特征；
+        \begin{itemize}
+            \item \textbf{视觉编码器：CLIP}
+            \begin{itemize}
+                \item \textbf{训练：}对比学习——使语义相近的图像和文本在空间中靠近，语义不相关的则彼此原理
+                \item \textbf{核心：}让图像和文字可以通过同一种方式表达他们的含义
+            \end{itemize}
+            \item 音频编码器：Whisper
+        \end{itemize}
+        \item \textbf{投影器：}视觉投影器的目的在于将视觉嵌入(Visual embeddings)等输入映射到文本空间(Text Embeddings)中。将不同模态进行对齐。
+        \begin{itemize}
+            \item 使用线性投影仪或多层感知器(\textbf{MLP})，通常为几层的神经网与非线性激活函数组合而成。
+            \item 基于注意力机制。BLIP2引入\textbf{Q-Former}，一种轻量级转换器，使用一组可学习的查询向量从冻结的视觉模型中提取视觉特征。
+            \item 投影基于\textbf{CNN}。MobileVLMv2提出了LDPv2，这是一种新的投影。由三部分组成:特征转换、Token压缩和位置信息增强。
+            \item 投影基于\textbf{mamba}。VL-Mamba在其视觉语言投影仪中实现了2D视觉选择性扫描(VSS)技术，促进了不同学习方法的融合。
+        \end{itemize}
+        \item \textbf{LLM Backbone}：两种方法：
+        \begin{itemize}
+            \item 统一嵌入解码器架构
+            \item 跨模态注意力架构
+        \end{itemize}
+        
+    \end{enumerate}
+\end{enumerate}
+
+\begin{itemize}
+    \item \textbf{多模态应用场景：}
+    \begin{itemize}
+        \item \textbf{Image Captioning：}图像描述生成；
+        \item \textbf{Visual Question Answering（VQA）：}视觉问答；
+        \item \textbf{Text-to-Vision Synthesis：}文本到视觉合成；
+        \item \textbf{Vision-to-Vision Translation：}视觉到视觉转换；
+        \item \textbf{Scene Text Recognition：}场景文本识别；
+        \item \textbf{Scene Text Inpainting：}场景文本修复。
+    \end{itemize}
+\end{itemize}
+
+\textcolor{red}{不要问我为什么这一章其他部分没有整理，看了ppt就知道了}
+\end{document}

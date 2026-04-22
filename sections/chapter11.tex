@@ -1,0 +1,219 @@
+\documentclass[../main.tex]{subfiles}
+\begin{document}
+\section{基础智能体框架、任务规划与大模型智能体}
+\subsection{智能体理论框架}
+\begin{enumerate}
+    \item \textbf{智能体定义}
+    \begin{itemize}
+        \item \textbf{定义：}智能体(Agent)是一种能够感知环境并做出自主决策的实体（感知序列到动作的函数$f:P^*\rightarrow A$）\footnote{感知信息:表示任何时刻Agent的感知输入；感知序列:Agent收到的所有输入数据的完整历史。Agent在任何时刻的行动选择，取决于到该时刻为止的整个感知序列；Agent函数:将任意给定感知序列映射到Agent的动作。可以描述Agent的行为。}
+        \item \textbf{核心要素：}自主性、交互性和适应性
+        \item \textbf{特性：}
+        \begin{itemize}
+            \item \textbf{自主性：}亦称自治性，即能够在没有人或别的Agent的干预下，主动地自发地控制自身的行为和内部状态，并且还有自己的目标或意图。
+            \item \textbf{反应性：}即能够感知环境，并通过行为改变环境。
+            \item \textbf{适应性：}即能根据目标、环境等的要求和制约作出行动计划，并根据环境的变化，修改自己的目标和计划。
+            \item \textbf{社会性：}即一个Agent一般不能在环境中单独存在，而要与其他Agent在同一环境中协同工作。而协作就要协商，要协商就要进行信息交流，信息交流的方式是相互通信
+        \end{itemize}
+    \end{itemize}
+    \begin{table}[H]
+    \centering
+    \caption{智能体与普通程序的对比}
+    \begin{tabular}{p{2.6cm}p{6.2cm}p{6.2cm}}
+        \toprule
+        对比维度 & 智能体（示例：智能家居控制 Agent） & 普通程序（示例：计算器软件） \\
+        \midrule
+        自主性 & 具备自主决策能力，无需持续人工干预。 & 完全依赖人工输入触发，无自主行动能力。 \\
+        交互性 & 可与环境、其他智能体及人类进行双向动态交互，能理解多模态输入并反馈。 & 仅支持单一人机交互，输入输出格式固定，无环境交互能力。 \\
+        适应性 & 可根据环境变化、用户习惯或目标调整行为策略，具备一定灵活性。 & 行为逻辑固定，无法适应环境或用户需求变化，仅执行预设流程。 \\
+        目标导向 & 以实现明确目标为核心，可拆解任务并动态调整步骤以达成目标。 & 无明确目标，仅执行单一指令，不具备任务拆解或方案替换能力。 \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+    \item \textbf{智能体结构}
+    \begin{itemize}
+        \item \textbf{简单反射型：}基于当前感知选择行动，忽略感知历史，环境完全可观；
+        \item \textbf{基于模型的简单反射型：}使用内部模型记录世界当前状态\footnote{包括世界如何独立于智能体发展的信息和智能体的行动如何影响世界的信息，两类信息}，按反射型智能体方式选择行动
+        \item \textbf{基于目标型：}智能体追踪记录世界的状态、要达到的目标，并选择导致达成目标的行动\footnote{效率降低，灵活性加强}
+        \item \textbf{基于效用型：}利用效用函数把状态（状态序列）映射到实数，以描述智能体育状态相关的程度，可以辅助进行决策；最佳期望效用是通过计算所有可能结果状态的加权平均得到，其权值由结果的概率确定
+    \end{itemize}
+    \item \textbf{学习智能体：}智能体的学习可以看做为智能体的每个组件的修改过程，修改使得各组件与能得到的反馈信息更加一致，从而改进智能体的总体性能。学习智能体的组件包括：
+    \begin{itemize}
+        \item \textbf{学习元件：}负责改进，利用评论元件的反馈来评价智能体，并决定如何修改执行元件以将来做得更好；
+        \item \textbf{执行元件：}负责选择外部动作，接受感知信息并进行行动决策；
+        \item \textbf{评论元件：}根据固定的性能标准告诉学习元件智能体的运转情况如何；
+        \item \textbf{问题产生器：}负责提议可以导致新的和有信息价值的经验的行动。
+    \end{itemize}
+    \item \textbf{如何表示状态及其转换？}沿着复杂度和表达能力增长的轴线，主要有三种表示：
+    \begin{itemize}
+        \item \textbf{原子表示：}没有内部结构的表示。相关内容：搜索、博弈论、隐马尔可夫模型、马尔可夫决策过程；
+        \item \textbf{要素化表示：}一个状态中包含多个要素（原子），即多个变量和特征的集合。相关内容：约束满足算法、命题逻辑、规划、Bayesian网、机器学习算法；
+        \item \textbf{结构化表示：}一个状态包含对象，每个对象可能有自身的特征值，以及与其他对象的关系。相关内容：关系数据库、一阶逻辑、一阶概率模型、基于知识的学习、自然语言理解。
+    \end{itemize}
+    \item \textbf{多智能体系统（MAS）}
+    \begin{itemize}
+        \item \textbf{定义：}多智能体系统由多个自主运行的智能体组成，这些智能体通过协同工作来理解用户输入、制定决策并执行任务，最终实现共同目标。
+        \item \textbf{特性：}
+        \begin{itemize}
+            \item \textbf{自主性：}每个智能体都有自己的控制结构，能够独立地做出决策和行动；
+            \item \textbf{交互性：}智能体之间可以进行通信和信息交换，这有助于它们协作解决问题；
+            \item \textbf{协作性：}智能体可以协同工作，共同完成任务或达成目标；
+            \item \textbf{可扩展性：}多智能体系统可以轻松地添加更多的智能体，以适应更大规模或更复杂的任务；
+            \item \textbf{鲁棒性：}即使某些智能体失败或不可用，系统通常仍能继续运作；
+            \item \textbf{灵活性：}系统能够适应环境变化和新的任务要求。
+        \end{itemize}
+        \item \textbf{通信交互：}Agent通信协议是定义智能体之间交互规则和消息格式的规范，它规定了智能体如何发送，接收和处理信息，以实现有效的协作和协调。分为三类,基于：
+        \begin{itemize}
+            \item 消息传递
+            \item 对话管理
+            \item 分布式账本
+        \end{itemize}
+        \item \textbf{协作类型（3种）：}合作、竞争和协同竞争
+        \begin{table}[H]
+        \centering
+        \caption{多智能体关系类型对比}
+        \resizebox{\textwidth}{!}{
+        \begin{tabular}{p{1.8cm}p{4.0cm}p{3.8cm}p{3.8cm}p{2.8cm}}
+            \toprule
+            类型 & 定义 & 优势 & 劣势 & 示例场景 \\
+            \midrule
+            协作 & 智能体调整目标，协同朝着共同目标工作 & 依优势给智能体分配子任务；目标清晰时，设计和执行简单 & 目标不一致会降低效率；单个智能体故障影响会被放大 & 代码生成；决策制定；游戏环境；问答、推荐 \\
+            竞争 & 智能体优先考虑自身目标，可能与其他智能体目标冲突 & 促使智能体表现更优；推动策略自适应 & 需机制解决冲突；要保障竞争是有益的 & 辩论；游戏环境；问答、推荐 \\
+            竞合 & 协作与竞争的混合，智能体在部分任务协作、部分任务竞争 & 平衡权衡以达成共识 & 深入研究较少 & 谈判 \\
+            \bottomrule
+        \end{tabular}
+        }
+    \end{table}
+    \begin{table}[H]
+    \centering
+    \caption{多智能体的协作策略}
+    \resizebox{\textwidth}{!}{
+    \begin{tabular}{p{2.2cm}p{4.6cm}p{3.6cm}p{3.6cm}p{3.0cm}}
+        \toprule
+        协议 & 定义 & 优势 & 劣势 & 示例场景 \\
+        \midrule
+        基于规则 & 智能体交互严格由预定义规则控制 & 高效、可预测性高；确保一致性与公平性 & 对不确定性的适应性低；复杂任务下难以扩展 & 问答；共识寻求；导航；同行评审流程 \\
+        基于角色 & 利用预定义的不同角色或通信结构，每个智能体围绕细分目标运作，支撑整体目标 & 模块化且可复用；发挥智能体自身专业优势 & 结构僵化；性能依赖智能体连接程度 & 决策制定；软件开发；机器人技术 \\
+        基于模型 & 基于输入（含感知不确定性）、环境及共享目标，智能体开展概率决策 & 适应动态环境；对不确定性鲁棒 & 实现复杂；计算成本高 & 游戏环境；决策制定；机器人技术 \\
+        \bottomrule
+    \end{tabular}
+    }
+\end{table}
+    \end{itemize}
+    \item \textbf{不确定性规划决策}
+    \begin{itemize}
+        \item 决策过程的基本概念：状态、动作、感知、效用
+        \item 决策过程的挑战：不确定性、复杂性、资源限制（有限计算资源和时间）
+        \item 举例：决策树、马尔可夫决策过程
+    \end{itemize}
+\end{enumerate}
+\subsection{基于大模型的智能体}
+\begin{enumerate}
+    \item \textbf{为什么大模型与智能体的融合？}
+    \begin{itemize}
+        \item 上下文理解能力强
+        \item 知识储备丰富
+        \item 推理能力强
+    \end{itemize}
+    
+    \item \textbf{经典框架：}AutoGPT、Generative Agents、LangChain
+    \item \textbf{工具与多模态交互：}工具可以赋予Agent超能力，例如调用外部API、执行函数、访问数据库等
+    \item \textbf{挑战与未来：}
+    \begin{itemize}
+        \item 认知与推理的局限性（思维循环、幻觉）
+        \item 具身交互的复杂性（兼容性、实时性等）
+        \item 自主进化的瓶颈（工具依赖预设规则，难以自主创新学习）
+        \item 安全性与伦理风险
+    \end{itemize}
+\end{enumerate}
+\subsection{智能体任务规划}
+\begin{enumerate}
+    \item \textbf{任务规划定义}
+    \begin{itemize}
+        \item \textbf{规划模块}是智能体的大脑，让AI能够不仅仅是处理数据，而是主动做出决策，规划未来，执行任务。
+        \item \textbf{智能体规划：}主要包括任务分解、多计划选择、外部规划器、自我反思与记忆增强等方法。
+    \end{itemize}
+    \item \textbf{任务规划分类}
+      \begin{itemize}
+            \item \textbf{任务分解：}
+            \begin{itemize}
+                \item \textbf{定义：}将复杂任务拆分为若干更小、更易处理的子任务。
+                \item \textbf{分解优先（Decomposition-First Methods）：}先将任务分解为子目标，再依次为每个子目标制定规则。
+                \begin{itemize}
+                    \item \textbf{优点：}子任务与原任务之间的联系更强，减少了任务遗忘和幻想风险。
+                    \item \textbf{缺点：}如果某个步骤出错，可能会影响到整个任务的完成。
+                    \item \textbf{代表方法：}HuggingGPT、Plan-and-Solve、ProgPrompt。
+                \end{itemize}
+                \item \textbf{交错分解（Interleaved Decomposition Methods）：}在任务分解和子任务规划之间进行交错，每次只揭示当前状态的一个或两个子任务。
+                \begin{itemize}
+                    \item \textbf{优点：}可根据环境反馈动态调整任务分解，提高了容错性。
+                    \item \textbf{缺点：}如果任务过于复杂，可能会导致智能体在后续的子任务和子计划中偏离原始目标。
+                    \item \textbf{代表方法：}CoT、Zero-shot CoT、ReAct。
+                \end{itemize}
+                \item \textbf{问题与挑战：}
+                \begin{itemize}
+                    \item 任务分解会带来额外开销，需要更多的推理和生成，增加时间和计算成本；
+                    \item 对于被分解成数十个子任务的高度复杂任务，受上下文长度限制，可能导致规划轨迹遗忘。
+                \end{itemize}
+            \end{itemize}
+
+            \item \textbf{多计划选择（Multi-Plan Selection）：}
+            \begin{itemize}
+                \item \textbf{动机：}
+                \begin{itemize}
+                    \item 复杂任务本身不确定性高，存在多种潜在解决路径；
+                    \item LLM 的生成结果具有随机性，单一规划可能不适用或非最优；
+                    \item 面对复杂问题时，人类通常也会生成多种方案再进行择优。
+                \end{itemize}
+                \item \textbf{核心思想：}让智能体像人类一样生成多种可能解法，再从中选择最优计划。
+                \item \textbf{主要步骤：}
+                \begin{itemize}
+                    \item 多计划生成阶段：LLMs 尝试生成一系列可能的计划；
+                    \item 最优计划选择阶段：Agent 从多个候选计划中选择一个最好的。
+                \end{itemize}
+            \end{itemize}
+
+            \item \textbf{外部规划器：}
+            \begin{itemize}
+                \item \textbf{动机：}复杂任务加上 LLM 不确定性，会导致单纯依赖 LLM 时规划能力有限。
+                \item \textbf{做法：}引入外部规划器来增强 Agent 的规划能力。
+                \item \textbf{类型：}
+                \begin{itemize}
+                    \item \textbf{符号规划器：}基于形式化模型（如 PDDL、ASP），通过符号推理寻找最优路径。代表工作有 LLM+P（Fast-Downward）、LLM-DP（BFS）、LLM+ASP（CLINGO）。
+                    \item \textbf{神经规划器：}通过深度模型以及强化学习/模仿学习训练进行规划。代表工作有 CALM（LLM+DRRN 排序）、SwiftSage（快慢思考结合）。
+                \end{itemize}
+            \end{itemize}
+
+            \item \textbf{自我反思与细化：}
+            \begin{itemize}
+                \item \textbf{问题：}LLM 规划容易产生幻觉、陷入“思维循环”，或因理解不足导致错误。
+                \item \textbf{作用：}通过反馈与反思，纠正先前错误并进行迭代改进，增强规划的容错能力和错误纠正能力。
+                \item \textbf{代表方法：}
+                \begin{itemize}
+                    \item \textbf{Self-Refine：}LLM 生成计划后自我反馈，并基于反馈迭代调整；
+                    \item \textbf{Reflexion：}扩展 ReAct，通过评估器检测错误并生成反思文本；
+                    \item \textbf{CRITIC：}结合外部工具（知识库、搜索引擎）验证并纠正事实错误；
+                    \item \textbf{InteRecAgent：}通过 ReChain 机制评估响应，总结错误并决定是否重规划；
+                    \item \textbf{LEMA：}使用 GPT-4 纠正错误样本，并通过微调提升模型性能。
+                \end{itemize}
+            \end{itemize}
+
+            \item \textbf{记忆增强：}
+            \begin{itemize}
+                \item \textbf{作用：}记忆是提升 Agent 规划能力的关键，有助于从经验中学习、快速适应新情境，并增强规划鲁棒性。
+                \item \textbf{类型：}
+                \begin{itemize}
+                    \item \textbf{RAG 记忆（检索增强生成）：}将智能体的过往经验以可检索形式存储，在规划时通过检索相关记忆辅助决策，从而提升规划能力；
+                    \item \textbf{参数记忆（体现记忆）：}通过微调将历史经验嵌入模型参数。
+                \end{itemize}
+            \end{itemize}
+
+        \end{itemize}
+    \item \textbf{多智能体任务规划}
+        \begin{itemize}
+        \item \textbf{Master（主控智能体）：}作为系统“指挥官”，负责分析用户查询复杂度，并动态组建处理团队；简单查询可直接调用 Writer，复杂查询则启动 Planner 进行任务分解。
+        \item \textbf{Planner（规划器）：}将复杂问题拆解为多个子任务，并组织成 DAG（有向无环图），明确任务依赖关系。
+        \item \textbf{Executor（执行器）：}负责执行子任务，调用外部工具（如搜索引擎、计算器）获取信息，并评估结果是否满足要求；若工具失效，系统会自动切换备用工具。
+        \item \textbf{Writer（生成器）：}整合各子任务结果，生成连贯、多视角的最终答案，同时过滤冗余或矛盾信息。
+    \end{itemize}
+\end{enumerate}
+\end{document}

@@ -1,0 +1,36 @@
+\documentclass[../main.tex]{subfiles}
+\begin{document}
+\section{机器学习概论}
+
+\subsection{机器学习概念}
+\begin{enumerate}
+    \item \textbf{机器学习}
+    \begin{itemize}
+        \item \textbf{定义：}机器学习是人工智能 (AI) 的一个分支，它使计算机系统能够从数据中自动学习和改进，而无需进行显式编程。
+        \item \textbf{核心思想：}从数据中发现模式 $\rightarrow$ 做出预测或决策。
+    \end{itemize}
+    \item \textbf{人工智能}
+    \begin{itemize}
+        \item \textbf{自然智慧的重要特点（2个）：}容错性、推广能力\footnote{基于数据的机器学习问题的关键就是\textbf{推广能力}。}（举一反三）
+    \end{itemize}
+\end{enumerate}
+
+\subsection{学习任务分类}
+\begin{enumerate}
+    \item \textbf{懒惰学习(Lazy Learning)}
+    \begin{itemize}
+        \item \textbf{主要目的：}从输入输出数据对构成的训练集中学习输入到输出的映射关系。
+        \item \textbf{显著特征(核心特点)：}延迟学习\footnote{训练数据在预测时才被处理，平时仅保存，不主动建模。}、局部估计\footnote{只依赖训练集中与查询点相关的数据，不依赖额外模型或参数。}、即时计算\footnote{完成对查询点的预测后，不保留中间结果，仅输出估计值。}
+    \end{itemize}
+    \item \textbf{有监督学习}（分类）
+    \begin{itemize}
+        \item \textbf{定义：}在样本标签已知的情况下，可以统计出各类训练样本不同的描述量，如其概率分布，或在特征空间分布的区域等，利用这些参数进行分类器设计，称为有监督的学习方法。
+        \item \textbf{特点：}训练样本已经标注（labeled）。
+    \end{itemize}
+    \item \textbf{无监督学习}（聚类）
+    \begin{itemize}
+        \item \textbf{定义：}从原先没有样本标签的样本集开始进行分类器设计。
+        \item \textbf{特点：}训练样本无标注（unlabeled）。
+    \end{itemize}
+\end{enumerate}
+\end{document}

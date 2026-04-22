@@ -1,0 +1,210 @@
+\documentclass[../main.tex]{subfiles}
+\begin{document}
+\section{大模型推理技术}
+\subsection{推理及优化}
+\begin{table}[H]
+    \centering
+    \caption{训练与推理对比}
+    \begin{tabular}{p{2.2cm}p{5.0cm}p{5.0cm}}
+        \toprule
+        特性 & 训练（Training） & 推理（Inference） \\
+        \midrule
+        阶段目标 & 知识积累，学习通用语言模式和能力 & 知识应用，利用已学知识生成响应或预测 \\
+        计算模式 & 大规模、离线、高并行度的前向与反向传播 & 小规模、在线、以串行自回归为主的前向传播 \\
+        资源需求 & 极高的计算能力和显存容量 & 高显存带宽和足够的计算能力 \\
+        持续性 & 一次性或周期性进行，耗时数天至数月 & 持续性，在模型部署后按需响应用户请求 \\
+        优化重点 & 算法收敛、分布式训练效率、数据处理 & 降低延迟、提高吞吐量、优化成本和能耗 \\
+        经典硬件 & NVIDIA A100/H100 GPU，Google TPU & NVIDIA GPU，Google TPU，Intel Gaudi \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+    
+\begin{table}[H]
+    \centering
+    \caption{Inference 与 Reasoning 的区别（中文都是推理）}
+    \begin{tabular}{p{2.4cm}p{5.8cm}p{5.8cm}}
+        \toprule
+        对比维度 & Inference & Reasoning \\
+        \midrule
+        含义 & 模型训练完成后，将其部署并用于处理新的输入数据，以产生输出或预测结果的过程。 & 模型内部进行思考、分析和解决复杂问题的能力，是模型智能表现的重要组成部分。 \\
+        侧重点 & 更侧重模型应用阶段，关注效率、速度、资源消耗等工程问题。 & 更侧重模型能力本身，关注复杂任务求解、分析能力与智能水平。 \\
+        提升方式 & 主要依赖部署优化、推理加速、硬件资源与系统工程优化。 & 还涉及模型架构设计、训练数据、提示策略与工具使用等，例如 CoT、Self-Consistency、Tree of Thoughts、ReAct 等。 \\
+        本质定位 & 是模型“用起来”的过程。 & 是模型“会不会想”的能力。 \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+\begin{enumerate}
+    \item \textbf{推理的定义：}指将训练好的AI模型部署到生产环境中，利用其从新数据中生成预测或决策的过程。
+    \item \textbf{三个瓶颈：}巨大的模型参数、自回归解码的串行性、自注意力机制的$O(N^2)$复杂度
+    \item \textbf{优化核心策略：}模型压缩（量化、剪枝、知识蒸馏），硬件加速，系统级优化
+    \begin{enumerate}
+        \item \textbf{量化：}
+    \begin{itemize}
+        \item \textbf{原理：}通过降低模型参数和激活值的数值精度（例如将 FP32 或 FP16 转换为 INT8、INT4 等）来减小模型体积、降低存储与计算开销。
+        \item \textbf{常见方法：}
+        \begin{itemize}
+            \item \textbf{后训练量化（PTQ, Post-Training Quantization）：}在模型训练完成后直接对权重进行量化，无需额外训练或数据，优点是简单快速；
+            \item \textbf{量化感知训练（QAT, Quantization-Aware Training）：}在训练过程中显式模拟量化操作，以减小精度下降带来的性能损失；
+            \item \textbf{混合精度量化：}对不同模块或维度采用不同精度，保留关键部分的高精度表示，以减轻离群点带来的性能下降。
+        \end{itemize}
+        \item \textbf{特点：}量化改变的是参数或激活值的数值精度，而不改变参数本身的结构。
+    \end{itemize}
+
+    \item \textbf{剪枝：}
+    \begin{itemize}
+        \item \textbf{原理：}移除模型中冗余或不重要的参数、神经元、注意力头或网络层，以减小模型规模和计算复杂度。
+        \item \textbf{主要类型：}
+        \begin{itemize}
+            \item \textbf{非结构化剪枝：}移除单个参数，形成不规则稀疏矩阵，虽然能减少参数量，但通常难以被现代 GPU 高效利用；
+            \item \textbf{结构化剪枝：}移除整个神经元、注意力头、通道或层，生成更规则的模型结构，更利于硬件加速。
+        \end{itemize}
+        \item \textbf{特点：}剪枝本质上是将部分参数置零或直接移除部分结构，因此会改变模型的有效结构。
+    \end{itemize}
+
+    \item \textbf{知识蒸馏：}
+    \begin{itemize}
+        \item \textbf{原理：}让较小的学生模型模仿较大教师模型的输出行为、中间表示或知识分布，从而在缩小模型规模的同时尽可能保持性能。
+        \item \textbf{作用：}显著减小模型尺寸，降低部署成本，同时保留较高性能。
+        \item \textbf{最新进展：}
+        \begin{itemize}
+            \item \textbf{自蒸馏（Self-Distillation）：}模型利用自身生成的额外训练数据或解释来改进自己；
+            \item \textbf{多教师蒸馏：}学生模型同时从多个高性能教师模型中学习；
+            \item \textbf{多级蒸馏：}采用“强教师 $\rightarrow$ 中间教师 $\rightarrow$ 学生”的逐级传递方式缩小知识鸿沟。
+        \end{itemize}
+        \item \textbf{特点：}蒸馏通常会重新训练学生模型，因此学生模型的大部分参数都会重新学习。
+    \end{itemize}
+        \item \textbf{硬件加速：}GPU、TPU、FPGA
+        \item \textbf{系统级优化：}推理服务架构的改进，最大限度地利用硬件资源，缩短推理响应时间
+        \begin{itemize}
+            \item 并行化：模型并行、流水线并行
+            \item KV-Cache
+            \item 运行时批处理
+        \end{itemize}
+    \end{enumerate}
+\end{enumerate}
+\begin{table}[H]
+    \centering
+    \caption{模型压缩与加速技术对比}
+    \begin{tabularx}{\textwidth}{p{1.5cm}XXXXX}
+        \toprule
+        技术名称 & 核心原理 & 参数/精度改变 & 经典论文/进展 & 优势 & 劣势 \\
+        \midrule
+        量化 & 降低参数和激活值的数值精度 & 改变参数精度，不改变参数值 & LLM.int8()，Super Weights & 显著减小模型体积，降低内存和计算需求 & 可能损失精度，对离群点敏感 \\
+        
+        剪枝 & 移除不重要参数或结构 & 将部分参数置零或直接移除部分结构 & SparseGPT，IFPruning & 减小模型尺寸和计算量，可针对性优化 & 非结构化剪枝依赖特殊硬件，可能影响模型质量 \\
+        
+        知识蒸馏 & 小模型模仿大模型的行为 & 几乎所有学生模型参数都改变 & DistilBERT，TinyBERT，多教师/多级蒸馏 & 显著减小模型尺寸，同时保持高性能 & 依赖于性能优异的教师模型，需要额外训练 \\
+        \bottomrule
+    \end{tabularx}
+\end{table}
+\begin{table}[H]
+    \centering
+    \caption{大模型推理瓶颈、挑战与解决思路}
+    \begin{tabular}{p{2.0cm}p{4.2cm}p{3.6cm}p{4.2cm}}
+        \toprule
+        瓶颈 & 核心挑战 & 解决方案 & 核心原理 \\
+        \midrule
+        模型尺寸 & 巨大的参数量导致模型无法部署在单卡上，且成本高昂。 & 模型压缩：量化、剪枝、蒸馏 & 减小模型体积，降低存储和内存需求。 \\
+        
+        自回归串行性 & 逐令牌生成过程导致延迟随序列长度线性增长。 & 系统级优化：KV 缓存、推测性解码 & 减少重复计算，或将部分串行过程转化为并行验证，以提升速度。 \\
+        
+        二次复杂度 & 自注意力机制的 $O(N^2)$ 复杂度导致处理长序列时性能急剧下降。 & 模型压缩：结构化剪枝；系统级优化：KV 缓存 & 减小注意力头规模，或通过缓存减少重复计算，从而缓解复杂度问题。 \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+\subsection{推理策略}
+\begin{enumerate}
+    \item \textbf{确定性策略：}
+    \begin{itemize}
+        \item \textbf{贪心搜索（Greedy Search）：}每一步都选择当前概率最高的单个 token 输出。
+        \begin{itemize}
+            \item \textbf{优点：}简单、快速；
+            \item \textbf{缺点：}只考虑局部最优，可能导致内容重复、缺乏多样性，产生“神经文本退化”。
+        \end{itemize}
+
+        \item \textbf{束搜索（Beam Search）：}不只保留一个候选序列，而是维护一个大小为 $K$ 的候选序列集合；每一步扩展这 $K$ 个序列，再从中选出综合概率最高的 $K$ 个作为下一轮候选。
+        \begin{itemize}
+            \item \textbf{优点：}比贪心搜索更有前瞻性，生成文本通常更流畅、更连贯；
+            \item \textbf{缺点：}计算成本更高；当 $K=1$ 时，束搜索退化为贪心搜索。
+        \end{itemize}
+    \end{itemize}
+
+    \item \textbf{采样策略：}
+    \begin{itemize}
+        \item \textbf{核心思想：}在生成过程中注入随机性，以缓解贪心搜索和束搜索容易重复、缺乏创造力的问题。
+
+        \item \textbf{Top-k 采样：}只考虑当前概率最高的 $K$ 个 token，再从这 $K$ 个 token 中按概率随机采样一个作为输出。
+        \begin{itemize}
+            \item \textbf{优点：}引入随机性，提升多样性，在较大程度上缓解重复问题；
+            \item \textbf{缺点：}$K$ 是固定的，可能忽略一些高质量 token，参数选择也较敏感。
+        \end{itemize}
+
+        \item \textbf{Top-p 采样（Nucleus Sampling）：}设定累积概率阈值 $p$，从高到低累加 token 概率，直到累积概率达到 $p$ 为止，再从这个动态确定的候选集合中随机采样。
+        \begin{itemize}
+            \item \textbf{优点：}候选集大小可动态变化，比 Top-k 更灵活，能更有效排除极低概率 token；
+            \item \textbf{缺点：}仍需谨慎选择阈值参数，否则可能影响输出稳定性。
+        \end{itemize}
+    \end{itemize}
+
+    \item \textbf{加速与约束策略：}
+    \begin{itemize}
+        \item \textbf{推测性解码（Speculative Decoding）：}先由一个更小、更快的“草稿模型”预测多个 token，再由更大、更准确的“目标模型”并行验证这些预测；若验证通过，则一次接受多个 token，否则从不匹配处回退并重新生成。
+        \begin{itemize}
+            \item \textbf{优点：}在不明显牺牲输出质量的前提下显著降低延迟、提高吞吐；
+            \item \textbf{缺点：}依赖草稿模型与目标模型的匹配程度，系统实现更复杂。
+        \end{itemize}
+
+        \item \textbf{忠实性解码（Faithful Decoding）：}在解码过程中利用外部知识、上下文约束或模型内部对比机制，减少生成内容与事实不符的“幻觉”。
+        \begin{itemize}
+            \item \textbf{优点：}提升事实性与可靠性；
+            \item \textbf{缺点：}通常会增加系统复杂度与额外开销。
+        \end{itemize}
+
+        \item \textbf{解码图（Decoding on Graphs）：}将大模型与知识图谱等结构化知识结合，在图结构约束下进行受限搜索与解码，以保证生成内容的严谨性和事实一致性。
+        \begin{itemize}
+            \item \textbf{优点：}适合高事实性、高约束场景；
+            \item \textbf{缺点：}依赖外部知识结构，适用范围相对更窄。
+        \end{itemize}
+    \end{itemize}
+\end{enumerate}
+\subsection{Prompt Engineering}
+\begin{enumerate}
+    \item \textbf{定义：}设计和优化提示词，以从LLM中获得更准确、更有用、更符合预期的输出的学科。
+    \item \textbf{基本原则和技巧：}指令明确、保持具体性、肯定性指令；分配角色、提供示例、使用分隔符
+    \item \textbf{思维链CoT(Chain of Thought)}
+    \begin{itemize}
+        \item \textbf{核心原理：}通过引导模型分步思考，将复杂问题分解为一系列中间推理步骤，从而显著提升模型在多步推理任务(如数学、逻辑和常识推理)上的准确性。
+        \item \textbf{意义：}这种新兴能力并非来自模型的显式训练，而是其参数量和复杂度达到某个临界值后，其内在的逻辑推理能力被“解锁”了
+        \item \textbf{变体：}
+        \begin{itemize}
+            \item Few-shot CoT
+            \item Auto-CoT
+            \item ReAct
+        \end{itemize}
+    \end{itemize}
+\end{enumerate}
+\begin{table}[H]
+    \centering
+    \caption{典型推理增强方法对比}
+    \begin{tabularx}{\textwidth}{>{\centering\arraybackslash}p{2.2cm}XXXXX}
+        \toprule
+        技术名称 & 核心原理 & 优缺点 & 典型应用 & 经典论文/进展 \\
+        \midrule
+        Few-shot CoT & 提供带推理步骤的示例，引导模型推理 & 准确性高；需要人工制作高质量示例 & 复杂数学、逻辑推理任务 & Wei et al.\ (2022) \\
+        
+        Zero-shot CoT & 仅通过“逐步思考”等指令激活模型推理 & 简单、高效；仅在足够大的模型上涌现 & 快速解决多步推理问题 & Kojima et al.\ (2022) \\
+        
+        Auto-CoT & 利用 LLM 自动生成思维链示例 & 消除人工制作示例的繁琐工作 & 自动化提示工程流程 & Zhang et al.\ (2022) \\
+        
+        ReAct & 模型作为智能体，调用工具、规划、反省 & 适合复杂多步骤任务；需要多轮交互，成本高 & 自动化工作流、AI 游戏 & ReAct（Yao 等人，2023） \\
+        \bottomrule
+    \end{tabularx}
+\end{table}
+\subsection{推理性能评估}
+\begin{enumerate}
+    \item 一些经典benchmark：MMLU、HumanEval、TruthfulQA、MT-Bench
+    \item 推理性能基准：延迟（TTFT、ITL）、吞吐量、成本
+    \item 未来趋势：从传统的单一模型优化，向软硬件协同设计与多模型协同的范式演变。
+\end{enumerate}
+\end{document}
+\end{document}

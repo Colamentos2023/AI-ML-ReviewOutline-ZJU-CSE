@@ -1,0 +1,266 @@
+\documentclass[../main.tex]{subfiles}
+\begin{document}
+\section{大模型概述与技术演进}
+\subsection{大模型的定义与核心特征}
+\begin{enumerate}
+    \item \textbf{LLM(Large Language Model)：}专门用于执行NLP任务的语言模型
+    \item \textbf{“大”的含义：}训练数据大、参数规模大、耗资巨大
+    \item \textbf{涌现能力：}当一种系统在复杂性增加到某一临界点时，会出现其子系统或较小规模版本中未曾存在的行为或特性
+    \item \textbf{架构基础：}Transformer
+    \item \textbf{训练范式}：预训练\footnote{在无标注的海量数据上通过自监督学习获得通用知识和能力}
+    \item \textbf{核心驱动力：}规模缩放定律
+    \item \textbf{五个核心特征：}
+    \begin{enumerate}
+        \item \textbf{涌现能力：}超过某个临界点时，模型会突然获得在较小模型上不存在或表现极差的新能力
+        \item \textbf{上下文学习：}模型无需更新其内部参数，仅通过在输入中提供示例，就能即时学会并完成新任务的能力。
+        \item \textbf{指令遵循与对齐：}模型能够理解并执行以自然语言形式给出的指令，并且其输出风格、内容与人类的意图和价值观保持一致
+        \item \textbf{知识融合与通用性：}由于在近乎全量的互联网数据上训练，大模型内部压缩和融合了极其广泛的、跨领域的知识。
+        \item \textbf{同质化与基座模型范式：}整个领域呈现出收敛于少数几个强大的“基座模型”的趋势。这些基座模型通过微调，可以高效地适配到成千上万的下游具体任务中。
+        \begin{itemize}
+            \item 架构同质化：Transformer
+            \item 方法同质化：预训练+微调
+            \item 生态同质化：基座模型
+        \end{itemize}
+    \end{enumerate}
+    \item \textbf{五大特征的内在联系：}
+    \begin{itemize}
+        \item 【同质化】是基石:它确立了以【基座模型】为中心的工业化开发范式。
+        \item 【基座模型】因规模而强大:庞大的参数和数据赋予了它【涌现能力】和丰富的【知识融合】
+        \item 强大的【基座模型】具备核心接口:【上下文学习】和【指令遵循】使得我们可以零样本或通过微调与这个庞然大物进行高效交互
+    \end{itemize}
+\end{enumerate}
+\begin{table}[H]
+    \centering
+    \caption{传统AI模型与大语言模型对比}
+    \begin{tabular}{p{2.2cm}p{5.4cm}p{5.4cm}}
+        \toprule
+        特征 & 传统AI模型（专才） & 大语言模型（通才） \\
+        \midrule
+        设计哲学 & “一个模型，一个任务” & “一个模型，万千任务” \\
+        能力范围 & 狭窄、特定（如：仅能识别猫狗） & 广泛、通用（如：问答、写作、编程、推理） \\
+        知识领域 & 单一领域（如：医疗影像） & 跨领域、多模态（文本、代码） \\
+        适应新任务 & 需要重新收集数据、训练模型 & 通过提示和上下文学习即时适应 \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+\subsection{发展路径与关键技术节点}
+\begin{itemize}
+    \item \textbf{Transformer：}
+    \begin{itemize}
+        \item \textbf{Transformer前瓶颈：}
+        \begin{itemize}
+            \item RNN/LSTM：梯度消失/爆炸，难以并行；
+            \item Word2Vec/Glove：静态词向量，无法解决一词多义；
+            \item 核心问题：如何构建一个能够并行计算、有效捕捉长距离依赖、并生成动态上下文相关表示的模型？
+        \end{itemize}
+        \item \textbf{核心思想：}抛弃循环与卷积，完全基于自注意力机制。
+        \item \textbf{三大核心组件：}
+        \begin{itemize}
+            \item \textbf{自注意力机制（Self-Attention）：}
+            $$
+            \operatorname{Attention}(Q,K,V)=\operatorname{softmax}\left(\frac{QK^T}{\sqrt{d_k}}\right)V
+            $$
+            \begin{itemize}
+                \item \textbf{作用：}让序列中的每个词都能与序列中的所有词直接交互，计算一个“加权平均”的表示；不关心距离多远，只关心有多重要；
+                \item \textbf{优势：}能够有效处理长距离依赖，并支持并行计算。
+            \end{itemize}
+
+            \item \textbf{位置编码（Positional Encoding）：}
+            \begin{itemize}
+                \item \textbf{问题：}自注意力机制本身不包含位置信息；
+                \item \textbf{解决：}在输入词向量中加入正弦波或可学习的位置编码，用于表示单词顺序。
+            \end{itemize}
+
+            \item \textbf{编码器-解码器架构（Encoder-Decoder）：}
+            \begin{itemize}
+                \item \textbf{编码器：}用于理解输入序列（如 BERT）；
+                \item \textbf{解码器：}用于生成输出序列（如 GPT 系列）。
+            \end{itemize}
+        \end{itemize}
+    \end{itemize}
+    \item \textbf{BERT：}采用Transformer的编码器，通过双向上下文来预训练语言表示；任务包括掩码、下一句预测两类。
+    \item \textbf{GPT-1}采用Transformer的解码器，进行自回归语言建模。
+    \begin{itemize}
+        \item 性质：自回归\footnote{给定前文，预测下一个词，逐个生成。}，单向性\footnote{模型只能看到当前词左侧的上下文}
+    \end{itemize}
+    \item \textbf{ChatGPT：}推理与指令遵循能力、与人类意图对齐、多模态能力
+    \item \textbf{挑战：}
+    \begin{itemize}
+        \item 算力与成本
+        \item 幻觉问题
+        \item 可解释性
+        \item 安全伦理
+    \end{itemize}
+\end{itemize}
+\subsection{Scaling Law的基本原理与应用}
+\begin{enumerate}
+    \item \textbf{定义：}Scaling Laws 描述了模型性能（通常用测试集损失衡量）与模型规模之间存在的平滑、可预测的幂律关系。
+
+    \item \textbf{三个关键规模维度：}
+    \begin{itemize}
+        \item \textbf{模型规模（$N$）：}模型参数量。参数越多，模型容量越大；
+        \item \textbf{数据规模（$D$）：}训练所用的 token 数量。数据越多，模型学到的知识越丰富；
+        \item \textbf{计算规模（$C$）：}训练过程中消耗的总浮点运算量，通常以 FLOPs 衡量，并与 $N$ 和 $D$ 强相关，常近似写为
+        $$
+        C\approx 6ND
+        $$
+    \end{itemize}
+
+    \item \textbf{核心问题：}给定固定的计算预算 $C$，应如何最优地分配到模型参数量 $N$ 和训练数据量 $D$ 上？若使用交叉熵损失\footnote{平滑、连续、可微，能敏感地反映模型预测概率分布的质量。}作为性能指标，则 Scaling Laws 的目标就是寻找损失函数
+    $$
+    L(N,D,C)
+    $$
+    的形式。
+
+    \item \textbf{OpenAI（2020）的 Scaling Laws：}
+    \begin{itemize}
+        \item \textbf{方法：}在 WebText 数据集子集上，训练了数百个从千万到百亿参数不等的 Transformer 模型，并记录其最终损失；
+        \item \textbf{核心发现：}
+        \begin{itemize}
+            \item \textbf{损失 vs. 参数量（固定数据量）：}随着参数量 $N$ 增加，损失平滑下降，呈现幂律关系；但当 $N$ 过大而 $D$ 固定时，会进入数据不足区域，性能饱和；
+            \item \textbf{损失 vs. 数据量（固定参数量）：}随着数据量 $D$ 增加，损失平滑下降；但当 $D$ 过大而 $N$ 固定时，会进入容量不足区域，性能饱和；
+            \item \textbf{损失 vs. 计算量（最优分配）：}当 $N$ 和 $D$ 随计算量 $C$ 同步、最优地增长时，损失与计算量之间呈现幂律关系：
+            $$
+            L(C)\propto C^{-\alpha}
+            $$
+            其中 $\alpha$ 为常数（如约 $0.05$）。
+        \end{itemize}
+    \end{itemize}
+
+    \item \textbf{Scaling Law 经验公式：}
+    OpenAI 给出的经验拟合形式可写为
+    $$
+    L(N,D)=\left[\left(\frac{N_c}{N}\right)^{\frac{\alpha_N}{\alpha_D}}+\frac{D_c}{D}\right]^{\alpha_D}
+    $$
+    其中：
+    \begin{itemize}
+        \item $L$：测试损失；
+        \item $N$：模型参数量；
+        \item $D$：训练数据量（tokens）；
+        \item $N_c,D_c,\alpha_N,\alpha_D$：由拟合数据得到的常数。
+    \end{itemize}
+    其核心启示是：性能是可预测的，在计算预算 $C$ 下存在一个最优的 $N$ 与 $D$ 配比。OpenAI 当时的结论更倾向于优先增大模型规模 $N$。
+
+    \item \textbf{DeepMind（2022）的 Chinchilla 结论：}
+    \begin{itemize}
+        \item \textbf{背景：}OpenAI 的定律建议优先做大模型，但后续许多模型（如 GPT-3 175B）可能存在训练不足，即数据量相对于参数量偏少；
+        \item \textbf{方法：}在固定计算预算 $C$ 下（约从 $10^{18}$ 到 $10^{21}$ FLOPs），训练了 $400$ 多个不同 $N$ 和 $D$ 组合的模型，寻找使损失最低的最优配比；
+        \item \textbf{发现：}与 OpenAI 不同，Chinchilla 发现模型参数量和训练数据量应近似等比例增长。
+    \end{itemize}
+
+    \item \textbf{Chinchilla 黄金法则：}
+    \begin{itemize}
+        \item 对于参数量为 $N$ 的模型，其最优训练 token 数量约为
+        $$
+        D\approx 20N
+        $$
+        \item 例如：一个 $70$B 参数的模型，应使用大约 $1.4$T tokens 的数据进行训练；
+        {\small\kaishu
+        \item 对比例子：
+        \begin{itemize}
+            \item GPT-3（175B 参数）仅使用约 $300$B tokens 训练，属于训练不足；
+            \item Chinchilla（70B 参数）使用约 $1.4$T tokens 训练，在大多数基准测试上击败了 GPT-3 175B。
+        \end{itemize}
+        }
+    \end{itemize}
+    \textbf{核心结论：}在相同计算预算下，一个\textbf{更小但训练更充分}的模型，可能优于一个\textbf{更大但训练不足}的模型。
+    
+    \textbf{Chinchilla 的连锁反应：}数据成为新瓶颈、推动数据工程、催生合成数据：
+
+    \item \textbf{Scaling Laws 的局限与未来：}
+    \begin{itemize}
+        \item \textbf{性能饱和：}幂律下降不可能无限持续；当接近高质量人类数据的极限时，损失下降会逐渐变缓；
+        \item \textbf{新范式挑战：}混合专家模型（MoE）打破了参数量和计算量的强耦合，其 Scaling Laws 需要重新定义；同时，RLHF 等对齐阶段对最终能力的影响，也无法被预训练阶段的 Scaling Laws 完全刻画；
+        \item \textbf{超越损失：}损失下降并不必然等于“有用性”或“安全性”提升，如何对齐“能力”“有用性”和“安全性”是更困难的问题；
+        \item \textbf{资源与生态问题：}无限 Scaling 意味着更高的能源消耗与环境成本，也带来了可持续性与公平性问题。
+    \end{itemize}
+\end{enumerate}
+\subsection{分布式训练基础}
+\begin{enumerate}
+    \item \textbf{三个核心矛盾：}显存、时间、成本。
+
+    \item \textbf{数据并行：}
+    \begin{itemize}
+        \item \textbf{核心思想：}复制模型，分发数据。
+        \item \textbf{适用场景：}模型可以放入单个 GPU，但数据集非常大，单卡遍历一遍数据太慢。
+        \item \textbf{工作流程：}
+        \begin{itemize}
+            \item \textbf{复制：}在每个 GPU 上各放一份完整模型副本；
+            \item \textbf{分发：}将一个 batch 平均分成多个微批次，每个 GPU 处理一个微批次；
+            \item \textbf{独立前向/反向：}每个 GPU 独立完成前向计算和反向传播，得到本地梯度；
+            \item \textbf{梯度同步：}所有 GPU 汇总梯度（通常求和或求平均），得到一致的全局梯度；
+            \item \textbf{模型更新：}每个 GPU 使用同步后的全局梯度更新自身副本参数。
+        \end{itemize}
+        \item \textbf{优点：}
+        \begin{itemize}
+            \item 实现简单，很多框架可直接使用；
+            \item 扩展性较好，只要模型放得下单卡，就可以继续增加 GPU 加速。
+        \end{itemize}
+        \item \textbf{缺点：}
+        \begin{itemize}
+            \item 无法解决模型太大放不进单卡的问题；
+            \item 通信开销与模型参数量相关，模型极大时梯度同步会成为瓶颈。
+        \end{itemize}
+        \item \textbf{梯度同步的实现：}All-Reduce。
+    \end{itemize}
+
+    \item \textbf{模型并行：}
+    \begin{itemize}
+        \item \textbf{核心思想：}当模型本身大到无法放入单个设备显存时，对模型本身进行切分。
+        \item \textbf{主要类型：}流水线并行与张量并行。
+        \begin{itemize}
+            \item \textbf{流水线并行（Pipeline Parallelism）：}
+            \begin{itemize}
+                \item \textbf{思想：}按“层”切分模型，将不同层分配到不同 GPU；
+                \item \textbf{工作方式：}
+                \begin{itemize}
+                    \item GPU0 负责前几层，计算得到中间激活后传给 GPU1；
+                    \item GPU1 接着计算后续层，同时 GPU0 可以开始处理下一批数据；
+                    \item 反向传播时梯度再按相反方向传递。
+                \end{itemize}
+                \item \textbf{核心挑战：}流水线气泡，即在流水线开始、结束以及微批次交接处，总有部分设备处于空闲等待状态；
+                \item \textbf{缓解方法：}增加同时处理的微批次数量，使流水线更“饱和”，例如 GPipe。
+            \end{itemize}
+
+            \item \textbf{张量并行（Tensor Parallelism）：}
+            \begin{itemize}
+                \item \textbf{思想：}按张量切分，是比流水线并行更细粒度的横向切分；
+                \item \textbf{适用场景：}单个超大层（如 Transformer 中的 FFN 层）无法放入显存；
+                \item \textbf{经典例子：}Transformer 的 MLP 层一般包含
+                $$
+                \text{Linear\_A} \rightarrow \text{Activation} \rightarrow \text{Linear\_B}
+                $$
+                \item \textbf{两种典型切分：}
+                \begin{itemize}
+                    \item \textbf{按列切分：}将 Linear\_A 的权重矩阵按列切到多个 GPU，每个 GPU 做部分矩阵乘法，再聚合结果；
+                    \item \textbf{按行切分：}将 Linear\_B 的权重矩阵按行切分，前向常需 All-Gather，反向常需 Reduce-Scatter。
+                \end{itemize}
+            \end{itemize}
+        \end{itemize}
+    \end{itemize}
+
+    \item \textbf{混合并行：}
+    \begin{itemize}
+        \item \textbf{动机：}像 GPT-3、PaLM 这样的超大模型，单独依赖一种并行策略通常不够；
+        \item \textbf{做法：}将数据并行、流水线并行和张量并行结合起来，形成三维混合并行；
+        \item \textbf{典型结构：}
+        \begin{itemize}
+            \item \textbf{第一维：}张量并行，在单个服务器节点内切分最大层；
+            \item \textbf{第二维：}流水线并行，在多个节点间按层切分模型；
+            \item \textbf{第三维：}数据并行，在多个“张量并行 + 流水线并行”单元之间处理不同数据批次并同步梯度。
+        \end{itemize}
+        \item \textbf{总结：}数据并行解决“数据太多”，模型并行解决“模型太大”，混合并行解决“超大模型训练必须同时兼顾显存、时间和成本”的问题。
+    \end{itemize}
+    \item \textbf{策略与通信优化（Deepspeed）：}
+    \begin{itemize}
+        \item \textbf{动机：}数据并行中，每个GPU都保存完整的模型、优化器状态、梯度，造成了巨大的显存冗余。为什么不让不同的GPU只维护模型状态的一部分呢?
+        \item \textbf{ZeRO零冗余优化器：}
+        \begin{itemize}
+            \item ZeRO-1：切分优化器状态，显存下降最多4倍
+            \item ZeRO-2：切分优化器状态+梯度，显存下降最多8倍
+            \item ZeRO-3：切分优化器状态+梯度+模型参数，显存下降yu数据并行度成正比，可以实现用少量GPU训练极大模型           
+        \end{itemize}
+    \end{itemize}
+
+\end{enumerate}
+\end{document}

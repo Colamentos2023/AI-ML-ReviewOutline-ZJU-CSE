@@ -1,0 +1,134 @@
+\documentclass[a4paper,11pt]{article}
+\usepackage{ctex}
+\usepackage{geometry}
+\usepackage{float}
+\geometry{a4paper, margin=1in}
+\usepackage{tocloft}
+\usepackage{titling}
+\usepackage{tabularx}
+\usepackage{amsmath, amssymb, amsfonts}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,        % 将链接文字而非边框着色
+    linkcolor=blue,         % 目录、公式、图表等内部链接颜色
+    citecolor=teal,         % 参考文献引用颜色
+    urlcolor=magenta,       % URL 链接颜色
+    filecolor=gray,         % 本地文件链接颜色
+    linktoc=all             % 目录中链接章节和页码都可点击
+}
+\usepackage{xeCJK}
+\usepackage{xcolor}
+\usepackage{enumitem}
+\usepackage{indentfirst}
+\usepackage{fancyhdr}
+\usepackage{tikz}
+\usepackage{array}
+\usepackage{colortbl}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{subfiles}
+\usepackage{threeparttable}
+\usepackage{makecell} 
+\usepackage{array} 
+\usepackage{setspace}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{quoting}
+
+\DeclareGraphicsExtensions{.pdf,.png,.jpg,.jpeg}
+\graphicspath{{./figs/}{./out/}}
+
+% 页眉页脚
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[C]{人工智能与机器学习 复习提纲}
+\fancyfoot[C]{\thepage}
+\setlength{\headheight}{15pt}
+
+% 标题
+\title{人工智能与机器学习 复习提纲 \\ \vspace{0.5cm} \large }
+\author{collamentos@collamentos-JiguangPro-Series-GM5AR0O}
+\date{2025年9月}
+
+\begin{document}
+\begin{titlepage}
+    \centering
+    \vspace*{3cm}
+    {\Huge \textbf{人工智能与机器学习 复习提纲} \par}
+    \vspace{0.5cm}
+    {\Large 授课教师：吴争光、胡瑞芬\par}
+    \vspace{3cm}
+    {\Large Colamentos \par}
+    {\Large 2025-2026春学期 \par}
+\end{titlepage}
+
+\section*{前言}
+
+人工智能与机器学习（控院）课程的风评众所周知，不必赘述。学长的评价十分准确：吴老师和胡老师好，课坏。
+\begin{itemize}[itemsep=0.2em, topsep=0.2em, parsep=0pt, partopsep=0pt]
+    \item 2026年正处大模型发展演变的高峰，这门课程也适应时代潮流：虽然在知识点上与今天的 AI 不能说是紧密相连，也可以说是毫无关系，但 PPT 的制作确实是先进 AI 技术。
+    \item 整套讲义形成了一种拼好课风格，集百家之长，摘自多个来源不明、风格各异的 PPT。
+    \item 其章节安排也颇具特色，例如第二章结束后直接进入第六章，之后是第八章，然后是第四章，然后是第九章，接着仍然还是另一个第九章，唯一始终不变的是信息熵极低。
+    \item 经典先不加说明地输出一大段内容，再附上一页“目录”来展示本次课要讲的知识点，但后续内容和重点分配不能说是一一对应吧，只能说是交相辉映。
+    \item 此外，每一页的小标题也很少真正概括内容，善于频繁采用“XX（1）”“XX（2）”之类的机械堆叠方式，使得整体结构更加混乱。
+\end{itemize}
+
+使得很多知识点不知所云、左右脑互搏且绕来绕去，使得面向背诵和记忆的复习较为困难。为此，我做了这个整理，希望能为本级以及之后的同学们应对考试提供参考。同时，参照前辈的意见，以及仿照我《机器人学II》笔记的风格，在整理中添加了一些个人的注解或有关链接，力争做到只需看本提纲便可以基本掌握课程全部内容，无需再阅读ppt。对于阅读后仍然感到困惑的内容，若确实重要，建议优先在B站搜索相关视频（事实上，这门课有一些冷门的算法甚至B站都没有相关视频），无果则询问AI。
+
+本整理是依据全部十六章PPT整理，删去冗余信息并补充必要理解信息得到的，理论上同时适用于自动化与机器人专业。
+
+部分格外需要引起关注的我使用红色或蓝色字体标出；小写楷体的一部分为例题内容，需要关注；另一部分的是相对不重要或仅仅用于辅助理解的内容，可以快速浏览。
+
+笔者上课基本也没有听，整理也十分仓促，疏漏或不足较多，恳请批评指正。此外，大模型相关的章节听闻去年仅有一章，而今年有了四章，预计后半的人工智能部分更新也很快，可能很快将不适用，请以最新 PPT 为准，也欢迎同学们以及学弟学妹们直接用本 \texttt{tex} 代码继续在未来根据实际情况做出补充和修正（GitHub 链接：\href{https://github.com/Colamentos2023/AI-ML-ReviewOutline-ZJU-CSE}{AI-ML-ReviewOutline-ZJU-CSE}）！
+ 
+在此感谢@cccc沉 整理所有课堂PPT，为本笔记的诞生提供了极大帮助。
+在此感谢该课程最严厉的父亲——ChatGPT-5.4老师为整理该笔记提供的帮助。
+
+祝大家学习顺利，期末高分！
+\begin{center}
+\vspace{1.2em}
+\begin{minipage}{0.82\textwidth}
+\centering
+\itshape
+\normalsize
+\setstretch{1.35}
+“如果有一天本笔记将不在被任何一位同学所打开，\\
+这门课程终于可以死在历史的尘埃里，\\
+那将是控制学子乃至全人类的一大幸事。\\
+我热切地希望着那一天的到来。”
+\end{minipage}
+\vspace{1.2em}
+\end{center}
+
+\textcolor{red}{当前版本：\textbf{No.4} 更新于2026年4月22日 22:30，正式版第一版编写完成}
+
+\begin{flushright}
+Colamentos\\
+2026年4月19日于玉泉31舍
+\end{flushright}
+\newpage
+\tableofcontents
+\thispagestyle{empty}
+\newpage
+
+%=============================
+%=============================
+\subfile{sections/chapter1.tex}
+\subfile{sections/chapter2.tex}
+\subfile{sections/chapter3.tex}
+\subfile{sections/chapter4.tex}
+\subfile{sections/chapter5.tex}
+\subfile{sections/chapter6.tex}
+\subfile{sections/chapter7.tex}
+\subfile{sections/chapter8.tex}
+\subfile{sections/chapter9.tex}
+\subfile{sections/chapter10.tex}
+\subfile{sections/chapter11.tex}
+\subfile{sections/chapter12.tex}
+\subfile{sections/chapter13.tex}
+\subfile{sections/chapter14.tex}
+\subfile{sections/chapter15.tex}
+\subfile{sections/chapter16.tex}
+\end{document}

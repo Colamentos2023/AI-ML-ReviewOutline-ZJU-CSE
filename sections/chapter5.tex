@@ -1,0 +1,275 @@
+\documentclass[../main.tex]{subfiles}
+\begin{document}
+\section{评估假设}
+本章目的是假设的评估、对两个假设精度的比较、对两个学习算法精度的比较，使用概统方法，用有限数据样本上的观察，逼近整个数据分布上的真实精度。关键在于：
+\begin{itemize}
+    \item 估计的偏差
+    \item 估计的方差
+\end{itemize}
+问题：给定假设h和包含若干按D分布抽取的样例的数据集，如何针对将来按同样分布抽取的实例，得到对h的精度最好估计，这一精度估计的可能的误差是多少？
+\subsection{估计与置信区间}
+\begin{enumerate}
+    \item \textbf{样本错误率和真实错误率：}利用前者估计后者\footnote{经典永流传之样本估计总体,我想不明白一个ppt怎么能把这么简单的事情说的这么复杂。}
+    \begin{itemize}
+        \item 假设 $h$ 关于目标函数 $f$ 和数据样本 $S$ 的样本错误率为 $error_s(h)$；
+        \item 假设 $h$ 关于目标函数 $f$ 和分布 $D$ 的真实错误率为 $error_D(h)$；
+        \item 若满足：样本 $S$ 包含 $n$（$n\geq 30$）个样例，它们的抽取按照概率分布 $D$，抽取过程是相互独立的，并且不依赖于假设 $h$，若 $h$ 在 $n$ 个样例上犯了 $r$ 个错误，则有\footnote{说人话就是，两个近似，首先用样本错误率近似真实错误率，其次用正态分布近似二项分布；具体来说，真实错误率近似落在一个以样本错误率 $error_s(h)$ 为中心的正态分布附近，其中均值取 $error_s(h)$，方差近似为 $\frac{error_s(h)(1-error_s(h))}{n}$，而 $error_s(h)=\frac{r}{n}$。这个方差可由伯努利变量的均值方差得到：把每个样本是否分错记为 $X_i\in\{0,1\}$，则 $P(X_i=1)=error_s(h)$，$P(X_i=0)=1-error_s(h)$，故单个样本的方差为 $\mathrm{Var}(X_i)=error_s(h)(1-error_s(h))$；又因为 $error_s(h)=\frac{1}{n}\sum_{i=1}^n X_i$，且各样本独立，所以 $\mathrm{Var}(error_s(h))=\mathrm{Var}\!\left(\frac{1}{n}\sum_{i=1}^n X_i\right)=\frac{1}{n^2}\sum_{i=1}^n \mathrm{Var}(X_i)=\frac{error_s(h)(1-error_s(h))}{n}$。}：
+        \begin{itemize}
+            \item 样本错误率：
+            $$
+            error_s(h)=\frac{r}{n}
+            $$
+        
+            \item $error_D(h)$ 的 $95\%$ 置信区间近似为：
+            $$
+            error_s(h)\pm 1.96\sqrt{\frac{error_s(h)\left(1-error_s(h)\right)}{n}}
+            $$
+        \end{itemize}
+        \item 一般地，$N\%$ 置信区间可写为：
+        $$
+        error_s(h)\pm z_N\sqrt{\frac{error_s(h)\left(1-error_s(h)\right)}{n}}
+        $$
+        其中 $z_N$ 由置信度确定，如 $95\%$ 时 $z_N=1.96$ （该近似适用于离散值假设；样本量至少包含 $30$ 个样例，且当 $error_s(h)$ 不太接近 $0$ 或 $1$ 时更准确），更精确的适用条件可写为：
+        $$
+        n\cdot error_s(h)\left(1-error_s(h)\right)\geq 5
+        $$
+    \end{itemize}
+    \item \textbf{二项分布}
+    \begin{itemize}
+        \item \textbf{定义：}若一次基本实验只有两种结果，且每次试验中事件 $Y=1$ 的概率恒为 $p$、各次试验相互独立，则在 $n$ 次独立试验中事件发生 $r$ 次的概率服从二项分布：
+        $$
+        \Pr(R=r)=\frac{n!}{r!(n-r)!}p^r(1-p)^{n-r}
+        $$
+        \item \textbf{均值：}
+        $$
+        E[R]=np
+        $$
+        \item \textbf{方差：}
+        $$
+        \operatorname{Var}[R]=np(1-p)
+        $$
+    \end{itemize}
+
+    \item \textbf{估计量}
+    \begin{itemize}
+        \item \textbf{估计量：}用来估计总体某一参数的随机变量。在这里，
+        $$
+        error_S(h)=\frac{r}{n},\qquad error_D(h)=p
+        $$
+        因此 $error_S(h)$ 是 $error_D(h)$ 的一个估计量。
+        \item \textbf{估计偏差：}针对任意参数 $p$ 的估计量 $Y$，其估计偏差定义为
+        $$
+        E[Y]-p
+        $$
+        \item \textbf{无偏估计量：}
+        \begin{itemize}
+            \item \textbf{含义：}若估计偏差为 $0$，则称该估计量为无偏估计量。
+            \item \textbf{举例：}由于 $error_S(h)$ 是由样本中错误个数 $r$ 得到的，而 $r$ 服从二项分布，因此 $error_S(h)$ 是 $error_D(h)$ 的一个无偏估计量；要求假设 $h$ 和样本 $S$ 必须独立选取。
+            \item \textbf{选择：}给定多个无偏估计量，应选取其中方差最小的，因为它使参数值和估计值之间的期望平方误差最小。
+            
+            {\small\kaishu
+            例子：
+            \begin{itemize}
+                \item $n=40$ 个随机样例；
+                \item $r=12$ 个错误；
+                \item $error_S(h)$ 的标准差。
+            \end{itemize}
+            这里 $p$ 表示假设 $h$ 在真实分布 $D$ 上的真实错误率，即
+            $$
+            p=error_D(h)
+            $$
+            这里 $\sigma_r$ 表示错误个数 $r$ 的标准差。由于 $r$ 服从参数为 $n,p$ 的二项分布，因此
+            $$
+            \sigma_r=\sqrt{np(1-p)}
+            $$
+            一般地，若在 $n$ 个随机选取的样本中有 $r$ 个错误，则
+            $$
+            \sigma_{error_S(h)}=\frac{\sigma_r}{n}=\sqrt{\frac{p(1-p)}{n}}
+            $$
+            由于真实错误率 $p$ 通常未知，实际中常用样本错误率 $error_S(h)$ 近似代替它，因此
+            $$
+            \sigma_{error_S(h)}\approx \sqrt{\frac{error_S(h)\left(1-error_S(h)\right)}{n}}
+            $$
+            }
+        \end{itemize}
+    \end{itemize}
+
+    \item \textbf{置信区间：}
+    \begin{itemize}
+        \item \textbf{置信区间估计：}某个参数 $p$ 的 $N\%$ 置信区间，是一个以 $N\%$ 的概率包含 $p$ 的区间。
+        \item 对于足够大的样本，二项分布可以由正态分布来近似，而正态分布的置信区间容易得到：
+        \begin{itemize}
+            \item 如果随机变量 $Y$ 服从均值为 $\mu$、标准差为 $\sigma$ 的正态分布，则其任一观察值 $y$ 有 $N\%$ 的机会落入区间
+            $$
+            y \pm z_N \sigma
+            $$
+            \item 相应地，均值 $\mu$ 有 $N\%$ 的机会落入区间
+            $$
+            \mu \pm z_N \sigma
+            $$
+        \end{itemize}
+        \item \textbf{双侧和单侧边界：}任意正态分布上的双侧置信区间能够转换为相应的单侧区间，置信度为原来的两倍。由一个有下界 $L$ 和上界 $U$ 的 $100(1-\alpha)\%$ 置信区间，可得到一个下界为 $L$ 且无上界的 $100(1-\alpha/2)\%$ 置信区间，也可得到一个有上界 $U$ 且无下界的 $100(1-\alpha/2)\%$ 置信区间，其中 $\alpha$ 对应于真实值落在指定区间外的概率。
+        \item \textbf{推导置信区间的一般方法}
+        \begin{enumerate}
+            \item 确定基准总体中要估计的参数 $p$，例如 $error_D(h)$；
+            \item 定义一个估计量 $Y$，其选择应为最小方差的无偏估计量；
+            \item 确定控制估计量 $Y$ 的概率分布 $D_Y$，包括其均值和方差；
+            \item 通过寻找阈值 $L$ 和 $U$，使按 $D_Y$ 分布的随机变量有 $N\%$ 的机会落入 $[L,U]$，从而得到 $N\%$ 置信区间。
+        \end{enumerate}
+    \end{itemize}
+\end{enumerate}
+\subsection{中心极限定理}
+\begin{enumerate}
+    \item \textbf{内容：}设 ${Y}_{1},\ldots,{Y}_{n}$ 是独立同分布的随机变量，它们服从任意概率分布，均值为 $\mu$，有限方差为 $\sigma^2$，定义样本均值为
+    $$
+    \overline{Y}_n=\frac{1}{n}\sum_{i=1}^n Y_i
+    $$
+    当 $n\to\infty$ 时，
+    $$
+    \frac{\overline{Y}_n-\mu}{\sigma/\sqrt{n}}
+    $$
+    服从均值为 $0$、标准差为 $1$ 的正态分布。
+    \item \textbf{意义：}
+    \begin{itemize}
+        \item 在不知道单个随机变量所服从的基准分布时，仍可知道样本均值的分布形式；
+        \item 任意样本均值的估计量在 $n$ 足够大时都可以近似看作服从正态分布；
+    \end{itemize}
+\end{enumerate}
+
+\subsection{两个假设错误率间的差异}
+\begin{enumerate}
+    \item \textbf{问题：}设两个假设 $h_1$ 和 $h_2$ 分别在样本数为 $n_1,n_2$ 的随机样本 $S_1,S_2$ 上测试，要估计它们真实错误率之差
+    $$
+    d=error_D(h_1)-error_D(h_2)
+    $$
+    \item \textbf{估计量：}
+    $$
+    \widehat{d}=error_{S_1}(h_1)-error_{S_2}(h_2)
+    $$
+    它是 $d$ 的无偏估计量。
+    \item \textbf{分布与方差：}当 $n_1,n_2$ 足够大时，$error_{S_1}(h_1)$ 和 $error_{S_2}(h_2)$ 都近似服从正态分布，因此它们的差也近似服从正态分布，且方差近似为
+    $$
+    \sigma_{\widehat{d}}^2 \approx
+    \frac{error_{S_1}(h_1)\left(1-error_{S_1}(h_1)\right)}{n_1}
+    +
+    \frac{error_{S_2}(h_2)\left(1-error_{S_2}(h_2)\right)}{n_2}
+    $$
+    \item \textbf{置信区间：}$d$ 的 $N\%$ 置信区间为
+    $$
+    \widehat{d}\pm z_N \sigma_{\widehat{d}}
+    \qquad (1)
+    $$
+    \item \textbf{同一样本测试时：}若 $h_1$ 和 $h_2$ 在同一个样本上测试，也可以使用式$(1)$；此时真实方差通常更小，因此由该式得到的置信区间通常偏保守，但仍是正确的。
+\end{enumerate}
+
+\subsection{假设检验}
+\begin{enumerate}
+    \item \textbf{目的：}有时更关心某个特定猜想成立的概率，而不是只给出参数的置信区间，例如
+    $$
+    error_D(h_1)>error_D(h_2)
+    $$
+    的可能性有多大。
+    \item \textbf{例子：}若分别用大小为 $100$ 的独立样本 $S_1,S_2$ 测得
+    $$
+    error_{S_1}(h_1)=0.30,\qquad error_{S_2}(h_2)=0.20
+    $$
+    则
+    $$
+    \widehat{d}=0.10
+    $$
+    \item \textbf{思想：}要求 $d>0$ 的概率，可转化为考察 $\widehat{d}$ 对 $d$ 的过高估计不超过 $0.10$ 的概率，也就是计算 $\widehat{d}$ 落入某个单侧区间的概率。
+    \item \textbf{结论：}根据方差估计可得 $\sigma_{\widehat{d}}\approx 0.061$，而 $0.10/0.061\approx 1.64$；查正态分布表，$1.64$ 个标准差对应约 $95\%$ 的单侧置信度，因此
+    $$
+    error_D(h_1)>error_D(h_2)
+    $$
+    的概率约为 $95\%$，即接受该假设的置信度约为 $95\%$。
+\end{enumerate}
+
+\subsection{两个学习算法的差异}
+\begin{enumerate}
+    \item \textbf{目标：}比较两个学习算法 $L_A$ 和 $L_B$ 的平均性能差异。一个合理定义是
+    $$
+    E_{S\subset D}\!\left[
+    error_D\!\left(L_A(S)\right)-error_D\!\left(L_B(S)\right)
+    \right]
+    $$
+    \item \textbf{实际问题：}真实情况下只有有限样本 $D_0$，通常将其划分为训练集 $S_0$ 和测试集 $T_0$，并用
+    $$
+    \delta=error_{T_0}\!\left(L_A(S_0)\right)-error_{T_0}\!\left(L_B(S_0)\right)
+    $$
+    来近似比较两算法。
+    \item \textbf{改进方法：}将数据 $D_0$ 多次分割为不相交的训练集和测试集，在每次实验中计算
+    $$
+    \delta_i=error_{T_i}(h_A)-error_{T_i}(h_B)
+    $$
+    然后取平均
+    $$
+    \overline{\delta}=\frac{1}{k}\sum_{i=1}^k \delta_i
+    $$
+    \item \textbf{置信区间：}$\overline{\delta}$ 可看作总体平均差异的估计，其近似的 $N\%$ 置信区间为
+    $$
+    \overline{\delta}\pm t_{N,k-1}s_{\overline{\delta}}
+    \qquad (9.18)
+    $$
+    其中
+    $$
+    s_{\overline{\delta}}=
+    \sqrt{
+    \frac{1}{k(k-1)}
+    \sum_{i=1}^k (\delta_i-\overline{\delta})^2
+    }
+    \qquad (9.19)
+    $$
+    \item \textbf{t 分布：}
+    \begin{itemize}
+        \item 这里使用的是 $t$ 分布，而不是正态分布\footnote{回顾概统：因为之前是二项分布，总体标准差$\sigma$已知，所以用正态分布；现在总体标准差$\sigma$未知，用样本标准差$s$，因此用t分布}；
+        \item $t$ 分布与正态分布类似，但更宽、更矮，用来反映用样本标准差 $s$ 去近似真实标准差 $\sigma$ 所带来的额外不确定性；
+        \item 当自由度 $v\to\infty$ 时，$t_{N,v}$ 趋近于 $z_N$。
+    \end{itemize}
+    \item \textbf{配对测试：}
+    \begin{itemize}
+        \item \textbf{含义：}比较两个学习算法时，应在同样的测试集合上测试两个假设；
+        \item \textbf{意义：}配对测试通常会产生更紧密的置信区间，因为差异主要来自两个假设本身，而不是样本组成的不同。
+    \end{itemize}
+    \item \textbf{实际考虑：}
+    \begin{itemize}
+        \item \textbf{问题：}上述分析默认各次实验相互独立，但实际中训练集往往有重叠，因此随机变量之间并不完全独立；
+        \item \textbf{常见做法：}包括 $k$-fold 交叉验证\footnote{随机方法可以重复很多次以减小置信区间宽度，但测试集不再严格独立；$k$-fold 方法的测试集彼此独立，因为每个实例只在测试集中出现一次；}，或反复随机划分训练集和测试集；
+        \item \textbf{注意：}总体上，这些统计模型在数据有限时只是近似成立，但仍能提供有用的近似置信区间。
+    \end{itemize}
+\end{enumerate}
+{\small\kaishu
+\begin{itemize}
+    \item \textbf{题目：}要测试一个假设 $h$，其 $error_D(h)$ 已知在 $0.2$ 到 $0.6$ 的范围内。要保证 $95\%$ 双侧置信区间的宽度小于 $0.1$，最少应采样多少个样例？
+    \item \textbf{解：}由 $95\%$ 双侧置信区间公式
+    $$
+    error_S(h)\pm 1.96\sqrt{\frac{error_S(h)\left(1-error_S(h)\right)}{n}}
+    $$
+    可知区间总宽度为
+    $$
+    2\times 1.96\sqrt{\frac{p(1-p)}{n}}<0.1
+    $$
+    其中 $p=error_D(h)$。因为 $p\in[0.2,0.6]$，而 $p(1-p)$ 在该区间内最大值为
+    $$
+    0.5\times 0.5=0.25
+    $$
+    因此只需满足最坏情况：
+    $$
+    2\times 1.96\sqrt{\frac{0.25}{n}}<0.1
+    $$
+    即
+    $$
+    \frac{1.96}{\sqrt{n}}<0.1
+    $$
+    解得
+    $$
+    \sqrt{n}>19.6,\qquad n>384.16
+    $$
+    因此最少应取
+    $$
+    n=385
+    $$
+    个样例。
+\end{itemize}
+}
+\end{document}
