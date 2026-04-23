@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999996 (TeX Live 2024) (preloaded format=xelatex 2024.12.8)  22 APR 2026 22:21
+This is XeTeX, Version 3.141592653-2.6-0.999996 (TeX Live 2024) (preloaded format=xelatex 2024.12.8)  23 APR 2026 15:00
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1280,72 +1280,78 @@ File: images/GandS.png Graphic file (type bmp)
 [12]
 
 LaTeX Font Warning: Font shape `TU/KaiTi(0)/b/n' undefined
-(Font)              using `TU/KaiTi(0)/m/n' instead on input line 326.
+(Font)              using `TU/KaiTi(0)/m/n' instead on input line 329.
 
 
 
 [13]
 
 [14]
+
+[15]
+
+[16]
+
+[17]
 File: images/finalbianxing.png Graphic file (type bmp)
 <images/finalbianxing.png>
 
 
-[15]
-
-[16]) (./sections/chapter3.tex
-
-[17]
-
 [18]
-File: images/multi_layer_net.png Graphic file (type bmp)
-<images/multi_layer_net.png>
 
-
-[19]
+[19]) (./sections/chapter3.tex
 
 [20]
 
 [21]
-File: images/guonihe.png Graphic file (type bmp)
-<images/guonihe.png>
-) (./sections/chapter4.tex
+File: images/multi_layer_net.png Graphic file (type bmp)
+<images/multi_layer_net.png>
+
 
 [22]
+
+[23]
+File: images/guonihe.png Graphic file (type bmp)
+<images/guonihe.png>
+
+
+[24]) (./sections/chapter4.tex
 File: images/playtennis.png Graphic file (type bmp)
 <images/playtennis.png>
+
+
+[25]
 File: images/entrofy.png Graphic file (type bmp)
 <images/entrofy.png>
 
 
-[23]
+[26]
 File: images/example_entrophy.png Graphic file (type bmp)
 <images/example_entrophy.png>
 
 
-[24]
-
-[25]
-
-[26]
-
-[27]) (./sections/chapter5.tex
+[27]
 
 [28]
 
 [29]
+Underfull \hbox (badness 6016) in paragraph at lines 207--207
+[]|\TU/SimSun(0)/m/n/10.95 叶 节 点 中 样 本 数 最 多 的 类 别
+ []
+
+) (./sections/chapter5.tex
 
 [30]
 
 [31]
 
-[32]) (./sections/chapter6.tex
+[32]
 
 [33]
 
 [34]
 
-[35]
+[35]) (./sections/chapter6.tex
 
 [36]
 
@@ -1371,9 +1377,15 @@ File: images/example_entrophy.png Graphic file (type bmp)
 
 [47]
 
-[48]) (./sections/chapter7.tex
+[48]
 
 [49]
+
+[50]
+
+[51]) (./sections/chapter7.tex
+
+[52]
 Overfull \hbox (18.31696pt too wide) detected at line 42
 \OML/cmm/m/it/10.95 p\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 s[]; r \OMS/cmsy/m
 /n/10.95 j \OML/cmm/m/it/10.95 s; a\OT1/cmr/m/n/10.95 ) = \OML/cmm/m/it/10.95 P
@@ -1383,105 +1395,96 @@ Overfull \hbox (18.31696pt too wide) detected at line 42
 
 
 
-[50]
+[53]
 
-[51]
+[54]
 File: images/mdp.png Graphic file (type bmp)
 <images/mdp.png>
 
 
-[52]
-
-[53]
-
-[54]
-
 [55]
 
 [56]
-File: images/rl.png Graphic file (type bmp)
-<images/rl.png>
-File: images/example1_rl.png Graphic file (type bmp)
-<images/example1_rl.png>
-
 
 [57]
 
 [58]
+File: images/rl.png Graphic file (type bmp)
+<images/rl.png>
+
+
+[59]
+File: images/example1_rl.png Graphic file (type bmp)
+<images/example1_rl.png>
+
+
+[60]
+
+[61]
 Overfull \hbox (44.07053pt too wide) detected at line 528
 []
  []
 
 
 
-[59]
+[62]
 File: images/fangcheng.png Graphic file (type bmp)
 <images/fangcheng.png>
 ) (./sections/chapter8.tex
 
-[60]
+[63]
 
-[61]
+[64]
 
-[62]
+[65]
 Overfull \hbox (51.46494pt too wide) in paragraph at lines 209--210
  [] 
  []
 
 
 
-[63]
+[66]
 File: images/LDA.png Graphic file (type bmp)
 <images/LDA.png>
 
 
-[64]
-
-[65]) (./sections/chapter9.tex
-
-[66]
-
 [67]
 
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-
-
-[68]
+[68]) (./sections/chapter9.tex
 
 [69]
-File: images/UCS.png Graphic file (type bmp)
-<images/UCS.png>
-
 
 [70]
 
 [71]
 
 [72]
+File: images/UCS.png Graphic file (type bmp)
+<images/UCS.png>
+
 
 [73]
+
+[74]
+
+[75]
+
+[76]
 File: images/monituihuo.png Graphic file (type bmp)
 <images/monituihuo.png>
 
 
-[74]
+[77]
 File: images/yichuansuanfa.png Graphic file (type bmp)
 <images/yichuansuanfa.png>
 
 
-[75]) (./sections/chapter10.tex
+[78]) (./sections/chapter10.tex
 
-[76]
+[79]
 File: images/bulong.png Graphic file (type bmp)
 <images/bulong.png>
 
-
-[77]
-
-[78]
-
-[79]
 
 [80]
 
@@ -1497,16 +1500,22 @@ File: images/bulong.png Graphic file (type bmp)
 
 [86]
 
-[87]) (./sections/chapter11.tex
+[87]
+
+[88]
+
+[89]
+
+[90]) (./sections/chapter11.tex
 Overfull \hbox (9.82343pt too wide) in paragraph at lines 21--31
  [][] 
  []
 
 
 
-[88]
+[91]
 
-[89]
+[92]
 Underfull \hbox (badness 3019) in paragraph at lines 84--84
 []|\TU/SimSun(0)/m/n/10.95 依 优 势 给 智 能 体 分 配
  []
@@ -1543,55 +1552,55 @@ Underfull \hbox (badness 2753) in paragraph at lines 99--99
 
 
 
-[90]
-
-[91]
-
-[92]) (./sections/chapter12.tex
-
 [93]
+
+[94]
+
+[95]) (./sections/chapter12.tex
+
+[96]
 File: images/maxmin.png Graphic file (type bmp)
 <images/maxmin.png>
 
 
-[94]
-
-[95]
-
-[96]
-
-[97]) (./sections/chapter13.tex
+[97]
 
 [98]
 
 [99]
 
-[100]
+[100]) (./sections/chapter13.tex
 
 [101]
 
 [102]
 
-[103]) (./sections/chapter14.tex
+[103]
 
 [104]
 
 [105]
 
-[106]
+[106]) (./sections/chapter14.tex
 
 [107]
 
 [108]
+
+[109]
+
+[110]
+
+[111]
 File: images/RNN.png Graphic file (type bmp)
 <images/RNN.png>
 File: images/LSTM.png Graphic file (type bmp)
 <images/LSTM.png>
 
 
-[109]
+[112]
 
-[110]
+[113]
 Underfull \hbox (badness 2005) in paragraph at lines 339--339
 []|\TU/SimSun(0)/m/n/10.95 对 预 训 练 模 型 的 所 有 参 数
  []
@@ -1643,7 +1652,7 @@ Underfull \hbox (badness 3568) in paragraph at lines 17--17
 
 
 
-[111]
+[114]
 Underfull \hbox (badness 10000) in paragraph at lines 31--32
 []|\TU/SimSun(0)/m/n/10.95 还 涉 及 模 型 架 构 设 计、|  训 练 数
  []
@@ -1656,7 +1665,7 @@ ncy\TU/SimSun(0)/m/n/10.95 、| \TU/lmr/m/n/10.95 Tree of
 
 
 
-[112]
+[115]
 Underfull \hbox (badness 10000) in paragraph at lines 98--98
 []|\TU/SimSun(0)/m/n/10.95 技 术 名
  []
@@ -1748,9 +1757,9 @@ Underfull \hbox (badness 2418) in paragraph at lines 111--111
 
 
 
-[113]
+[116]
 
-[114]
+[117]
 Underfull \hbox (badness 1715) in paragraph at lines 201--201
 []|\TU/SimSun(0)/m/n/10.95 提 供 带 推 理 步 骤
  []
@@ -1812,11 +1821,11 @@ Underfull \hbox (badness 10000) in paragraph at lines 201--201
 
 
 
-[115]) (./sections/chapter16.tex
+[118]) (./sections/chapter16.tex
 
-[116])
+[119])
 
-[117] (./main.aux)
+[120] (./main.aux)
  ***********
 LaTeX2e <2024-11-01> patch level 1
 L3 programming layer <2022/07/14>
@@ -1829,15 +1838,15 @@ LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 LaTeX Warning: There were multiply-defined labels.
 
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: 0C26F5D00422D313C2F962FA522102B7;9770.
+(rerunfilecheck)             Checksum: 98BA91F5EC3453F74DA03493A6F83DA1;9738.
  ) 
 Here is how much of TeX's memory you used:
  30062 strings out of 473965
  679065 string characters out of 5728897
- 1023293 words of memory out of 5000000
+ 1023261 words of memory out of 5000000
  52392 multiletter control sequences out of 15000+600000
  569972 words of font info for 135 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 93i,20n,111p,779b,1137s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 93i,20n,111p,779b,1113s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on main.pdf (118 pages).
+Output written on main.pdf (121 pages).

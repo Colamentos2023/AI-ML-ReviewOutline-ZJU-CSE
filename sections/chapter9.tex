@@ -171,7 +171,7 @@
     \end{itemize}
     \item \textbf{一致代价搜索（Uniform-cost Search, UCS）}
     \begin{itemize}
-        \item \textbf{特点：}BFS的改进，对任何单步代价函数都是最优
+        \item \textbf{特点：}BFS的改进，对任何单步代价函数都是最优；\textbf{是盲目搜索（即没有启发式）}
         \item \textbf{原理：}扩展路径消耗g(n)最低的节点\footnote{即总是搜索总成本最小的节点，cheapest-first}
         \item \textbf{数据结构：}队列
         \item \textbf{过程：}优先级队列，插入队列时按代价值排序，取出队列中代价值最小的节点即头节点，遍历该节点子节点并插入合适位置，此次类推；

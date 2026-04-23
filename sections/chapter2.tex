@@ -311,6 +311,9 @@
 
 \textcolor{blue}{来一个反例：删除 $S$ 中不能把该反例判为假的假设；删除 $G$ 中不能把该反例判为假的假设，并加入这些被删除假设的极小特殊化形式（要求$S$中存在假设比该极小特殊化形式还特殊），最后删除 $G$ 中比其他成员更特殊的假设\\}
     \item \textbf{候选消除算法示例（EnjoySport）}
+
+	\textbf{例题1：}
+
     {\small\kaishu
     \begin{itemize}
         \item 考虑下面 4 个训练样例：
@@ -498,6 +501,205 @@
         的假设 $h$ 构成。
     \end{itemize}
     }
+
+\textbf{例题2：}
+
+{\small\kaishu
+\begin{itemize}
+    \item 考虑下面 4 个训练样例，并按逆序处理：
+    \[
+    \begin{aligned}
+        x_4 &= \langle \text{Sunny}, \text{Warm}, \text{High}, \text{Strong}, \text{Cool}, \text{Change} \rangle, + \\
+        x_3 &= \langle \text{Rainy}, \text{Cold}, \text{High}, \text{Strong}, \text{Warm}, \text{Change} \rangle, - \\
+        x_2 &= \langle \text{Sunny}, \text{Warm}, \text{High}, \text{Strong}, \text{Warm}, \text{Same} \rangle, + \\
+        x_1 &= \langle \text{Sunny}, \text{Warm}, \text{Normal}, \text{Strong}, \text{Warm}, \text{Same} \rangle, +
+    \end{aligned}
+    \]
+
+    \item \textbf{初始化：}
+    \[
+        S_0=\{\langle \phi,\phi,\phi,\phi,\phi,\phi \rangle\},\qquad
+        G_0=\{\langle ?, ?, ?, ?, ?, ? \rangle\}
+    \]
+
+    \item \textbf{处理正例 $x_4$：}
+    \begin{itemize}
+        \item 先删除 $G_0$ 中不能把该正例判为真的假设。由于
+        \[
+            \langle ?, ?, ?, ?, ?, ? \rangle
+        \]
+        能把任意样本判为正，因此与正例 $x_4$ 一致，故 $G$ 不变。
+        \item 再删除 $S_0$ 中不能把该正例判为真的假设。当前唯一成员
+        \[
+            \langle \phi,\phi,\phi,\phi,\phi,\phi \rangle
+        \]
+        会把任意样本都判为负，因此不能把 $x_4$ 判为真，需要删除。
+        \item 对被删除假设加入其极小一般化形式。由于 $x_4$ 是第一个正例，因此其极小一般化形式就是
+        \[
+            \langle \text{Sunny}, \text{Warm}, \text{High}, \text{Strong}, \text{Cool}, \text{Change} \rangle
+        \]
+        且 $G_0$ 中存在更一般的假设
+        \[
+            \langle ?, ?, ?, ?, ?, ? \rangle
+        \]
+        满足
+        \[
+            g \geq_g h
+        \]
+        因此保留该一般化结果。
+        \item 最后删除 $S$ 中比其他成员更一般的假设。此时 $S$ 中只有一个成员，无需删除。
+        \item 更新后
+        \[
+            S_1=\{\langle \text{Sunny}, \text{Warm}, \text{High}, \text{Strong}, \text{Cool}, \text{Change} \rangle\}
+        \]
+        \[
+            G_1=\{\langle ?, ?, ?, ?, ?, ? \rangle\}
+        \]
+    \end{itemize}
+
+    \item \textbf{处理反例 $x_3$：}
+    \begin{itemize}
+        \item 先删除 $S_1$ 中不能把该反例判为假的假设。当前
+        \[
+            \langle \text{Sunny}, \text{Warm}, \text{High}, \text{Strong}, \text{Cool}, \text{Change} \rangle
+        \]
+        对 $x_3$ 的分类为负，因此能够把该反例判为假，故 $S$ 不变。
+        \item 再删除 $G_1$ 中不能把该反例判为假的假设。当前
+        \[
+            \langle ?, ?, ?, ?, ?, ? \rangle
+        \]
+        会把所有样本都判为正，因此不能把反例 $x_3$ 判为假，需要删除。
+        \item 对被删除假设加入其极小特殊化形式。为了排除 $x_3$ 并保持比 $S_1$ 更一般，可保留的极小特殊化形式为
+        \[
+            \langle \text{Sunny}, ?, ?, ?, ?, ? \rangle,\qquad
+            \langle ?, \text{Warm}, ?, ?, ?, ? \rangle,\qquad
+            \langle ?, ?, ?, ?, \text{Cool}, ? \rangle
+        \]
+        它们都满足存在某个 $s\in S_1$ 使得
+        \[
+            h \geq_g s
+        \]
+        因此保留。
+        \item 最后删除 $G$ 中比其他成员更特殊的假设。上述 3 个假设彼此互不包含，因此都不是冗余成员，全部保留。
+        \item 更新后
+        \[
+            S_2=\{\langle \text{Sunny}, \text{Warm}, \text{High}, \text{Strong}, \text{Cool}, \text{Change} \rangle\}
+        \]
+        \[
+            G_2=
+            \left\{
+            \langle \text{Sunny}, ?, ?, ?, ?, ? \rangle,\,
+            \langle ?, \text{Warm}, ?, ?, ?, ? \rangle,\,
+            \langle ?, ?, ?, ?, \text{Cool}, ? \rangle
+            \right\}
+        \]
+    \end{itemize}
+
+    \item \textbf{处理正例 $x_2$：}
+    \begin{itemize}
+        \item 先删除 $G_2$ 中不能把该正例判为真的假设。由于
+        \[
+            \langle ?, ?, ?, ?, \text{Cool}, ? \rangle
+        \]
+        不能覆盖 $x_2$，故将其删除；其余两个假设都能把 $x_2$ 判为真，因此保留。
+        \item 再删除 $S_2$ 中不能把该正例判为真的假设。当前
+        \[
+            \langle \text{Sunny}, \text{Warm}, \text{High}, \text{Strong}, \text{Cool}, \text{Change} \rangle
+        \]
+        在 Water 和 Forecast 两个属性上与 $x_2$ 不一致，因此不能把 $x_2$ 判为真，需要删除。
+        \item 对被删除假设加入其极小一般化形式。为了恰好覆盖 $x_2$ 和 $x_4$，只需将 Water 和 Forecast 两个属性一般化为 $?$，得到
+        \[
+            \langle \text{Sunny}, \text{Warm}, \text{High}, \text{Strong}, ?, ? \rangle
+        \]
+        且当前 $G$ 中存在更一般的假设
+        \[
+            \langle \text{Sunny}, ?, ?, ?, ?, ? \rangle
+        \]
+        以及
+        \[
+            \langle ?, \text{Warm}, ?, ?, ?, ? \rangle
+        \]
+        满足
+        \[
+            g \geq_g h
+        \]
+        因此保留。
+        \item 最后删除 $S$ 中比其他成员更一般的假设。此时仍只有一个成员，无需删除。
+        \item 更新后
+        \[
+            S_3=\{\langle \text{Sunny}, \text{Warm}, \text{High}, \text{Strong}, ?, ? \rangle\}
+        \]
+        \[
+            G_3=
+            \left\{
+            \langle \text{Sunny}, ?, ?, ?, ?, ? \rangle,\,
+            \langle ?, \text{Warm}, ?, ?, ?, ? \rangle
+            \right\}
+        \]
+    \end{itemize}
+
+    \item \textbf{处理正例 $x_1$：}
+    \begin{itemize}
+        \item 先删除 $G_3$ 中不能把该正例判为真的假设。由于
+        \[
+            \langle \text{Sunny}, ?, ?, ?, ?, ? \rangle,\qquad
+            \langle ?, \text{Warm}, ?, ?, ?, ? \rangle
+        \]
+        都能覆盖 $x_1$，故 $G$ 不变。
+        \item 再删除 $S_3$ 中不能把该正例判为真的假设。当前
+        \[
+            \langle \text{Sunny}, \text{Warm}, \text{High}, \text{Strong}, ?, ? \rangle
+        \]
+        在 Humidity 上与 $x_1$ 不一致，因此不能把 $x_1$ 判为真，需要删除。
+        \item 对被删除假设加入其极小一般化形式。为了恰好覆盖 $x_1$、$x_2$ 和 $x_4$，只需将第三个属性一般化为 $?$，得到
+        \[
+            \langle \text{Sunny}, \text{Warm}, ?, \text{Strong}, ?, ? \rangle
+        \]
+        且 $G_3$ 中存在更一般的假设
+        \[
+            \langle \text{Sunny}, ?, ?, ?, ?, ? \rangle
+        \]
+        以及
+        \[
+            \langle ?, \text{Warm}, ?, ?, ?, ? \rangle
+        \]
+        满足
+        \[
+            g \geq_g h
+        \]
+        因此保留该极小一般化形式。
+        \item 最后删除 $S$ 中比其他成员更一般的假设。此时只有一个成员，无需删除。
+        \item 更新后
+        \[
+            S_4=\{\langle \text{Sunny}, \text{Warm}, ?, \text{Strong}, ?, ? \rangle\}
+        \]
+        \[
+            G_4=
+            \left\{
+            \langle \text{Sunny}, ?, ?, ?, ?, ? \rangle,\,
+            \langle ?, \text{Warm}, ?, ?, ?, ? \rangle
+            \right\}
+        \]
+    \end{itemize}
+
+    \item \textbf{最终结果：}
+    \[
+        S=\{\langle \text{Sunny}, \text{Warm}, ?, \text{Strong}, ?, ? \rangle\}
+    \]
+    \[
+        G=
+        \left\{
+        \langle \text{Sunny}, ?, ?, ?, ?, ? \rangle,\,
+        \langle ?, \text{Warm}, ?, ?, ?, ? \rangle
+        \right\}
+    \]
+    因此，最终变型空间由所有满足
+    \[
+        (\exists s\in S)(\exists g\in G)(g \geq_g h \geq_g s)
+    \]
+    的假设 $h$ 构成。
+\end{itemize}
+}
     \begin{figure}
         \centering
         \includegraphics[width=1\linewidth]{images/finalbianxing.png}
@@ -515,7 +717,7 @@
     \end{itemize}
 \end{enumerate}
 
-\subsection{归纳偏置（理解）}
+\subsection{归纳偏置}
 
 \begin{enumerate}
     \item \textbf{归纳偏置的基本问题：}假设空间的表达能力不足。

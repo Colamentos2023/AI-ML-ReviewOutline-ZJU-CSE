@@ -21,6 +21,8 @@
     \begin{itemize}
         \item \textbf{主要目的：}从输入输出数据对构成的训练集中学习输入到输出的映射关系。
         \item \textbf{显著特征(核心特点)：}延迟学习\footnote{训练数据在预测时才被处理，平时仅保存，不主动建模。}、局部估计\footnote{只依赖训练集中与查询点相关的数据，不依赖额外模型或参数。}、即时计算\footnote{完成对查询点的预测后，不保留中间结果，仅输出估计值。}
+		\item \textbf{例子：}KNN、基于案例、局部最小值回归
+		\item \textbf{反例（Eager Learning，积极学习）：}径向基函数网络
     \end{itemize}
     \item \textbf{有监督学习}（分类）
     \begin{itemize}

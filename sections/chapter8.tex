@@ -359,6 +359,22 @@ f(x)=w^{\mathrm{T}}x+b$$
             \item 将线性拟合形式扩展为固定非线性函数的线性组合。
         \end{itemize}
 
+        \item \textbf{优点：}
+        \begin{itemize}
+            \item \textbf{提升模型表达能力}：把原始输入映射到更高维或更合适的特征空间后，原本复杂的非线性关系可能在新空间里变成线性可表示，提升拟合效果。
+
+            \item \textbf{保持优化简单}：虽然模型对输入是非线性的，但对参数 w 仍然是线性的，因此仍可使用线性模型成熟的求解方法。
+        \end{itemize}
+
+        \item \textbf{缺点：}
+        \begin{itemize}
+            \item \textbf{过拟合}：基函数过多时，模型可能把噪声也拟合进去。
+
+            \item \textbf{计算开销增加}：特征维度变高，训练和预测成本都上升。
+
+            \item \textbf{泛化能力下降}：训练误差下降，但测试误差可能上升。
+        \end{itemize}
+
         \item \textbf{常见基函数类型：}多项式基函数、高斯径向基（RBF）、Sigmoid基函数、傅里叶基函数。
     \end{enumerate}
     \item \textbf{类别不平衡处理}
