@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999996 (TeX Live 2024) (preloaded format=xelatex 2024.12.8)  25 APR 2026 17:21
+This is XeTeX, Version 3.141592653-2.6-0.999996 (TeX Live 2024) (preloaded format=xelatex 2024.12.8)  25 APR 2026 18:27
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1210,13 +1210,13 @@ Package fontspec Info:
 (fontspec)             - 'normal' (m/n) with NFSS spec.:
 (fontspec)             <->"FangSong/OT:script=hani;language=dflt;"
 
-LaTeX Font Info:    Trying to load font information for U+msa on input line 101
-.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 99.
+
  (d:/anzhuangruanjian/texlive/2024/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 101
-.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 99.
+
 
 (d:/anzhuangruanjian/texlive/2024/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
@@ -1995,7 +1995,7 @@ Package rerunfilecheck Info: File `main.out' has not changed.
 Here is how much of TeX's memory you used:
  30385 strings out of 473965
  694594 string characters out of 5728897
- 1029767 words of memory out of 5000000
+ 1029769 words of memory out of 5000000
  52691 multiletter control sequences out of 15000+600000
  572761 words of font info for 147 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
