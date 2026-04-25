@@ -31,26 +31,26 @@
 \contentsline {subsection}{\numberline {6.1}贝叶斯理论}{38}{subsection.6.1}%
 \contentsline {subsection}{\numberline {6.2}极大后验假设和极大似然假设}{39}{subsection.6.2}%
 \contentsline {subsection}{\numberline {6.3}贝叶斯最优分类器}{44}{subsection.6.3}%
-\contentsline {subsection}{\numberline {6.4}Gibbs算法}{45}{subsection.6.4}%
+\contentsline {subsection}{\numberline {6.4}Gibbs算法}{46}{subsection.6.4}%
 \contentsline {subsection}{\numberline {6.5}朴素贝叶斯分类器\footnote {\href {https://www.bilibili.com/video/BV1eT411V7jM?spm_id_from=333.788.videopod.sections&vd_source=5deca47094767260f853b759a625a68f}{推荐看B站参考视频：朴素贝叶斯分类器}}}{46}{subsection.6.5}%
-\contentsline {subsection}{\numberline {6.6}贝叶斯信念网}{47}{subsection.6.6}%
+\contentsline {subsection}{\numberline {6.6}贝叶斯信念网}{48}{subsection.6.6}%
 \contentsline {subsection}{\numberline {6.7}EM算法\footnote {\href {https://www.bilibili.com/video/BV1RT411G7jJ?spm_id_from=333.788.videopod.sections&vd_source=5deca47094767260f853b759a625a68f}{推荐看B站参考视频：EM算法}}}{50}{subsection.6.7}%
-\contentsline {subsection}{\numberline {6.8}K均值（k-Means）算法}{51}{subsection.6.8}%
+\contentsline {subsection}{\numberline {6.8}K均值（k-Means）算法}{52}{subsection.6.8}%
 \contentsline {section}{\numberline {7}马尔可夫决策过程与强化学习}{53}{section.7}%
 \contentsline {subsection}{\numberline {7.1}马尔可夫决策过程（MDP）}{53}{subsection.7.1}%
-\contentsline {subsection}{\numberline {7.2}强化学习}{56}{subsection.7.2}%
-\contentsline {subsection}{\numberline {7.3}求解强化学习任务}{58}{subsection.7.3}%
+\contentsline {subsection}{\numberline {7.2}强化学习}{57}{subsection.7.2}%
+\contentsline {subsection}{\numberline {7.3}求解强化学习任务}{59}{subsection.7.3}%
 \contentsline {section}{\numberline {8}线性模型}{64}{section.8}%
 \contentsline {subsection}{\numberline {8.1}线性回归（linear regression）}{65}{subsection.8.1}%
-\contentsline {subsection}{\numberline {8.2}线性分类}{67}{subsection.8.2}%
-\contentsline {subsection}{\numberline {8.3}线性判别分析（LDA）}{68}{subsection.8.3}%
+\contentsline {subsection}{\numberline {8.2}线性分类}{68}{subsection.8.2}%
+\contentsline {subsection}{\numberline {8.3}线性判别分析（LDA）}{69}{subsection.8.3}%
 \contentsline {subsection}{\numberline {8.4}关键问题扩展}{69}{subsection.8.4}%
 \contentsline {section}{\numberline {9}搜索与优化基础}{70}{section.9}%
 \contentsline {subsection}{\numberline {9.1}状态空间与搜索树}{70}{subsection.9.1}%
 \contentsline {subsection}{\numberline {9.2}搜索树结构与算法}{72}{subsection.9.2}%
 \contentsline {subsection}{\numberline {9.3}基础搜索算法}{74}{subsection.9.3}%
-\contentsline {subsection}{\numberline {9.4}启发式搜索算法}{75}{subsection.9.4}%
-\contentsline {subsection}{\numberline {9.5}局部搜索算法}{77}{subsection.9.5}%
+\contentsline {subsection}{\numberline {9.4}启发式搜索算法}{76}{subsection.9.4}%
+\contentsline {subsection}{\numberline {9.5}局部搜索算法}{78}{subsection.9.5}%
 \contentsline {subsection}{\numberline {9.6}元启发式算法}{80}{subsection.9.6}%
 \contentsline {section}{\numberline {10}实时搜索、增量式搜索与知识驱动搜索}{81}{section.10}%
 \contentsline {subsection}{\numberline {10.1}实时搜索与增量式搜索}{81}{subsection.10.1}%
@@ -82,21 +82,20 @@
 \contentsline {subsection}{\numberline {16.1}模型架构}{121}{subsection.16.1}%
 \contentsline {section}{\numberline {17}历年真题分类汇总}{122}{section.17}%
 \contentsline {subsection}{\numberline {17.1}人工智能概论与机器学习总体概念}{123}{subsection.17.1}%
-\contentsline {subsection}{\numberline {17.2}智能体类型与任务环境}{124}{subsection.17.2}%
+\contentsline {subsection}{\numberline {17.2}智能体类型与任务环境}{125}{subsection.17.2}%
 \contentsline {subsection}{\numberline {17.3}概念学习：Find-S、候选消除、归纳偏置与 NFL}{125}{subsection.17.3}%
-\contentsline {subsection}{\numberline {17.4}神经网络、感知器与梯度}{127}{subsection.17.4}%
-\contentsline {subsection}{\numberline {17.5}决策树学习、泛化与正则化}{128}{subsection.17.5}%
-\contentsline {subsection}{\numberline {17.6}评估假设：置信区间、中心极限定理与评价指标}{129}{subsection.17.6}%
-\contentsline {subsection}{\numberline {17.7}贝叶斯学习}{130}{subsection.17.7}%
-\contentsline {subsection}{\numberline {17.8}马尔可夫决策过程与强化学习}{131}{subsection.17.8}%
-\contentsline {subsection}{\numberline {17.9}线性模型与基函数}{132}{subsection.17.9}%
-\contentsline {subsection}{\numberline {17.10}搜索与优化：盲目、启发式、局部、元启发式}{133}{subsection.17.10}%
-\contentsline {subsection}{\numberline {17.11}命题逻辑、一阶逻辑、归结推理}{136}{subsection.17.11}%
-\contentsline {subsection}{\numberline {17.12}对抗搜索与 $\alpha $-$\beta $ 剪枝}{138}{subsection.17.12}%
-\contentsline {subsection}{\numberline {17.13}实时/增量式搜索、知识驱动搜索与应用}{138}{subsection.17.13}%
-\contentsline {subsection}{\numberline {17.14}智能体框架、任务规划与大模型智能体}{139}{subsection.17.14}%
-\contentsline {subsection}{\numberline {17.15}大模型概述与技术演进（Scaling Law）}{139}{subsection.17.15}%
-\contentsline {subsection}{\numberline {17.16}大模型架构（Transformer 与自注意力）}{140}{subsection.17.16}%
-\contentsline {subsection}{\numberline {17.17}大模型推理与部署优化}{140}{subsection.17.17}%
-\contentsline {subsection}{\numberline {17.18}跨专业/开放综合题}{141}{subsection.17.18}%
-\contentsline {subsection}{\numberline {17.19}源卷未录入题位与缺失说明}{141}{subsection.17.19}%
+\contentsline {subsection}{\numberline {17.4}神经网络、感知器与梯度}{129}{subsection.17.4}%
+\contentsline {subsection}{\numberline {17.5}决策树学习、泛化与正则化}{130}{subsection.17.5}%
+\contentsline {subsection}{\numberline {17.6}评估假设：置信区间、中心极限定理与评价指标}{132}{subsection.17.6}%
+\contentsline {subsection}{\numberline {17.7}贝叶斯学习}{134}{subsection.17.7}%
+\contentsline {subsection}{\numberline {17.8}马尔可夫决策过程与强化学习}{136}{subsection.17.8}%
+\contentsline {subsection}{\numberline {17.9}线性模型与基函数}{137}{subsection.17.9}%
+\contentsline {subsection}{\numberline {17.10}搜索与优化：盲目、启发式、局部、元启发式}{139}{subsection.17.10}%
+\contentsline {subsection}{\numberline {17.11}命题逻辑、一阶逻辑、归结推理}{147}{subsection.17.11}%
+\contentsline {subsection}{\numberline {17.12}对抗搜索与 $\alpha $-$\beta $ 剪枝}{150}{subsection.17.12}%
+\contentsline {subsection}{\numberline {17.13}实时/增量式搜索、知识驱动搜索与应用}{151}{subsection.17.13}%
+\contentsline {subsection}{\numberline {17.14}智能体框架、任务规划与大模型智能体}{152}{subsection.17.14}%
+\contentsline {subsection}{\numberline {17.15}大模型概述与技术演进（Scaling Law）}{153}{subsection.17.15}%
+\contentsline {subsection}{\numberline {17.16}大模型架构（Transformer 与自注意力）}{153}{subsection.17.16}%
+\contentsline {subsection}{\numberline {17.17}大模型推理与部署优化}{154}{subsection.17.17}%
+\contentsline {subsection}{\numberline {17.18}综合题和送分题}{155}{subsection.17.18}%

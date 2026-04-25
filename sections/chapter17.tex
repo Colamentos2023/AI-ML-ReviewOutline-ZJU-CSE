@@ -1,91 +1,92 @@
-\documentclass[../main.tex]{subfiles}
+﻿\documentclass[../main.tex]{subfiles}
 \begin{document}
 \section{历年真题分类汇总}
 
-\definecolor{examanswer}{RGB}{191,87,0}
-\newcommand{\src}[2]{\hyperref[#1]{#2}}
-\newcommand{\ans}[2]{\textcolor{examanswer}{\textbf{答案：}#1；\textbf{来源：}#2。}}
-\newcommand{\autosup}{\textcolor{examanswer}{\textbf{[自补选项]}}}
+\definecolor{examanswer}{RGB}{255,128,0}
+\definecolor{autosupbrown}{RGB}{139,69,19}
+\definecolor{autoclassgreen}{RGB}{0,100,0}
 
-\noindent 本章对 \texttt{Test/} 中 7 套历年试卷（自动化班 4 套：22/23/24/25；机器人工程班 3 套：23/24/25）按课程笔记的知识点脉络做\textbf{逐题分类}汇总，\textbf{选择题保留四个选项}：原卷已记录的选项原样列出；原卷为回忆/残缺、缺失项以 \autosup{} 标记并按笔记口径自行补全四个候选项。\textcolor{examanswer}{橙色} 标注参考答案与可跳转笔记锚点；原题出处颜色：\textcolor{blue}{自动化班}、\textcolor{teal}{机器人工程班}。
+\newcommand{\src}[2]{\hyperref[#1]{#2}}
+\long\def\ans#1#2{%
+    \par\noindent
+    {\color{autosupbrown}\textbf{答案：}#1\par\noindent\textbf{来源：}#2。}%
+}
+\newcommand{\autosup}[1]{\textcolor{examanswer}{#1}}
+
+\noindent 本章对 7 套历年试卷（自动化班 4 套：22/23/24/25；机器人工程班 3 套：23/24/25）按课程笔记的知识点脉络做逐题分类汇总，选择题保留四个选项：原卷已记录的选项原样列出；原卷缺失项按最可能的猜测补充并直接用\textcolor{examanswer}{橙色}标出。\textcolor{autosupbrown}{棕色}标注参考答案与可跳转笔记对应位置；原题出处颜色：\textcolor{autoclassgreen}{自动化班}、\textcolor{teal}{机器人工程班}。
 
 % =====================================================================
 \subsection{人工智能概论与机器学习总体概念}
 
-\noindent\textbf{知识点：AI 定义、图灵测试、智能体定义、人类智能能力、AI 目标、三大学派、机器学习定义、监督/无监督/强化、积极/懒惰学习。}
-
 \noindent\textbf{\textcolor{red}{选择题：}}
 \begin{enumerate}[itemsep=0.45em, topsep=0.2em, leftmargin=1.5em]
-    \item \textbf{AI 的定义} \textcolor{blue}{(自动化22, 选择 1)}：``下列哪项最准确地描述人工智能？''\\
-    \autosup{} A. 研究、设计和构造能感知环境、学习/推理并采取行动的智能系统\quad B. 一切运行在计算机上的程序\quad C. 完全替代人类劳动的机器\quad D. 仅指深度神经网络。 \ans{A}{\src{sec:agent-theory}{智能体理论框架}；\src{sec:ml-concept}{机器学习概念}}
+    \item \textbf{AI 的定义} \textcolor{autoclassgreen}{(自动化22, 选择 1)}：``下列哪项最准确地描述人工智能？''\\
+    \autosup{A. 研究、设计和构造能感知环境、学习/推理并采取行动的智能系统\quad B. 一切运行在计算机上的程序\quad C. 完全替代人类劳动的机器\quad D. 仅指深度神经网络。 }
+    
+    \ans{A}{\src{sec:agent-theory}{智能体理论框架}；\src{sec:ml-concept}{机器学习概念}}
 
-    \item \textbf{AI 的研究目标} \textcolor{blue}{(自动化24, 选择 1)}：``以下哪一项\emph{不属于}其研究目标？''\\
+    \item \textbf{AI 的研究目标} \textcolor{autoclassgreen}{(自动化24, 选择 1)}：``以下哪一项\emph{不属于}其研究目标？''\\
     A. 像人类一样思考\quad B. 像人类一样行动\quad C. 通过实验创造物理规律\quad D. 合理地行动。 \ans{C}{\src{sec:agent-theory}{智能体理论框架}}
 
-    \item \textbf{图灵测试} \textcolor{blue}{(自动化24, 选择 2)}：``以下哪项是图灵测试的核心目标？''\\
+    \item \textbf{图灵测试} \textcolor{autoclassgreen}{(自动化24, 选择 2)}：``以下哪项是图灵测试的核心目标？''\\
     A. 测试机器速度\quad B. 测试机器的智能水平\quad C. 测试算法复杂度\quad D. 测试计算机的计算能力。 \ans{B}{\src{sec:agent-theory}{智能体理论框架}}
 
-    \item \textbf{智能体的定义} \textcolor{blue}{(自动化24, 选择 3)}：``以下哪种描述最准确地定义了智能体？''\\
+    \item \textbf{智能体的定义} \textcolor{autoclassgreen}{(自动化24, 选择 3)}：``以下哪种描述最准确地定义了智能体？''\\
     A. 一个硬件系统\quad B. 能够感知环境并采取行动的系统\quad C. 一种优化算法\quad D. 一个数据库系统。 \ans{B}{\src{sec:agent-theory}{智能体理论框架}}
 
-    \item \textbf{机器学习的目的} \textcolor{blue}{(自动化24, 选择 4)}：``机器学习的主要目的是？''\\
+    \item \textbf{机器学习的目的} \textcolor{autoclassgreen}{(自动化24, 选择 4)}：``机器学习的主要目的是？''\\
     A. 使计算机能够自动编写代码\quad B. 使计算机能够自动执行任务\quad C. 使计算机能够从数据中学习并做出决策\quad D. 使计算机能够自动进行网络攻击。 \ans{C}{\src{sec:ml-concept}{机器学习概念}}
 
-    \item \textbf{机器学习的地位} \textcolor{blue}{(自动化23, 选择 3)}：``机器学习是？''\\
-    A. 人工智能的一个分支\quad B. 数据分析的一种技术\quad C. 以上都是\quad D. 以上都不是。 \ans{C}{\src{sec:ml-concept}{机器学习概念}}
+    \item \textbf{机器学习的地位} \textcolor{autoclassgreen}{(自动化23, 选择 3)}：``机器学习是？''\\
+    A. 人工智能的一个分支\quad B. 数据分析的一种技术\quad \autosup{C. 以上都是}\quad D. 以上都不是。 \ans{C}{\src{sec:ml-concept}{机器学习概念}}
 
-    \item \textbf{AI 的典型应用} \textcolor{blue}{(自动化23, 选择 1)}：``下列哪一项\emph{不属于}人工智能的典型应用？''\\
-    \autosup{} A. 语音识别\quad B. 计算机视觉\quad C. 操作系统的进程调度（确定性算法）\quad D. 自然语言处理。 \ans{C；纯确定性传统程序不属于 AI 应用}{\src{sec:agent-theory}{智能体理论框架}}
+    \item \textbf{AI 的典型应用} \textcolor{autoclassgreen}{(自动化23, 选择 1)}：``下列哪一项\emph{不属于}人工智能的典型应用？''\\
+    \autosup{A. 语音识别\quad B. 计算机视觉\quad C. 操作系统的进程调度（确定性算法）\quad D. 自然语言处理。} \ans{C；纯确定性传统程序不属于 AI 应用}{\src{sec:agent-theory}{智能体理论框架}}
 
-    \item \textbf{人类智能的定义} \textcolor{blue}{(自动化23, 选择 10)}：``下列关于人类智能的定义说法正确的是？''\\
-    \autosup{} A. 仅指逻辑推理能力\quad B. 包含感知、记忆/思维、学习、行为四种能力\quad C. 等同于身体反应速度\quad D. 与容错性、推广能力无关。 \ans{B；人类智能强调容错性与推广能力}{\src{sec:ml-concept}{机器学习概念}}
+    \item \textbf{人类智能的定义} \textcolor{autoclassgreen}{(自动化23, 选择 10)}：``下列关于人类智能的定义说法正确的是？''\\
+    \autosup{A. 仅指逻辑推理能力\quad B. 包含感知、记忆/思维、学习、行为四种能力\quad C. 等同于身体反应速度\quad D. 与容错性、推广能力无关。} \ans{B；人类智能强调容错性与推广能力}{\src{sec:ml-concept}{机器学习概念}}
 
-    \item \textbf{监督 vs.\ 无监督学习} \textcolor{blue}{(自动化22, 选择 5)}：``关于有监督与无监督学习，正确的是？''\\
-    \autosup{} A. 二者都需要标签\quad B. 有监督学习需要标签，无监督学习不需要标签\quad C. 二者都不需要标签\quad D. 无监督只能用于回归。 \ans{B；典型有监督任务为分类/回归，无监督为聚类/降维}{\src{sec:ml-task-types}{学习任务分类}}
+    \item \textbf{监督 vs.\ 无监督学习} \textcolor{autoclassgreen}{(自动化22, 选择 5)}：``关于有监督与无监督学习，正确的是？''\\
+    \autosup{A. 二者都需要标签\quad B. 有监督学习需要标签，无监督学习不需要标签\quad C. 二者都不需要标签\quad D. 无监督只能用于回归。} \ans{B；典型有监督任务为分类/回归，无监督为聚类/降维}{\src{sec:ml-task-types}{学习任务分类}}
 
-    \item \textbf{二/多分类、回归、聚类区别} \textcolor{blue}{(自动化22, 选择 10)}：``下列对四类任务区别的描述正确的是？''\\
-    \autosup{} A. 二/多分类输出离散类别，回归输出连续值，聚类无标签发现簇\quad B. 四者都需要标签\quad C. 回归只能用于二分类\quad D. 聚类输出连续值。 \ans{A}{\src{sec:ml-task-types}{学习任务分类}}
+    \item \textbf{二/多分类、回归、聚类区别} \textcolor{autoclassgreen}{(自动化22, 选择 10)}：``下列对四类任务区别的描述正确的是？''\\
+    \autosup{A. 二/多分类输出离散类别，回归输出连续值，聚类无标签发现簇\quad B. 四者都需要标签\quad C. 回归只能用于二分类\quad D. 聚类输出连续值。} \ans{A}{\src{sec:ml-task-types}{学习任务分类}}
 
     \item \textbf{积极学习辨识} \textcolor{teal}{(机器人24, 选择 10)}：``下列哪种算法属于积极学习（eager learning）？''\\
     A. 径向基函数 (RBF)\quad B. 局部加权回归\quad C. KNN\quad D. 基于案例的推理。 \ans{A；KNN/局部加权回归/基于案例都是懒惰学习}{\src{sec:ml-task-types}{学习任务分类}}
 
-    \item \textbf{积极学习辨识（另一版）}（\textit{笔记补题；同学回忆中的题面变体，原卷未单独录入}）：``下列哪种属于积极学习？''\\
-    \autosup{} A. K-Means\quad B. 径向基函数\quad C. KNN\quad D. 基于案例。 \ans{B；K-Means 是聚类，懒惰/积极是按照泛化时机划分而言}{\src{sec:ml-task-types}{学习任务分类}}
 \end{enumerate}
 
 \noindent\textbf{\textcolor{red}{填空题：}}
 \begin{enumerate}[itemsep=0.3em, topsep=0.2em, leftmargin=1.5em]
-    \item \textcolor{blue}{(自动化22, 填空 1；自动化24, 填空 1)}：``智能包含的能力包括：\underline{\ \ }、\underline{\ \ }、\underline{\ \ }、\underline{\ \ }''。 \ans{感知能力、记忆与思维能力、学习能力、行为能力}{\src{sec:ml-concept}{机器学习概念}}
-    \item \textcolor{blue}{(自动化22, 填空 2；自动化23, 填空 2)}：``人工智能的短期目标\underline{\ \ }，终极目标\underline{\ \ }''。 \ans{短期目标是用机器模拟/延伸人的智能；终极目标是制造达到或超过人类水平的智能系统}{\src{sec:agent-theory}{智能体理论框架}}
-    \item \textcolor{blue}{(自动化23, 填空 3)}：``人工智能三大学派\underline{\ \ }、\underline{\ \ }、\underline{\ \ }''。 \ans{符号主义、连接主义、行为主义}{\src{sec:agent-theory}{智能体理论框架}}
+    \item \textcolor{autoclassgreen}{(自动化22, 填空 1；自动化24, 填空 1)}：``智能包含的能力包括：\underline{\ \ }、\underline{\ \ }、\underline{\ \ }、\underline{\ \ }''。 \ans{感知能力、记忆与思维能力、学习能力、行为能力}{\src{sec:ml-concept}{机器学习概念}}
+    \item \textcolor{autoclassgreen}{(自动化22, 填空 2；自动化23, 填空 2)}：``人工智能的短期目标\underline{\ \ }，终极目标\underline{\ \ }''。 \ans{短期目标是用机器模拟人的智能；终极目标是制造达到或超过人类水平的智能系统}{\src{sec:agent-theory}{智能体理论框架}}
+    \item \textcolor{autoclassgreen}{(自动化23, 填空 3)}：``人工智能三大学派\underline{\ \ }、\underline{\ \ }、\underline{\ \ }''。 \ans{符号主义、连接主义、行为主义}{\src{sec:agent-theory}{智能体理论框架}}
 \end{enumerate}
 
 \noindent\textbf{\textcolor{red}{大题：}}
 \begin{enumerate}[itemsep=0.3em, topsep=0.2em, leftmargin=1.5em]
-    \item \textcolor{blue}{(自动化24, 大题 3；5 分)}：``结合自身专业背景和课程知识点，举例说明人工智能面临的主要挑战及其发展趋势''。 \ans{挑战可写数据质量、泛化鲁棒性、可解释性、安全伦理、算力成本；趋势可写大模型、多模态、智能体、软硬件协同与行业落地}{\src{sec:llm-overview}{大模型概述}；\src{sec:agent-framework}{智能体框架}}
+    \item \textcolor{autoclassgreen}{(自动化24, 大题 3；5 分)}：``结合自身专业背景和课程知识点，举例说明人工智能面临的主要挑战及其发展趋势''。 \ans{挑战可写数据质量、泛化鲁棒性、可解释性、安全伦理、算力成本；趋势可写大模型、多模态、智能体、软硬件协同与行业落地}{\src{sec:llm-overview}{大模型概述}；\src{sec:agent-framework}{智能体框架}}
 \end{enumerate}
 
 % =====================================================================
 \subsection{智能体类型与任务环境}
 
-\noindent\textbf{知识点：5 类智能体（简单反射、基于模型、基于目标、基于效用、学习智能体）；任务环境的可观察/确定/分段/静态等维度。}
+\noindent\textbf{知识点：4 类智能体（简单反射、基于模型、基于目标、基于效用）；任务环境的可观察/确定/分段/静态等维度。}
 
 \noindent\textbf{\textcolor{red}{选择题：}}
 \begin{enumerate}[itemsep=0.45em, topsep=0.2em, leftmargin=1.5em]
     \item \textbf{基于模型的反射式智能体} \textcolor{teal}{(机器人24, 选择 1)}：``通过内部状态（''世界模型''）、遵循条件-行动规则的 Agent 类型是？''\\
     A. 简单反射式\quad B. 基于目标\quad C. 基于模型的简单反射式\quad D. 基于效用。 \ans{C}{\src{sec:agent-theory}{智能体理论框架}}
 
-    \item \textbf{$f\colon p^*\to a$ 型 Agent}（\textit{笔记补题；同学回忆中的另一题面变体，原卷未单独录入}）：``映射 $f\colon p^*\to a$ 对应哪种 Agent 函数？''\\
-    \autosup{} A. 基于反射/条件-行动规则\quad B. 基于模型\quad C. 基于目标\quad D. 基于效用。 \ans{A；若题面写效用映射到状态评价，则改选 D}{\src{sec:agent-theory}{智能体理论框架}}
-
     \item \textbf{基于目标的智能体} \textcolor{teal}{(机器人25, 选择 1)}：``追踪记录世界状态、要达到的目标，并选择导致达成目标的行动''——这是什么类型？\\
-    \autosup{} A. 简单反射式\quad B. 基于目标\quad C. 基于模型\quad D. 基于效用。 \ans{B}{\src{sec:agent-theory}{智能体理论框架}}
+    \autosup{A. 简单反射式\quad B. 基于目标\quad C. 基于模型\quad D. 基于效用。} \ans{B}{\src{sec:agent-theory}{智能体理论框架}}
 
     \item \textbf{任务环境——医疗影像} \textcolor{teal}{(机器人24, 选择 2)}：``医疗影像系统的任务环境属于？''\\
-    A. 可观察的\quad B. \autosup{} 多智能体的（按笔记常见分类该项错；自补）\quad C. 静态的\quad D. 分段的（episodic）。 \ans{A/C/D 均常成立；按单选最稳取 D 分段}{\src{sec:agent-theory}{智能体理论框架}}
+    A. 可观察的\quad \autosup{B. 多智能体的（按笔记常见分类该项错；自补）}\quad C. 静态的\quad D. 分段的（episodic）。 \ans{A/C/D 都对？是不是选不属于的？}{\src{sec:agent-theory}{智能体理论框架}}
 
     \item \textbf{任务环境——计时棋博弈} \textcolor{teal}{(机器人25, 选择 2)}：``计时棋博弈的任务环境\emph{不是}下列哪一种？''\\
-    \autosup{} A. 完全可观\quad B. 静态\quad C. 确定\quad D. 片段。 \ans{B（也含 D）；计时博弈是动态的、多步连续决策，不是静态/片段}{\src{sec:agent-theory}{智能体理论框架}；\src{sec:game-framework}{对抗搜索}}
+    A. 完全可观\quad B. 静态\quad C. 确定\quad D. 片段。 \ans{B（也含 D）；计时棋是动态的、多步连续决策，不是静态或片段}{\src{sec:agent-theory}{智能体理论框架}；\src{sec:game-framework}{对抗搜索}}
 \end{enumerate}
 
 % =====================================================================
@@ -95,49 +96,67 @@
 
 \noindent\textbf{\textcolor{red}{选择题：}}
 \begin{enumerate}[itemsep=0.45em, topsep=0.2em, leftmargin=1.5em]
-    \item \textbf{概念学习的定义} \textcolor{blue}{(自动化23, 选择 15)}：``下列哪项最准确地定义概念学习？''\\
-    \autosup{} A. 从正反样例中学习能判定实例归属的布尔函数/假设\quad B. 在无标签数据上发现自然簇\quad C. 通过梯度下降优化连续参数\quad D. 在策略空间中随机搜索。 \ans{A}{\src{sec:concept-learning}{概念学习}}
+    \item \textbf{概念学习的定义} \textcolor{autoclassgreen}{(自动化23, 选择 15)}：``下列哪项最准确地定义概念学习？''\\
+    \autosup{A. 从正反样例中学习能判定实例归属的布尔函数/假设\quad B. 在无标签数据上发现自然簇\quad C. 通过梯度下降优化连续参数\quad D. 在策略空间中随机搜索。} \ans{A}{\src{sec:concept-learning}{概念学习}}
 
-    \item \textbf{大假设空间的有效搜索} \textcolor{blue}{(自动化24, 选择 18；自动化25, 选择 17)}：``如何在很大的假设空间中高效搜索与训练数据最匹配的假设？''\\
+    \item \textbf{大假设空间的有效搜索} \textcolor{autoclassgreen}{(自动化24, 选择 18；自动化25, 选择 17)}：``如何在很大的假设空间中高效搜索与训练数据最匹配的假设？''\\
     A. 穷举法\quad B. 利用假设空间的``一般到特殊''序结构\quad C. 预处理并剔除问题数据\quad D. 合并相似数据。 \ans{B}{\src{sec:concept-learning}{概念学习}；\src{sec:candidate-elimination}{候选消除}}
 
     \item \textbf{Find-S 输出} \textcolor{teal}{(机器人24, 选择 4)}：``Find-S 算法输出的假设是？''\\
     A. 一般的\quad B. 特殊的\quad C. 简单的\quad D. 复杂的。 \ans{B；与正例一致的极大特殊假设}{\src{sec:find-s}{Find-S}}
 
     \item \textbf{Find-S 选取原则} \textcolor{teal}{(机器人24, 选择 5；机器人25, 选择 6)}：``在 $H$ 中选择与（\ ）一致的、最（\ ）的假设。''\\
-    A. 正例，特殊\quad B. 负例，特殊\quad C. 正例，一般\quad D. 负例，一般。 \ans{A；正例 / 特殊}{\src{sec:find-s}{Find-S}}
+    A. 正例，特殊（具体）\quad B. 负例，特殊（具体）\quad C. 正例，一般（抽象）\quad D. 负例，一般（抽象）。 \ans{A；正例 / 特殊}{\src{sec:find-s}{Find-S}}
 
     \item \textbf{候选消除输出范围} \textcolor{teal}{(机器人24, 选择 6)}：``候选消除算法输出（\ ）可行的假设。''\\
-    A. 全部\quad B. 部分\quad \autosup{} C. 唯一最特殊\quad \autosup{} D. 唯一最一般。 \ans{A；输出与训练样例完全一致的版本空间}{\src{sec:candidate-elimination}{候选消除}}
+    A. 全部\quad B. 部分\quad \autosup{C. 唯一最特殊}\quad \autosup{D. 唯一最一般}。 \ans{A；输出与训练样例完全一致的版本空间}{\src{sec:candidate-elimination}{候选消除}}
 
     \item \textbf{候选消除错误说法（多选）} \textcolor{teal}{(机器人25, 选择 12)}：``关于候选消除算法，错误的有哪些？''\\
-    A. 只处理正例\quad B. 只处理反例\quad \autosup{} C. 输出唯一假设\quad \autosup{} D. 不需要使用一般到特殊偏序。 \ans{A、B、C、D 均错；候选消除同时用正例泛化 $S$、反例特殊化 $G$，输出版本空间}{\src{sec:candidate-elimination}{候选消除}}
+    A. 只处理正例\quad B. 只处理反例\quad C. 在无限假设空间中算法也可以正常运行\quad \autosup{D. 输出唯一假设}。 \ans{A、B、C、D 均错；候选消除通常在可表示/可维护边界的假设空间中同时用正例泛化 $S$、反例特殊化 $G$，输出版本空间而非唯一假设}{\src{sec:candidate-elimination}{候选消除}}
 
-    \item \textbf{奥卡姆剃刀} \textcolor{teal}{(机器人24, 选择 7)}：``奥卡姆剃刀倾向于选择（\ ）的假设。''\\
-    \autosup{} A. 简单\quad B. 复杂\quad C. 特殊\quad D. 一般。 \ans{A}{\src{sec:dt-inductive-bias}{假设空间和归纳偏置}}
+    \item \textbf{奥卡姆剃刀} \textcolor{teal}{(机器人24, 选择 7；机器人25, 选择 20)}：``奥卡姆剃刀原则的核心思想是？''\\
+    A. 选正确率最高的\quad B. 更复杂的表示更好\quad C. 正确率相同时，选不那么复杂的假设\quad \autosup{D. 随机选择假设}。 \ans{C}{\src{sec:dt-inductive-bias}{假设空间和归纳偏置}}
 
-    \item \textbf{归纳偏置定义} \textcolor{blue}{(自动化25, 选择 11)}：``归纳偏置的定义是？''\\
-    \autosup{} A. 学习器除训练数据外用于泛化的额外假设/偏好\quad B. 数据采样过程中的统计偏差\quad C. 模型权重的初始化分布\quad D. 训练损失下界。 \ans{A}{\src{sec:inductive-bias}{归纳偏置}}
+    \item \textbf{归纳偏置定义} \textcolor{autoclassgreen}{(自动化25, 选择 11)}：``归纳偏置的定义是？''\\
+    \autosup{A. 学习器除训练数据外用于泛化的额外偏好\quad B. 数据采样过程中的统计偏差\quad C. 模型权重的初始化分布\quad D. 训练损失下界。} \ans{A}{\src{sec:inductive-bias}{归纳偏置}}
 
-    \item \textbf{NFL 定理含义} \textcolor{blue}{(自动化25, 选择 12)}：``''没有免费午餐''定理告诉我们什么？''\\
-    \autosup{} A. 存在普适最优算法\quad B. 数据越多越好\quad C. 归纳偏置是必要的，算法的优劣是相对于特定问题而言的\quad D. 神经网络是最优的。 \ans{C}{\src{sec:inductive-bias}{归纳偏置}}
+    \item \textbf{NFL 定理含义} \textcolor{autoclassgreen}{(自动化25, 选择 12)}：``''没有免费午餐''定理\footnote{如果把所有可能的问题都平均考虑，那么任何两个学习算法的平均性能完全一样。也就是说，不存在一个算法在所有问题上都比其他算法更好。其实就是具体问题具体分析的意思}告诉我们什么？''\\
+    \autosup{A. 存在普适最优算法}\quad \autosup{B. 数据越多越好}\quad C. 归纳偏置是必要的，算法的优劣是相对于特定问题而言的\quad \autosup{D. 神经网络是最优的}。 \ans{C}{\src{sec:inductive-bias}{归纳偏置}}
 
-    \item \textbf{消除归纳偏置} \textcolor{blue}{(自动化25, 选择 13)}：``过拟合……最直接的消除归纳偏置的方法是？''\\
-    A. 正则化（L2）\quad B. 增加数据\quad C. 换一种模型（如从线性到决策树）\quad \autosup{} D. 提前停止。 \ans{C；最直接换模型/扩大假设空间}{\src{sec:inductive-bias}{归纳偏置}}
+    \item \textbf{归纳偏置} \textcolor{autoclassgreen}{(自动化25, 选择 13，回忆版表述可能有误)}：
+    ``在机器学习中，若希望改变学习算法对假设空间的偏好，最直接的方法是？''\\
+    A. 增加训练数据\quad
+    B. 更换模型或改变假设空间\quad
+    C. 固定训练集顺序\quad
+    \autosup{D. 增大测试集规模}。
+    \ans{B；归纳偏置体现为学习算法对假设空间中不同假设的偏好，更换模型或改变假设空间会直接改变这种偏好}{\src{sec:inductive-bias}{归纳偏置}}
 \end{enumerate}
 
 \noindent\textbf{\textcolor{red}{填空题：}}
 \begin{enumerate}[itemsep=0.3em, topsep=0.2em, leftmargin=1.5em]
-    \item \textcolor{blue}{(自动化22, 填空 4；自动化23, 填空 6)}：``Find-S 用\underline{\ \ }序的方法，在\underline{\ \ }结构上实现，每一步得到的都是与训练样例一致的\underline{\ \ }假设''。 \ans{由特殊到一般序；偏序（假设空间）；最特殊}{\src{sec:find-s}{Find-S}}
-    \item \textcolor{blue}{(自动化25, 填空 7)}：``线性模型的归纳偏置是目标函数与输入满足（\ ）关系''。 \ans{线性}{\src{sec:linear-regression}{线性回归}}
-    \item \textcolor{blue}{(自动化25, 填空 8)}：``CNN 的归纳偏置是局部性和（\ ）不变性''。 \ans{平移}{\src{sec:inductive-bias}{归纳偏置}}
+    \item \textcolor{autoclassgreen}{(自动化22, 填空 4；自动化23, 填空 6)}：``Find-S 用\underline{\ \ }序的方法，在\underline{\ \ }结构上实现，每一步得到的都是与训练样例一致的\underline{\ \ }假设''。 \ans{由特殊到一般序；\texttt{more\_general\_than}偏序；极大特殊}{\src{sec:find-s}{Find-S}}
+    \item \textcolor{autoclassgreen}{(自动化25, 填空 7)}：``线性模型的归纳偏置是目标函数与输入满足（\ ）关系''。 \ans{线性}{\src{sec:linear-regression}{线性回归}}
+    \item \textcolor{autoclassgreen}{(自动化25, 填空 8)}：``CNN 的归纳偏置是局部性和（\ ）不变性''。 \ans{平移}{\src{sec:inductive-bias}{归纳偏置}}
 \end{enumerate}
 
 \noindent\textbf{\textcolor{red}{大题/简答：}}
 \begin{enumerate}[itemsep=0.3em, topsep=0.2em, leftmargin=1.5em]
-    \item \textcolor{teal}{(机器人24, 简答 4)}：``Find-S 算法的不足是什么？''。 \ans{只利用正例；无法处理噪声/不一致数据；只输出一个极大特殊假设，不能表达版本空间或不确定性}{\src{sec:find-s}{Find-S}}
-    \item \textcolor{blue}{(自动化24, 大题 6；10 分)}：``候选消除算法中，若 EnjoySport 样例\textbf{逆序}出现，请分别给出 $S$ 和 $G$ 的边界集合''。 \ans{按逆序逐例更新：正例泛化 $S$、反例特殊化 $G$；最终输出与全体样例一致的版本空间边界（与正序结果一致）}{\src{sec:candidate-elimination}{候选消除}}
-    \item \textcolor{teal}{(机器人25, 大题 4)}：``EnjoySport 假设空间大小 973；增加属性 Water-Current（3 取值）后实例数与假设数增加多少？推广到一般 $A,B$''。 \ans{原实例数 $96$；加 3 值属性后实例数变 $288$，增加 $192$；假设数变 $1+(973-1)(3+1)=3889$，增加 $2916$。一般地，新增 $A,B$（取值数 $k_A,k_B$），实例数乘 $k_A k_B$，假设数变 $1+(|H|-1)(k_A+1)(k_B+1)$}{\src{sec:concept-learning}{概念学习}}
+    \item \textcolor{teal}{(机器人24, 简答 4)}：``Find-S 算法的不足是什么？''。 \ans{
+    \begin{itemize}
+        \item 算法只利用正例更新假设，未显式利用反例信息。
+        \item 它不能判断最终假设是否已经收敛到真实目标概念。
+        \item 它默认训练样例彼此一致，若数据存在噪声或标注冲突，算法可能失效。
+        \item 若假设空间中存在多个与正例一致的极大特殊假设，Find-S 不能完整表示这种不确定性。
+    \end{itemize}}{\src{sec:find-s}{Find-S}}
+    \item \textcolor{autoclassgreen}{(自动化24, 大题 6；10 分)}：``候选消除算法中，若 EnjoySport 样例\textbf{逆序}出现，请分别给出 $S$ 和 $G$ 的边界集合''。 \ans{见例题2}{\src{houxuan2}{候选消除}}
+    \item \textcolor{teal}{(机器人25, 大题 4)}：
+    ``解释为什么 EnjoySport 学习任务的假设空间大小为 $973$。
+    若增加一个新属性 Water-Current，其可取值为 Light、Moderate 和 Strong，
+    则可能的实例数和可能的假设数分别增加多少？
+    推广到一般情形，若增加两个新属性 $A$ 和 $B$，其取值个数分别为 $k_A$ 和 $k_B$，
+    则实例数和假设数分别增加多少？''
+    \ans{
+     第一问见 \src{enjoy_sport}{EnjoySport 假设空间例题}。    原 EnjoySport 实例数为    $$    3\times 2\times 2\times 2\times 2\times 2=96.    $$    增加 Water-Current 后，其取值数为 $3$，故实例数变为    $$    96\times 3=288,    $$    增加    $$    288-96=192.    $$    原 EnjoySport 假设数为    $$    1+(4\times 3\times 3\times 3\times 3\times 3)=973.    $$    增加 Water-Current 后，该属性在假设中有 $3+1=4$ 种非空约束取法，    故假设数变为    $$    1+(4\times 4\times 3\times 3\times 3\times 3\times 3)=3889,    $$    增加    $$    3889-973=2916.    $$    一般地，若原实例数为 $N$，原假设数为 $H$，新增两个属性 $A,B$ 的取值个数分别为    $k_A,k_B$，则实例数变为    $$    N'=Nk_Ak_B,    $$    增加    $$    N'-N=N(k_Ak_B-1).    $$    假设数变为    $$    H'=1+(H-1)(k_A+1)(k_B+1),    $$    增加    $$    H'-H=(H-1)\bigl((k_A+1)(k_B+1)-1\bigr).    $$    }{\src{sec:concept-learning}{概念学习}}
 \end{enumerate}
 
 % =====================================================================
@@ -147,40 +166,37 @@
 
 \noindent\textbf{\textcolor{red}{选择题：}}
 \begin{enumerate}[itemsep=0.45em, topsep=0.2em, leftmargin=1.5em]
-    \item \textbf{感知器输出} \textcolor{teal}{(机器人24, 选择 15)}：``感知器的输出取值为 $1$ 或（\ ）''。\\
-    A. $1$\quad B. $2$\quad C. $3$\quad D. $0$。 \ans{D（按 PPT $\{0,1\}$ 口径；若按 $\{-1,+1\}$ 口径，原卷选项中没有 $-1$）}{\src{sec:perceptron}{感知器}}
+    \item \textbf{感知器输出} \textcolor{teal}{(机器人24, 选择 15)}：``感知器的输出取值为 （\ ） 或$-1$''。\\
+    A. $1$\quad B. $2$\quad C. $3$\quad D. $0$。 \ans{A}{\src{sec:perceptron}{感知器}}
 
-    \item \textbf{感知器输出（另一版）} \textcolor{teal}{(机器人25, 选择 8)}：``感知器的输出是 $1$ 和（\ ）''。\\
+    \item \textbf{感知器输出} \textcolor{teal}{(机器人25, 选择 8)}：``感知器的输出是 $1$ 和（\ ）''。\\
     A. $0$\quad B. $-1$\quad C. $5$\quad D. $4$。 \ans{B}{\src{sec:perceptron}{感知器}}
 
-    \item \textbf{单层感知机与异或} \textcolor{blue}{(自动化25, 选择 14)}：``单层感知机能否实现异或，为什么？''\\
-    \autosup{} A. 能，因为权重可调\quad B. 不能，只能实现线性分类\quad C. 能，加大学习率即可\quad D. 不能，但可以通过构造特征（如隐层、$x_1 x_2$）实现。 \ans{B 与 D 均正确；XOR 线性不可分，需非线性特征/隐层}{\src{sec:perceptron}{感知器}；\src{sec:ffn-capacity}{前馈网络表征能力}}
+    \item \textbf{单层感知机与异或} \textcolor{autoclassgreen}{(自动化25, 选择 14)}：``单层感知机能否实现异或，为什么？''\\
+    \autosup{A. 能，因为权重可调}\quad B. 不能，只能实现线性分类\quad \autosup{C. 能，加大学习率即可}\quad D. 不能，但可以通过构造特征（如隐层、$x_1 x_2$）实现。 \ans{B 与 D 均正确；XOR 线性不可分，需非线性特征/隐层}{\src{sec:perceptron}{感知器}；\src{sec:ffn-capacity}{前馈网络表征能力}}
 
-    \item \textbf{激活函数作用} \textcolor{blue}{(自动化24, 选择 14)}：``激活函数的作用是？''\\
+    \item \textbf{激活函数作用} \textcolor{autoclassgreen}{(自动化24, 选择 14)}：``激活函数的作用是？''\\
     A. 增加计算复杂度\quad B. 引入非线性因素\quad C. 减少训练时间\quad D. 增加模型的参数量。 \ans{B}{\src{sec:nonlinear-unit}{非线性单元}}
 
-    \item \textbf{不是常用激活函数} \textcolor{blue}{(自动化22, 选择 6)}：``下列哪一项不是常用的激活函数？''\\
-    \autosup{} A. Sigmoid\quad B. Tanh\quad C. ReLU\quad D. 均方误差(MSE)。 \ans{D；MSE 是损失函数}{\src{sec:nonlinear-unit}{非线性单元}}
+    \item \textbf{不是常用激活函数} \textcolor{autoclassgreen}{(自动化22, 选择 6)}：``下列哪一项不是常用的激活函数？''\\
+    \autosup{A. Sigmoid\quad B. Tanh\quad C. ReLU\quad D. 均方误差(MSE)。} \ans{D；MSE 是损失函数}{\src{sec:nonlinear-unit}{非线性单元}}
 
     \item \textbf{sigmoid 光滑性} \textcolor{teal}{(机器人24, 选择 16)}：``sigmoid 是一个光滑（\ ）的函数。''\\
-    A. 可微\quad B. 无限可微（光滑）\quad C. 二次可微\quad D. 不可微。 \ans{B}{\src{sec:nonlinear-unit}{非线性单元}}
+    A. 可微\quad B. 无限可微（光滑）\footnote{那我问你，无限可微是不是可微？}\quad C. 二次可微\quad D. 不可微。 \ans{B}{\src{sec:nonlinear-unit}{非线性单元}}
 
     \item \textbf{sigmoid 性质（多选）} \textcolor{teal}{(机器人25, 选择 9)}：``关于 sigmoid 函数说法正确的有哪些？''\\
-    A. 值域是 $(0,1)$\quad B. 导数是 $y(1-y)$\quad C. 可以直接应用于多分类任务\quad D. 与交叉熵结合使用可以解决梯度爆炸问题。 \ans{A、B；C 应用 softmax，D 表述错误（解决的是梯度饱和而非爆炸）}{\src{sec:nonlinear-unit}{非线性单元}}
+    A. 值域是 $(0,1)$\quad B. 导数是 $y(1-y)$\quad C. 可以直接应用于多分类任务\quad D. 与交叉熵结合使用可以解决梯度爆炸问题。 \ans{A、B；C 应用 softmax，D 表述错误（sigmoid 与交叉熵结合主要缓解的是输出层 sigmoid 饱和导致的梯度过小问题，而不是梯度爆炸问题。）}{\src{sec:nonlinear-unit}{非线性单元}}
 
-    \item \textbf{极大似然与损失} \textcolor{teal}{(机器人24, 选择 17)}：``使损失（\ ）符合极大似然估计''。\\
-    A. 最小平方和\quad B. 最小和\quad \autosup{} C. 最大平方和\quad \autosup{} D. 最大和。 \ans{A；高斯噪声假设下最小负对数似然 $\Leftrightarrow$ 最小平方和}{\src{sec:map-ml}{极大似然假设}；\src{sec:backprop}{反向传播}}
+    \item \textbf{梯度下降卡点} \textcolor{autoclassgreen}{(自动化22, 选择 11；附三幅 3D 曲面图)}：``下列情况会使梯度下降''卡住''的是？''\\
+    A. 碗状曲面（局部极小）\quad B. 鞍点\quad C. 倒碗状曲面（局部极大）\quad \autosup{D. 平坦区}。 \ans{B（最易卡住）；C 处梯度不稳定，A 处恰为收敛目标，D 也会因近零梯度卡住}{\src{sec:backprop}{反向传播}}
 
-    \item \textbf{梯度下降卡点} \textcolor{blue}{(自动化22, 选择 11；附三幅 3D 曲面图)}：``下列情况会使梯度下降''卡住''的是？''\\
-    A. 碗状曲面（局部极小）\quad B. 鞍点\quad C. 倒碗状曲面（局部极大）\quad \autosup{} D. 平坦区。 \ans{B（最易卡住）；C 处梯度不稳定，A 处恰为收敛目标，D 也会因近零梯度卡住}{\src{sec:backprop}{反向传播}}
-
-    \item \textbf{网络层数与错误率（多选）} \textcolor{blue}{(自动化24, 选择 15)}：``关于神经网络说法正确的是？''\\
+    \item \textbf{网络层数与错误率（多选）} \textcolor{autoclassgreen}{(自动化24, 选择 15)}：``关于神经网络说法正确的是？''\\
     A. 减少网络层数，一定会减少训练集分类错误率\quad B. 减少网络层数，可能会减少测试集分类错误率\quad C. 增加网络层数，一定会增加训练集分类错误率\quad D. 增加网络层数，可能会增加测试集分类错误率。 \ans{B、D；A、C 用了''一定会''过强}{\src{sec:nn-generalization}{泛化与过拟合}}
 \end{enumerate}
 
 \noindent\textbf{\textcolor{red}{大题：}}
 \begin{enumerate}[itemsep=0.3em, topsep=0.2em, leftmargin=1.5em]
-    \item \textcolor{blue}{(自动化23, 大题 6)}：``谈谈你对梯度消失的理解''。 \ans{深层反传时各层局部导数连乘，若大多 $<1$，前层梯度趋近 $0$，参数难以更新；缓解办法：LSTM/GRU、残差连接、归一化、合适激活（ReLU/GELU）、权重正交初始化}{\src{sec:backprop}{反向传播}；\src{sec:transformer-self-attention}{Transformer 前模型局限}}
+    \item \textcolor{autoclassgreen}{(自动化23, 大题 6)}：``谈谈你对梯度消失的理解''。 \ans{深层反传时各层局部导数连乘，若大多 $<1$，前层梯度趋近 $0$，参数难以更新；缓解办法：LSTM/GRU、残差连接、归一化、合适激活（ReLU/GELU）、权重正交初始化}{\src{sec:backprop}{反向传播}；\src{sec:transformer-self-attention}{Transformer 前模型局限}}
 \end{enumerate}
 
 % =====================================================================
@@ -190,42 +206,45 @@
 
 \noindent\textbf{\textcolor{red}{选择题：}}
 \begin{enumerate}[itemsep=0.45em, topsep=0.2em, leftmargin=1.5em]
-    \item \textbf{信息熵度量对象} \textcolor{blue}{(自动化24, 选择 12)}：``信息熵是度量样本集合（\ ）最常用的一种指标。''\\
+    \item \textbf{信息熵度量对象} \textcolor{autoclassgreen}{(自动化24, 选择 12)}：``信息熵是度量样本集合（\ ）最常用的一种指标。''\\
     A. 对称差\quad B. 重要性\quad C. 纯度\quad D. 大小。 \ans{C；熵越小纯度越高}{\src{sec:id3}{ID3 算法}}
 
-    \item \textbf{信息增益计算} \textcolor{blue}{(自动化22, 选择 8)}：``信息增益的计算公式是？''\\
-    \autosup{} A. $\mathrm{Gain}(D,a)=\mathrm{Ent}(D)-\sum_v\frac{|D^v|}{|D|}\mathrm{Ent}(D^v)$\quad B. $\mathrm{Ent}(D)+\sum \mathrm{Ent}(D^v)$\quad C. $\sum_v |D^v|/|D|$\quad D. $1-\mathrm{Ent}(D)$。 \ans{A}{\src{sec:id3}{ID3 算法}}
+    \item \textbf{信息增益计算} \textcolor{autoclassgreen}{(自动化22, 选择 8)}：
+    ``信息增益的计算公式是？''\\
+    A. $\mathrm{infoGain}(D\mid A)=\mathrm{Entropy}(D)-\mathrm{Entropy}(D\mid A)$\quad
+    \autosup{B. $\mathrm{infoGain}(D\mid A)=\mathrm{Entropy}(D)+\mathrm{Entropy}(D\mid A)$}\quad
+    \autosup{C. $\mathrm{infoGain}(D\mid A)=\mathrm{Entropy}(D\mid A)-\mathrm{Entropy}(D)$}\quad
+    \autosup{D. $\mathrm{infoGain}(D\mid A)=1-\mathrm{Entropy}(D)$}。
+    \ans{A；信息增益等于划分前数据集的熵减去按属性 $A$ 划分后的条件熵，其中 $\mathrm{Entropy}(D\mid A)=\sum_{i=1}^{n}p(a_i)\mathrm{Entropy}(D\mid a_i)$}{\src{sec:id3}{ID3 算法}}
 
     \item \textbf{ID3 划分依据} \textcolor{teal}{(机器人25, 选择 14)}：``ID3 选择节点划分主要依据？''\\
-    A. 信息增益\quad \autosup{} B. 信息增益率\quad C. 基尼系数\quad \autosup{} D. 平方误差。 \ans{A}{\src{sec:id3}{ID3 算法}}
+    A. 信息增益\quad \autosup{B. 信息增益率}\quad C. 基尼系数\quad \autosup{D. 平方误差}。 \ans{A}{\src{sec:id3}{ID3 算法}}
 
-    \item \textbf{剪枝针对现象} \textcolor{blue}{(自动化24, 选择 13)}：``剪枝是决策树学习算法对付什么现象的主要手段？''\\
+    \item \textbf{剪枝针对现象} \textcolor{autoclassgreen}{(自动化24, 选择 13)}：``剪枝是决策树学习算法对付什么现象的主要手段？''\\
     A. 数据少\quad B. 标记噪声\quad C. 欠拟合\quad D. 过拟合。 \ans{D}{\src{sec:dt-overfitting}{决策树过拟合}}
 
-    \item \textbf{欠拟合定义} \textcolor{blue}{(自动化23, 选择 5)}：``欠拟合（underfitting）的定义是？''\\
-    \autosup{} A. 模型复杂度不足，训练误差和测试误差都较高\quad B. 模型过度拟合训练数据\quad C. 仅在测试集上误差大\quad D. 仅在训练集上误差大但测试集小。 \ans{A}{\src{sec:linear-key-issues}{过拟合阶数选择}}
+    \item \textbf{欠拟合定义} \textcolor{autoclassgreen}{(自动化23, 选择 5)}：``欠拟合（underfitting）的定义是？''\\
+    \autosup{A. 模型复杂度不足，训练误差和测试误差都较高\quad B. 模型过度拟合训练数据\quad C. 仅在测试集上误差大\quad D. 仅在训练集上误差大但测试集小。} \ans{A}{\src{sec:linear-key-issues}{过拟合阶数选择}}
 
-    \item \textbf{减小过拟合的方法（多选）} \textcolor{blue}{(自动化24, 选择 16)}：``下列哪种方法可以用来减小过拟合？''\\
+    \item \textbf{减小过拟合的方法（多选）} \textcolor{autoclassgreen}{(自动化24, 选择 16)}：``下列哪种方法可以用来减小过拟合？''\\
     A. 更多的训练数据\quad B. 减小模型的复杂度\quad C. L1 正则化\quad D. L2 正则化。 \ans{A、B、C、D}{\src{sec:dt-overfitting}{决策树过拟合}；\src{sec:nn-generalization}{神经网络泛化}}
 
-    \item \textbf{样本 vs.\ 真实错误率（多选）} \textcolor{teal}{(机器人25, 选择 13)}：``关于样本错误率与真实错误率说法正确？''\\
-    A. 当过拟合时样本错误率显著小于真实错误率\quad \autosup{} B. 样本错误率是真实错误率的无偏估计\quad \autosup{} C. 样本量越大，样本错误率方差越小\quad \autosup{} D. 二者总是相等。 \ans{A、B、C；D 错}{\src{sec:hypothesis-evaluation}{评估假设}}
 \end{enumerate}
 
 \noindent\textbf{\textcolor{red}{填空题：}}
 \begin{enumerate}[itemsep=0.3em, topsep=0.2em, leftmargin=1.5em]
-    \item \textcolor{blue}{(自动化24, 填空 7)}：``ID3 划分时，选择信息增益最\underline{\ \ }的属性''。 \ans{大}{\src{sec:id3}{ID3 算法}}
-    \item \textcolor{blue}{(自动化24, 填空 6；自动化25, 填空 9)}：``决策树剪枝基本策略有\underline{\ \ }和\underline{\ \ }''。 \ans{预剪枝、后剪枝}{\src{sec:dt-overfitting}{决策树过拟合}}
-    \item \textcolor{blue}{(自动化24, 填空 9)}：``$N$ 个样本一半训练一半测试，增加 $N$ 后训练误差和测试误差差距会\underline{\ \ }''。 \ans{减小}{\src{sec:hypothesis-evaluation}{评估假设}}
+    \item \textcolor{autoclassgreen}{(自动化24, 填空 7)}：``ID3 划分时，选择信息增益最\underline{\ \ }的属性''。 \ans{大}{\src{sec:id3}{ID3 算法}}
+    \item \textcolor{autoclassgreen}{(自动化24, 填空 6；自动化25, 填空 9)}：``决策树剪枝基本策略有\underline{\ \ }和\underline{\ \ }''。 \ans{预剪枝、后剪枝}{\src{sec:dt-overfitting}{决策树过拟合}}
+    \item \textcolor{autoclassgreen}{(自动化24, 填空 9)}：``$N$ 个样本一半训练一半测试，增加 $N$ 后训练误差和测试误差差距会\underline{\ \ }''。 \ans{减小}{\src{sec:hypothesis-evaluation}{评估假设}}
 \end{enumerate}
 
 \noindent\textbf{\textcolor{red}{大题：}}
 \begin{enumerate}[itemsep=0.3em, topsep=0.2em, leftmargin=1.5em]
-    \item \textcolor{teal}{(机器人25, 简答 3)}：``简述决策树学习适用的问题''。 \ans{适合可由属性-值描述、目标值离散或可回归、可容忍噪声/缺失、需可解释规则的问题}{\src{sec:decision-tree}{决策树学习}}
-    \item \textcolor{blue}{(自动化23, 大题 4)}：``决策树是什么？其优缺点是什么？''。 \ans{内部节点为属性测试、分支为属性值、叶子为预测；优点：可解释、处理离散属性方便；缺点：易过拟合、对噪声和划分选择敏感}{\src{sec:decision-tree}{决策树学习}}
-    \item \textcolor{blue}{(自动化25, 大题 4；8 分)}：``回归树/分类树节点按什么原则划分？叶子预测值是什么？为什么选择这个标准、效果如何？''。 \ans{分类树按纯度提升/信息增益/基尼系数划分，叶子取多数类；回归树按平方误差下降划分，叶子取均值；目的都是降低节点不确定性/误差}{\src{sec:dt-extensions}{ID3 扩展}}
+    \item \textcolor{teal}{(机器人25, 简答 3)}：``简述决策树学习适用的问题''。 \ans{“属性-值”对、目标函数离散输出、可能需要析取的描述、训练数据可以包含错误、训练数据可以包含缺少属性值的实例}{\src{sec:decision-tree}{决策树学习}}
+    \item \textcolor{autoclassgreen}{(自动化23, 大题 4)}：``决策树是什么？其优缺点是什么？''。 \ans{内部节点（包括根节点）是属性；节点的后继分支对应该属性的一个可能值；叶子节点是该实例所属分类；决策树代表实例属性值约束的合取的析取式；优点：可解释、处理离散属性方便；缺点：易过拟合、对噪声和划分选择敏感}{\src{sec:decision-tree}{决策树学习}}
+    \item \textcolor{autoclassgreen}{(自动化25, 大题 4；8 分)}：``回归树/分类树节点按什么原则划分？叶子预测值是什么？为什么选择这个标准、效果如何？''。 \ans{分类树按信息增益划分，叶子取多数类；回归树按平方误差下降划分，叶子取均值；目的都是降低节点不确定性}{\src{sec:dt-extensions}{ID3 扩展}}
     \item \textcolor{teal}{(机器人24, 简答 3)}：``过拟合的定义''。 \ans{模型过度拟合训练样本细节或噪声，训练误差低但泛化误差高}{\src{sec:dt-overfitting}{决策树过拟合}}
-    \item \textcolor{blue}{(自动化22, 大题 4)}：``过拟合和欠拟合是什么？产生原因？决策树和神经网络中如何避免？''。 \ans{欠拟合：模型太简单；过拟合：模型太复杂或数据少/噪声大；决策树用预/后剪枝，神经网络用早停、权重衰减、Dropout、减少隐层、交叉验证等}{\src{sec:dt-overfitting}{决策树过拟合}；\src{sec:nn-generalization}{神经网络泛化}}
+    \item \textcolor{autoclassgreen}{(自动化22, 大题 4)}：``过拟合和欠拟合是什么？产生原因？决策树和神经网络中如何避免？''。 \ans{欠拟合：模型太简单；过拟合：决策面太复杂，拟合了训练数据中的噪声或无关特征；决策树用预/后剪枝，神经网络用早停、权重衰减、Dropout、减少隐层、交叉验证等}{\src{sec:dt-overfitting}{决策树过拟合}；\src{sec:nn-generalization}{神经网络泛化}}
 \end{enumerate}
 
 % =====================================================================
@@ -235,25 +254,28 @@
 
 \noindent\textbf{\textcolor{red}{选择题：}}
 \begin{enumerate}[itemsep=0.45em, topsep=0.2em, leftmargin=1.5em]
+    \item \textbf{样本 vs.\ 真实错误率（多选）} \textcolor{teal}{(机器人25, 选择 13)}：``关于样本错误率与真实错误率说法正确？''\\
+    A. 当过拟合时样本错误率显著小于真实错误率\quad \autosup{B. 样本错误率是真实错误率的无偏估计}\quad \autosup{C. 样本量越大，样本错误率方差越小}\quad \autosup{D. 二者总是相等}。 \ans{A、C；B、D 错，B只有在若h是独立于样本S预先固定的假设才满足}{\src{sec:hypothesis-evaluation}{评估假设}}
+    
     \item \textbf{中心极限定理} \textcolor{teal}{(机器人25, 选择 10)}：``关于中心极限定理说法正确的是？''\\
-    \autosup{} A. 任意分布的样本和总是正态\quad B. 独立同分布且方差有限时，样本均值在样本量足够大时近似服从正态分布\quad C. 仅适用于离散分布\quad D. 与样本量无关。 \ans{B}{\src{sec:central-limit-theorem}{中心极限定理}}
+    A. 样本均值的分布总是和总体均值的分布相同\quad B. 只有样本量大于 30 时，样本均值才满足正态分布\quad C. 如果样本量足够大，样本均值会近似满足正态分布\quad \autosup{D. 与总体方差无关}。 \ans{C；通常要求独立同分布且方差有限}{\src{sec:central-limit-theorem}{中心极限定理}}
 
-    \item \textbf{算法评价指标（多选）} \textcolor{blue}{(自动化23, 选择 6)}：``下列哪些是常用的算法评价指标？''\\
+    \item \textbf{算法评价指标（多选）} \textcolor{autoclassgreen}{(自动化23, 选择 6)}：``下列哪些是常用的算法评价指标？''\\
     A. 准确率、召回率\quad B. MSE\quad C. MAE\quad D. AUC-ROC 曲线。 \ans{A、B、C、D 均常用，仅适用任务不同}{\src{sec:algorithm-comparison}{学习算法差异}}
 
-    \item \textbf{回归指标（多选）} \textcolor{blue}{(自动化23, 选择 7)}：``下列哪些指标可以评价回归任务？''\\
+    \item \textbf{回归指标（多选）} \textcolor{autoclassgreen}{(自动化23, 选择 7)}：``下列哪些指标可以评价回归任务？''\\
     A. MAE\quad B. MSE\quad C. binary cross-entropy\quad D. Smooth L1。 \ans{A、B、D；交叉熵用于分类}{\src{sec:algorithm-comparison}{学习算法差异}}
 
-    \item \textbf{回归指标（2025）} \textcolor{blue}{(自动化25, 选择 18)}：``能用于衡量回归任务的指标？''\\
-    \autosup{} A. MSE、RMSE、Smooth L1\quad B. 交叉熵\quad C. 多分类交叉熵\quad D. 准确率。 \ans{A}{\src{sec:algorithm-comparison}{学习算法差异}}
+    \item \textbf{回归指标（2025）} \textcolor{autoclassgreen}{(自动化25, 选择 18)}：``能用于衡量回归任务的指标？''\\
+    A. MSE、RMSE、Smooth L1\quad B. 交叉熵\quad C. 多分类交叉熵\quad \autosup{D. 准确率}。 \ans{A}{\src{sec:algorithm-comparison}{学习算法差异}}
 
-    \item \textbf{$k$ 折交叉验证} \textcolor{blue}{(自动化22, 选择 2)}：``$k$ 折交叉验证（$k$-fold cross validation）的基本做法是？''\\
-    \autosup{} A. 按时间序列切分\quad B. 将数据分成 $k$ 份，轮流取一份验证/测试，其余训练，最后汇总平均性能\quad C. 仅划分训练/测试两份\quad D. 重复随机抽样训练。 \ans{B}{\src{sec:algorithm-comparison}{学习算法差异}}
+    \item \textbf{$k$ 折交叉验证} \textcolor{autoclassgreen}{(自动化22, 选择 2)}：``$k$ 折交叉验证（$k$-fold cross validation）的基本做法是？''\\
+    \autosup{A. 按时间序列切分\quad B. 将数据分成 $k$ 份，轮流取一份验证/测试，其余训练，最后汇总平均性能\quad C. 仅划分训练/测试两份\quad D. 重复随机抽样训练。} \ans{B}{\src{sec:algorithm-comparison}{学习算法差异}}
 \end{enumerate}
 
 \noindent\textbf{\textcolor{red}{大题：}}
 \begin{enumerate}[itemsep=0.3em, topsep=0.2em, leftmargin=1.5em]
-    \item \textcolor{blue}{(自动化22, 大题 5)}：``回归和分类的评估指标及其优缺点''。 \ans{分类：准确率、精确率、召回率、F1、AUC；回归：MAE、MSE、RMSE、Smooth L1；优缺点围绕抗异常值、是否适合类别不平衡、可解释性展开}{\src{sec:algorithm-comparison}{学习算法差异}}
+    \item \textcolor{autoclassgreen}{(自动化22, 大题 5)}：``回归和分类的评估指标及其优缺点''。 \ans{分类：准确率、精确率、召回率、F1、AUC；回归：MAE、MSE、RMSE、Smooth L1；优缺点围绕抗异常值、是否适合类别不平衡、可解释性展开写}{\src{sec:algorithm-comparison}{学习算法差异}}
     \item \textcolor{teal}{(机器人24, 大题 4)}：``100 个布尔样例中 80 个正确分类，求 $\mathrm{error}_h(D)$ 的标准差和 90\% 置信区间（$z_{90\%}=1.64$）''。 \ans{$\hat e=0.2$，$\sigma=\sqrt{0.2\times 0.8/100}=0.04$，90\% 置信区间 $0.2\pm1.64\times 0.04=[0.1344,0.2656]$}{\src{sec:confidence-interval}{估计与置信区间}}
 \end{enumerate}
 
@@ -264,39 +286,47 @@
 
 \noindent\textbf{\textcolor{red}{选择题：}}
 \begin{enumerate}[itemsep=0.45em, topsep=0.2em, leftmargin=1.5em]
-    \item \textbf{贝叶斯公式（长裤-女生）} \textcolor{blue}{(自动化24, 选择 20；自动化25, 选择 19)}：``男 60\%、女 40\%；男总穿长裤，女一半长裤。穿长裤概率？穿长裤者是女生概率？''\\
+    \item \textbf{贝叶斯公式（长裤-女生）} \textcolor{autoclassgreen}{(自动化24, 选择 20；自动化25, 选择 19)}：``男 60\%、女 40\%；男总穿长裤，女一半长裤。穿长裤概率？穿长裤者是女生概率？''\\
     A. 40\%, 60\%\quad B. 80\%, 45\%\quad C. 50\%, 75\%\quad D. 80\%, 25\%。 \ans{D；$P(\text{长裤})=0.8$，$P(\text{女}\mid\text{长裤})=0.25$}{\src{sec:bayes-theory}{贝叶斯理论}}
 
-    \item \textbf{贝叶斯计算} \textcolor{blue}{(自动化23, 选择 8)}：``给定先验与似然，计算后验概率''。\\
-    \autosup{} A. $P(h\mid D)=P(D\mid h)P(h)/P(D)$\quad B. $P(h\mid D)=P(D)/P(D\mid h)$\quad C. $P(h\mid D)=P(h)+P(D)$\quad D. $P(h\mid D)=P(D\mid h)\cdot P(D)$。 \ans{A}{\src{sec:bayes-theory}{贝叶斯理论}}
+    \item \textbf{贝叶斯计算} \textcolor{autoclassgreen}{(自动化23, 选择 8)}：``给定先验与似然，计算后验概率''。\\
+    \autosup{A. $P(h\mid D)=P(D\mid h)P(h)/P(D)$\quad B. $P(h\mid D)=P(D)/P(D\mid h)$\quad C. $P(h\mid D)=P(h)+P(D)$\quad D. $P(h\mid D)=P(D\mid h)\cdot P(D)$。} \ans{A}{\src{sec:bayes-theory}{贝叶斯理论}}
 
-    \item \textbf{朴素贝叶斯前提假设} \textcolor{blue}{(自动化22, 选择 3)}：``朴素贝叶斯分类器的前提假设是？''\\
-    \autosup{} A. 各特征互不相关\quad B. 给定类别标签时，各属性条件独立\quad C. 类别先验均匀\quad D. 训练样本独立同分布。 \ans{B}{\src{sec:naive-bayes}{朴素贝叶斯}}
+    \item \textbf{朴素贝叶斯前提假设} \textcolor{autoclassgreen}{(自动化22, 选择 3)}：``朴素贝叶斯分类器的前提假设是？''\\
+    \autosup{A. 各特征互不相关\quad B. 给定类别标签时，各属性条件独立\quad C. 类别先验均匀\quad D. 训练样本独立同分布。} \ans{B}{\src{sec:naive-bayes}{朴素贝叶斯}}
 
-    \item \textbf{重复特征影响} \textcolor{blue}{(自动化22, 选择 4)}：``若将某个特征重复输入，对分类结果会有什么影响？''\\
-    \autosup{} A. 无影响\quad B. 该特征权重被人为放大，可能扭曲后验\quad C. 准确率必然提高\quad D. 训练失败。 \ans{B}{\src{sec:naive-bayes}{朴素贝叶斯}}
+    \item \textbf{重复特征影响} \textcolor{autoclassgreen}{(自动化22, 选择 4)}：``若将某个特征重复输入，对分类结果会有什么影响？''\\
+    \autosup{A. 无影响\quad B. 该特征权重被人为放大，可能扭曲后验\quad C. 准确率必然提高\quad D. 训练失败。} \ans{B}{\src{sec:naive-bayes}{朴素贝叶斯}}
 
     \item \textbf{Gibbs 算法} \textcolor{teal}{(机器人24, 选择 18)}：``Gibbs 算法的期望错误率不超过贝叶斯最优分类器的（\ ）倍''。\\
-    \autosup{} A. $1$\quad B. $2$\quad C. $\log n$\quad D. $\sqrt n$。 \ans{B；$2$ 倍上界}{\src{sec:gibbs-algorithm}{Gibbs 算法}}
+    \autosup{A. $1$\quad B. $2$\quad C. $\log n$\quad D. $\sqrt n$。} \ans{B；$2$ 倍上界}{\src{sec:gibbs-algorithm}{Gibbs 算法}}
 
     \item \textbf{Gibbs 算法（多选）} \textcolor{teal}{(机器人25, 选择 11)}：``关于 Gibbs 算法正确的有哪些？''\\
-    \autosup{} A. 从后验分布随机采样假设并分类\quad B. 期望错误率有 $2\times$ 贝叶斯最优上界\quad C. 总是返回最大后验假设（MAP）\quad D. 不需要先验。 \ans{A、B；C、D 错}{\src{sec:gibbs-algorithm}{Gibbs 算法}}
+    A. 通过后验概率来采样假设\quad B. 误分类率的期望值和贝叶斯最优分类器一样\quad C. 误分类率的期望值不超过贝叶斯最优分类器的两倍\quad \autosup{D. 不需要先验概率}。 \ans{A、C；B、D 错，没有先验概率怎么算后验概率呢？}{\src{sec:gibbs-algorithm}{Gibbs 算法}}
+
+    \item \textbf{极大似然与残差} \textcolor{teal}{(机器人24, 选择 17；机器人25, 选择 17)}：
+    ``在线性回归或连续值回归中，若假设观测噪声服从零均值高斯分布，则极大似然估计等价于最小化残差的哪一项？''\\
+    A. 平方和最小\quad
+    B. 绝对值和最小\quad
+    C. 绝对值和最大\quad
+    \autosup{D. 平方和最大}。
+    \ans{A；在高斯噪声假设下，最大化似然等价于最小化残差平方和；若输出服从伯努利分布，则最大似然等价于最小化交叉熵}{\src{sec:map-ml}{极大似然假设}；\src{ML}{极大似然}}
 \end{enumerate}
 
 \noindent\textbf{\textcolor{red}{填空题：}}
 \begin{enumerate}[itemsep=0.3em, topsep=0.2em, leftmargin=1.5em]
-    \item \textcolor{blue}{(自动化24, 填空 8)}：``''贝叶斯分类器总是比决策树分类器更准确''是\underline{\ \ }''。 \ans{错误}{\src{sec:bayesian-learning}{贝叶斯学习}；\src{sec:decision-tree}{决策树学习}}
-    \item \textcolor{blue}{(自动化25, 填空 10)}：``贝叶斯学习中，模型参数\underline{\ \ }分布，初始信念由\underline{\ \ }分布表示，获得信息由\underline{\ \ }函数体现''。 \ans{后验；先验；似然}{\src{sec:bayes-theory}{贝叶斯理论}}
-    \item \textcolor{blue}{(自动化25, 填空 11)}：``朴素贝叶斯中，''朴素''核心假设是特征（\ ）独立''。 \ans{条件}{\src{sec:naive-bayes}{朴素贝叶斯}}
-    \item \textcolor{blue}{(自动化25, 填空 14)}：``高斯混合聚类基于（\ ）模型，使用（\ ）算法估计，给出样本属于每个簇的（\ ）概率''。 \ans{概率（高斯混合）；EM；后验/软分配}{\src{sec:em-algorithm}{EM 算法}}
+    \item \textcolor{autoclassgreen}{(自动化24, 填空 8)}：``''贝叶斯分类器总是比决策树分类器更准确''是\underline{\ \ }''。 \ans{错误}{\src{sec:bayesian-learning}{贝叶斯学习}；\src{sec:decision-tree}{决策树学习}}
+    \item \textcolor{autoclassgreen}{(自动化25, 填空 10)}：``贝叶斯学习中，模型参数\underline{\ \ }分布，初始信念由\underline{\ \ }分布表示，获得信息由\underline{\ \ }函数体现''。 \ans{后验；先验；似然}{\src{sec:bayes-theory}{贝叶斯理论}}
+    \item \textcolor{autoclassgreen}{(自动化25, 填空 11)}：``朴素贝叶斯中，''朴素''核心假设是特征（\ ）独立''。 \ans{条件}{\src{sec:naive-bayes}{朴素贝叶斯}}
+    \item \textcolor{autoclassgreen}{(自动化25, 填空 14)}：``高斯混合聚类基于（\ ）模型，使用（\ ）算法估计，给出样本属于每个簇的（\ ）概率''。 \ans{概率（高斯混合）；EM；后验}{\src{sec:em-algorithm}{EM 算法}}
 \end{enumerate}
 
 \noindent\textbf{\textcolor{red}{大题：}}
 \begin{enumerate}[itemsep=0.3em, topsep=0.2em, leftmargin=1.5em]
     \item \textcolor{teal}{(机器人23, 简答 4)}：``贝叶斯先验概率与后验概率的区别与联系''。 \ans{先验是观察数据前的信念，后验是结合数据后的信念；二者通过似然 $P(D\mid h)$ 与贝叶斯公式联系}{\src{sec:bayes-theory}{贝叶斯理论}}
-    \item \textcolor{teal}{(机器人25, 简答 4)}：``简述贝叶斯学习的核心思想''。 \ans{用概率描述假设不确定性，由先验与似然得到后验，再据后验进行预测或选择 MAP/贝叶斯最优分类}{\src{sec:bayes-theory}{贝叶斯理论}；\src{sec:bayes-optimal-classifier}{贝叶斯最优分类器}}
-    \item \textcolor{blue}{(自动化23, 大题 5)}：``朴素贝叶斯的原理与典型应用场景''。 \ans{基于贝叶斯公式与条件独立假设计算各类后验，选后验最大类；常用于文本分类、垃圾邮件过滤、情感分析、简单医学诊断}{\src{sec:naive-bayes}{朴素贝叶斯}}
-    \item \textcolor{teal}{(机器人23, 大题 3)}：``癌症概率计算（PPT 原题，仅数值改动）''。 \ans{列出先验、灵敏度、误报率，代入 $P(\text{患病}\mid\text{阳性})=\frac{P(\text{阳}\mid\text{患})P(\text{患})}{P(\text{阳})}$ 归一化得后验}{\src{sec:bayes-theory}{贝叶斯理论}}
+    \item \textcolor{teal}{(机器人25, 简答 4)}：``简述贝叶斯学习的核心思想''。 \ans{用概率描述假设不确定性，由先验与似然得到后验，再据后验进行预测或选择 MAP}{\src{sec:bayes-theory}{贝叶斯理论}；\src{sec:bayes-optimal-classifier}{贝叶斯最优分类器}}
+    \item \textcolor{autoclassgreen}{(自动化23, 大题 5)}：``朴素贝叶斯的原理与典型应用场景''。 \ans{基于贝叶斯公式与条件独立假设计算各类后验，选后验最大类；常用于文本分类、垃圾邮件过滤、情感分析、简单医学诊断}{\src{sec:naive-bayes}{朴素贝叶斯}}
+    \item \textcolor{teal}{(机器人23, 大题 3)}：``癌症概率计算（PPT 原题，仅数值改动）''。 \ans{见}{\src{cancer}{例题}}
 \end{enumerate}
 
 % =====================================================================
@@ -306,33 +336,33 @@
 
 \noindent\textbf{\textcolor{red}{选择题：}}
 \begin{enumerate}[itemsep=0.45em, topsep=0.2em, leftmargin=1.5em]
-    \item \textbf{强化学习中的策略} \textcolor{blue}{(自动化24, 选择 19)}：``强化学习中的''策略''（policy）是指？''\\
+    \item \textbf{强化学习中的策略} \textcolor{autoclassgreen}{(自动化24, 选择 19)}：``强化学习中的''策略''（policy）是指？''\\
     A. 一种特定的算法\quad B. 一种特定的奖励机制\quad C. 一种特定的环境状态\quad D. 一个映射状态到动作的函数。 \ans{D}{\src{sec:rl-solving}{求解强化学习任务}}
 
     \item \textbf{强化学习要点} \textcolor{teal}{(机器人23, 选择 1)}：``强化学习的要点是？''\\
-    \autosup{} A. 从有标签样本最小化损失\quad B. 智能体通过与环境交互、根据奖励最大化累积回报\quad C. 在静态数据集上无监督聚类\quad D. 直接搜索最短路径。 \ans{B}{\src{sec:reinforcement-learning}{强化学习}}
+    \autosup{A. 从有标签样本最小化损失\quad B. 智能体通过与环境交互、根据奖励最大化累积回报\quad C. 在静态数据集上无监督聚类\quad D. 直接搜索最短路径。} \ans{B}{\src{sec:reinforcement-learning}{强化学习}}
 
-    \item \textbf{属于强化学习的算法} \textcolor{blue}{(自动化23, 选择 9)}：``下列哪种算法属于强化学习？''\\
-    \autosup{} A. Q-learning\quad B. SVM\quad C. KNN\quad D. K-means。 \ans{A}{\src{sec:rl-solving}{求解强化学习任务}}
+    \item \textbf{属于强化学习的算法} \textcolor{autoclassgreen}{(自动化23, 选择 9)}：``下列哪种算法属于强化学习？''\\
+    \autosup{A. Q-learning\quad B. SVM\quad C. KNN\quad D. K-means。} \ans{A}{\src{sec:rl-solving}{求解强化学习任务}}
 
-    \item \textbf{强化学习方法（多选）} \textcolor{blue}{(自动化25, 选择 20)}：``强化学习的常用方法包括？''\\
-    A. $\varepsilon$-greedy\quad B. DRL（深度强化学习）\quad \autosup{} C. Q-learning / SARSA / Policy Gradient\quad \autosup{} D. K-means。 \ans{A、B、C；D 是聚类，不属于}{\src{sec:rl-solving}{求解强化学习任务}}
+    \item \textbf{强化学习方法（多选）} \textcolor{autoclassgreen}{(自动化25, 选择 20)}：``强化学习的常用方法包括？''\\
+    A. $\varepsilon$-greedy\quad B. DRL（深度强化学习）\quad \autosup{C. Q-learning / SARSA / Policy Gradient}\quad \autosup{D. K-means}。 \ans{A、B、C；D 是聚类，不属于}{\src{sec:rl-solving}{求解强化学习任务}}
 \end{enumerate}
 
 \noindent\textbf{\textcolor{red}{填空题：}}
 \begin{enumerate}[itemsep=0.3em, topsep=0.2em, leftmargin=1.5em]
-    \item \textcolor{blue}{(自动化23, 填空 5)}：``强化学习有信息叫\underline{\ \ }，没信息叫\underline{\ \ }''。 \ans{基于模型（model-based）；无模型（model-free）}{\src{sec:reinforcement-learning}{强化学习}}
-    \item \textcolor{blue}{(自动化25, 填空 12)}：``（\ ）尝试新动作获得信息，（\ ）选择当前收益最大动作''。 \ans{探索；利用}{\src{sec:rl-solving}{求解强化学习任务}}
-    \item \textcolor{blue}{(自动化25, 填空 13)}：``MDP 核心假设是（\ ）''。 \ans{马尔可夫性}{\src{sec:mdp}{马尔可夫决策过程}}
+    \item \textcolor{autoclassgreen}{(自动化23, 填空 5)}：``强化学习有信息叫\underline{\ \ }，没信息叫\underline{\ \ }''。 \ans{基于模型（model-based）；无模型（model-free）}{\src{sec:reinforcement-learning}{强化学习}}
+    \item \textcolor{autoclassgreen}{(自动化25, 填空 12)}：``（\ ）尝试新动作获得信息，（\ ）选择当前收益最大动作''。 \ans{探索；利用}{\src{sec:rl-solving}{求解强化学习任务}}
+    \item \textcolor{autoclassgreen}{(自动化25, 填空 13)}：``MDP 核心假设是（\ ）''。 \ans{马尔可夫性}{\src{sec:mdp}{马尔可夫决策过程}}
 \end{enumerate}
 
 \noindent\textbf{\textcolor{red}{大题：}}
 \begin{enumerate}[itemsep=0.3em, topsep=0.2em, leftmargin=1.5em]
     \item \textcolor{teal}{(机器人23, 简答 3)}：``强化学习与监督/无监督学习的区别''。 \ans{监督有标签，无监督找结构，强化学习通过试错交互和奖励信号学习策略，目标是最大化长期累积回报}{\src{sec:reinforcement-learning}{强化学习}；\src{sec:ml-task-types}{学习任务分类}}
-    \item \textcolor{blue}{(自动化24, 大题 4；7 分)}：``MP 是什么？MDP 是什么？最重要性质？''。 \ans{MP 是满足马尔可夫性的状态转移过程；MDP 是含状态、动作、转移概率、奖励 $(S,A,P,R)$ 的决策过程；最重要性质是马尔可夫性}{\src{sec:mdp}{马尔可夫决策过程}}
-    \item \textcolor{blue}{(自动化24, 大题 5；6 分)}：``model-based RL 与 model-free RL 的区别''。 \ans{model-based 显式利用/学习环境转移和奖励模型，可做规划；model-free 不建模环境而直接学习价值函数或策略，样本效率较低但更通用}{\src{sec:reinforcement-learning}{强化学习}}
-    \item \textcolor{blue}{(自动化23, 大题 7)}：``Q-learning 原理及其在强化学习中的作用''。 \ans{异策略、无模型、基于价值的方法，迭代更新 $Q(s,a)\leftarrow Q(s,a)+\alpha[r+\gamma\max_{a'}Q(s',a')-Q(s,a)]$ 学习最优动作价值}{\src{sec:rl-solving}{求解强化学习任务}}
-    \item \textcolor{teal}{(机器人23 大题 4；机器人24 大题 3；机器人25 大题 3)}：``扫地机器人 MDP 建模（$5\times5$ 格子；机器人24：成功 0.80/不动 0.15/反向 0.05；机器人23：0.85/0.10/0.05；含障碍物 (3,3)、垃圾 (5,4)、充电 (1,1)）''。 \ans{四元组 $(S,A,P,R)$：$S$ 为格子编号 $0$–$24$；$A=\{\text{上,下,左,右}\}$；$P$ 按题给概率分配；$R$ 对垃圾大正奖、充电正奖、障碍负惩、普通格小负惩}{\src{sec:mdp}{马尔可夫决策过程}}
+    \item \textcolor{autoclassgreen}{(自动化24, 大题 4；7 分)}：``MP 是什么？MDP 是什么？最重要性质？''。 \ans{MP 是满足马尔可夫性的状态转移过程；MDP 是含状态、动作、转移概率、奖励 $(S,A,P,R)$ 的决策过程；最重要性质是马尔可夫性}{\src{sec:mdp}{马尔可夫决策过程}}
+    \item \textcolor{autoclassgreen}{(自动化24, 大题 5；6 分)}：``model-based RL 与 model-free RL 的区别''。 \ans{model-based 状态转移概率$p$ 已知，能够通过建立完备的环境模型来模拟真实反馈；model-free 状态转移概率$p$ 未知，环境未知，根据与环境的交互反馈直接学习}{\src{sec:reinforcement-learning}{强化学习}}
+    \item \textcolor{autoclassgreen}{(自动化23, 大题 7)}：``Q-learning 原理及其在强化学习中的作用''。 \ans{异策略、无模型、基于价值的方法，迭代更新 $Q(s,a)\leftarrow Q(s,a)+\alpha[r+\gamma\max_{a'}Q(s',a')-Q(s,a)]$ 学习最优动作价值}{\src{sec:rl-solving}{求解强化学习任务}}
+    \item \textcolor{teal}{(机器人23 大题 4；机器人24 大题 3；机器人25 大题 3)}：``扫地机器人 MDP 建模（$5\times5$ 格子；机器人24：成功 0.80/不动 0.15/反向 0.05；机器人23：0.85/0.10/0.05；含障碍物 (3,3)、垃圾 (5,4)、充电 (1,1)）''。 \ans{见}{\src{sweep_robot}{例题}}
 \end{enumerate}
 
 % =====================================================================
@@ -342,13 +372,52 @@
 
 \noindent\textbf{\textcolor{red}{选择题：}}
 \begin{enumerate}[itemsep=0.45em, topsep=0.2em, leftmargin=1.5em]
-    \item \textbf{线性回归说法辨析} \textcolor{blue}{(自动化25, 选择 15)}：``关于线性回归模型，说法\emph{错误}的是？''\\
-    A. OLS 通过最小化残差平方和求解，当特征矩阵列满秩时解唯一且全局最优\quad B. 线性回归的归纳偏置是目标变量与输入特征满足线性关系，本质上无法处理非线性问题\quad C. 加入 L2 正则化可缓解多重共线性，但使参数估计产生偏差\quad D. 逻辑回归本质是用于分类的线性模型，通过 sigmoid 将线性组合映射为概率。 \ans{B；可通过基函数处理非线性关系}{\src{sec:linear-regression}{线性回归}；\src{sec:linear-key-issues}{基函数扩展}}
+    \item \textbf{线性回归说法辨析} \textcolor{autoclassgreen}{(自动化25, 选择 15)}：``关于线性回归模型，说法\emph{错误}的是？''\\
+    A. OLS 通过最小化残差平方和求解，当特征矩阵列满秩时解唯一且全局最优\quad B. 线性回归的归纳偏置是目标变量与输入特征满足线性关系，本质上无法处理非线性问题\quad C. 加入 L2 正则化可缓解多重共线性，但使参数估计产生偏差\quad D. 逻辑回归本质是用于分类的线性模型，通过 sigmoid 将线性组合映射为概率。     \ans{
+    B。
+    
+    A 正确：OLS 的目标是最小化残差平方和
+    $$
+    \min_{\mathbf w}\|\mathbf y-X\mathbf w\|_2^2.
+    $$
+    当特征矩阵 $X$ 列满秩时，$X^\top X$ 可逆，闭式解
+    $$
+    \hat{\mathbf w}=(X^\top X)^{-1}X^\top \mathbf y
+    $$
+    唯一；该目标函数是关于 $\mathbf w$ 的凸二次函数，因此该解也是全局最优解。
+    
+    B 错误：线性回归的归纳偏置是输出关于所用特征线性，即
+    $$
+    f(\mathbf x)=w_0+\sum_{j=1}^{d}w_jx_j.
+    $$
+    但它并非本质上无法处理非线性问题。通过基函数或特征映射
+    $$
+    \boldsymbol\phi(\mathbf x)=(\phi_1(\mathbf x),\ldots,\phi_m(\mathbf x)),
+    $$
+    可构造
+    $$
+    f(\mathbf x)=w_0+\sum_{j=1}^{m}w_j\phi_j(\mathbf x),
+    $$
+    其对参数仍是线性的，但对原始输入 $\mathbf x$ 可以是非线性的。
+   
+    C 正确：L2 正则化对应岭回归，目标为
+    $$
+    \min_{\mathbf w}\|\mathbf y-X\mathbf w\|_2^2+\lambda\|\mathbf w\|_2^2.
+    $$
+    它使矩阵 $X^\top X+\lambda I$ 更稳定，从而缓解多重共线性；但正则项会把参数向 $0$ 收缩，因此一般会引入偏差。
+   
+    D 正确：逻辑回归用于分类，其形式为
+    $$
+    P(y=1\mid \mathbf x)=\sigma(\mathbf w^\top\mathbf x+b),
+    $$
+    其中 sigmoid 将线性组合映射到 $(0,1)$，可解释为属于正类的概率。因此逻辑回归虽然名字中有“回归”，但通常是分类模型。
+    
+    }{\src{sec:linear-regression}{线性回归}；\src{sec:linear-key-issues}{基函数扩展}}
 \end{enumerate}
 
 \noindent\textbf{\textcolor{red}{大题：}}
 \begin{enumerate}[itemsep=0.3em, topsep=0.2em, leftmargin=1.5em]
-    \item \textcolor{blue}{(自动化25, 大题 3；8 分)}：``基函数定义、为什么用、目的、两个常用基函数、大量基函数优缺点''。 \ans{基函数 $\phi_j(x)$ 是对输入的固定非线性变换；用于把非线性关系映射到新特征空间后用线性模型拟合；常用：多项式、高斯 RBF、Sigmoid、傅里叶；优点表达能力强，风险过拟合和计算开销增大}{\src{sec:linear-key-issues}{基函数扩展}}
+    \item \textcolor{autoclassgreen}{(自动化25, 大题 3；8 分)}：``基函数定义、为什么用、目的、两个常用基函数、大量基函数优缺点''。 \ans{基函数 $\phi_j(x)$ 是对输入的固定非线性变换；用于通过基函数将原始特征空间映射到更高维空间，再在新空间中用线性模型拟合非线性关系；常用：多项式、高斯 RBF、Sigmoid、傅里叶；优点表达能力强且保持优化简单，风险过拟合和计算开销增大、泛化能力下降}{\src{sec:linear-key-issues}{基函数扩展}}
 \end{enumerate}
 
 % =====================================================================
@@ -358,134 +427,407 @@
 
 \noindent\textbf{\textcolor{red}{选择题：}}
 \begin{enumerate}[itemsep=0.45em, topsep=0.2em, leftmargin=1.5em]
-    \item \textbf{DFS 无限循环} \textcolor{blue}{(自动化24, 选择 5)}：``DFS 中以下哪种情况会导致算法陷入无限循环？''\\
+    \item \textbf{DFS 无限循环} \textcolor{autoclassgreen}{(自动化24, 选择 5)}：``DFS 中以下哪种情况会导致算法陷入无限循环？''\\
     A. 有向无环图\quad B. 存在循环路径但没有访问记录\quad C. 使用启发式估计函数\quad D. 图的边权值为负。 \ans{B}{\src{sec:basic-search}{基础搜索算法}}
 
-    \item \textbf{DFS 实现数据结构} \textcolor{blue}{(自动化22, 选择 7)}：``DFS 通常使用什么数据结构实现？''\\
+    \item \textbf{DFS 实现数据结构} \textcolor{autoclassgreen}{(自动化22, 选择 7)}：``DFS 通常使用什么数据结构实现？''\\
     A. 栈\quad B. 队列\quad C. 堆\quad D. 链表。 \ans{A；LIFO 栈}{\src{sec:basic-search}{基础搜索算法}}
 
-    \item \textbf{BFS 遍历原则} \textcolor{blue}{(自动化25, 选择 8)}：``BFS 遍历遵循（\ ）原则''。\\
-    \autosup{} A. 后进先出\quad B. 先进先出（FIFO）/按层次\quad C. 启发优先\quad D. 随机。 \ans{B}{\src{sec:basic-search}{基础搜索算法}}
+    \item \textbf{BFS 遍历原则} \textcolor{autoclassgreen}{(自动化25, 选择 8)}：``BFS 遍历遵循（\ ）原则''。\\
+    \autosup{A. 后进先出\quad B. 先进先出（FIFO）\quad C. 启发优先\quad D. 随机。} \ans{B}{\src{sec:basic-search}{基础搜索算法}}
 
-    \item \textbf{搜索算法关系（多选）} \textcolor{blue}{(自动化24, 选择 10)}：``关于搜索算法，以下说法正确的有？''\\
+    \item \textbf{搜索算法关系（多选）} \textcolor{autoclassgreen}{(自动化24, 选择 10)}：``关于搜索算法，以下说法正确的有？''\\
     A. 广度优先搜索是一致代价搜索的特殊情况\quad B. 一致代价搜索是 A* 搜索的特殊情况\quad C. 贪婪最佳优先搜索是完备的\quad D. 爬山法可在任意位置起始，移动到最好的相邻状态。 \ans{A、B、D；C 错（贪婪不完备）}{\src{sec:basic-search}{基础搜索算法}；\src{sec:heuristic-search}{启发式搜索}}
 
-    \item \textbf{按规则遍历搜索} \textcolor{blue}{(自动化23, 选择 2)}：``下列哪个算法按照某种规则遍历搜索空间？''\\
-    A. DFS\quad B. BFS\quad C. A*\quad D. 优先级搜索（best-first）。 \ans{D（最贴合题意）；DFS/BFS/A* 均按规则扩展}{\src{sec:search-tree-algorithm}{搜索树结构与算法}}
-
-    \item \textbf{存在最优解时一定能找到} \textcolor{blue}{(自动化23, 选择 13)}：``若存在最优解，下列哪个算法一定能找到？''\\
+    \item \textbf{最优性} \textcolor{autoclassgreen}{(自动化23, 选择 13)}：``若存在最优解，下列哪个算法一定能找到？''\\
     A. BFS\quad B. 启发式搜索\quad C. DFS\quad D. 有限深度搜索。 \ans{A；BFS 单位代价、有限分支时完备且最优}{\src{sec:basic-search}{基础搜索算法}}
 
-    \item \textbf{不是盲目搜索} \textcolor{blue}{(自动化23, 选择 4)}：``下列哪种算法\emph{不是}盲目搜索？''\\
-    \autosup{} A. DFS\quad B. BFS\quad C. 一致代价\quad D. A*。 \ans{D；A* 使用启发式}{\src{sec:heuristic-search}{启发式搜索}}
+    \item \textbf{不是盲目搜索} \textcolor{autoclassgreen}{(自动化23, 选择 4)}：``下列哪种算法\emph{不是}盲目搜索？''\\
+    \autosup{A. DFS\quad B. BFS\quad C. 一致代价\quad D. A*。} \ans{D；A* 使用启发式}{\src{sec:heuristic-search}{启发式搜索}}
 
     \item \textbf{属于盲目搜索} \textcolor{teal}{(机器人24, 选择 11)}：``下列哪个属于盲目搜索？''\\
-    \autosup{} A. A*\quad B. 贪婪最好优先\quad C. 一致代价\quad D. 爬山。 \ans{C；UCS 不使用启发式}{\src{sec:basic-search}{基础搜索算法}}
+    \autosup{A. A*}\quad B. 贪婪最好优先\quad C. 一致代价\quad \autosup{D. 爬山。}
+    
+    \ans{C；UCS 不使用启发式}{\src{sec:basic-search}{基础搜索算法}}
 
     \item \textbf{不是启发式搜索} \textcolor{teal}{(机器人25, 选择 7)}：``下面哪个不是启发式搜索算法？''\\
     A. A*\quad B. 贪心\quad C. 迭代最优性算法\quad D. 一致代价搜索。 \ans{D}{\src{sec:basic-search}{基础搜索算法}；\src{sec:heuristic-search}{启发式搜索}}
 
-    \item \textbf{大假设空间用什么搜索} \textcolor{blue}{(自动化23, 选择 11)}：``若假设空间很大，最适合使用哪种搜索方法？''\\
-    \autosup{} A. 穷举\quad B. 启发式搜索\quad C. 随机抽样\quad D. 贪心删除。 \ans{B；同时利用假设空间结构（如一般到特殊偏序）}{\src{sec:concept-learning}{概念学习}；\src{sec:heuristic-search}{启发式搜索}}
+    \item \textbf{大假设空间用什么搜索} \textcolor{autoclassgreen}{(自动化23, 选择 11)}：``若假设空间很大，最适合使用哪种搜索方法？''\\
+    \autosup{A. 穷举\quad B. 启发式搜索\quad C. 随机抽样\quad D. 贪心删除。} \ans{B；同时利用假设空间结构（如一般到特殊偏序）}{\src{sec:concept-learning}{概念学习}；\src{sec:heuristic-search}{启发式搜索}}
 
-    \item \textbf{不能保证最优的启发式搜索} \textcolor{blue}{(自动化24, 选择 6)}：``下列哪种启发式搜索策略\emph{不能}保证找到最优解？''\\
+    \item \textbf{最优性} \textcolor{autoclassgreen}{(自动化24, 选择 6)}：``下列哪种启发式搜索策略\emph{不能}保证找到最优解？''\\
     A. A*\quad B. 贪婪搜索\quad C. 一致代价搜索\quad D. 双向搜索。 \ans{B}{\src{sec:heuristic-search}{启发式搜索}}
 
-    \item \textbf{$h(n)=0$ 时 A* 退化为} \textcolor{blue}{(自动化24, 选择 7)}：``若 $h(n)=0$，A* 等效于？''\\
+    \item \textbf{$h(n)=0$ 时 A* 退化为} \textcolor{autoclassgreen}{(自动化24, 选择 7)}：``若 $h(n)=0$，A* 等效于？''\\
     A. 深度优先\quad B. 广度优先\quad C. 一致代价\quad D. 贪婪。 \ans{C}{\src{sec:heuristic-search}{启发式搜索}}
 
     \item \textbf{迭代最佳优先错误说法} \textcolor{teal}{(机器人25, 选择 3)}：``关于迭代最佳优先搜索（IDA*）不正确的是？''\\
-    A. 空间复杂度是 $O(bd)$\quad B. 满足可容纳性则算法是最优的\quad C. 对空间利用率高\quad \autosup{} D. 时间复杂度比 A* 显著更低。 \ans{D；IDA* 通过反复深度优先来节省内存，时间常数高于 A*}{\src{sec:heuristic-search}{启发式搜索}}
+    A. 空间复杂度是 $O(bd)$\quad B. 满足可容纳性则算法是最优的\quad C. 对空间利用率高\quad \autosup{D. 时间复杂度比 A* 显著更低}。 \ans{D；IDA* 通过反复深度优先来节省内存，可能因为重复搜索导致时间开销通常更大}{\src{sec:heuristic-search}{启发式搜索}}
 
     \item \textbf{迭代加深错误说法} \textcolor{teal}{(机器人24, 选择 13)}：``关于迭代加深（IDA/IDDFS）错误的是？''\\
-    \autosup{} A. 空间复杂度 $O(bd)$\quad B. 时间复杂度 $O(b^d)$\quad C. 在树搜索中完备且渐近最优（单位代价）\quad D. 空间复杂度 $O(bm)$（错误）。 \ans{D；IDS/IDDFS 标准空间为 $O(bd)$}{\src{sec:realtime-incremental-search}{实时与增量搜索}}
+    \autosup{A. 空间复杂度 $O(bd)$\quad B. 时间复杂度 $O(b^d)$\quad C. 在树搜索中完备且渐近最优（单位代价）\quad D. 空间复杂度 $O(bm)$。} \ans{D；IDS/IDDFS 标准空间为 $O(bd)$}{\src{sec:realtime-incremental-search}{实时与增量搜索}}
 
     \item \textbf{爬山初始点改进} \textcolor{teal}{(机器人25, 选择 4)}：``爬山算法解决''初始点敏感''的改进算法是？''\\
     A. 随机采用多个初始点（随机重启）\quad B. 模拟退火\quad C. 改步长\quad D. 以一定概率选择。 \ans{A}{\src{sec:local-search}{局部搜索}}
 
     \item \textbf{梯度上山应用条件} \textcolor{teal}{(机器人23, 选择 3)}：``梯度上山的应用条件——自变量是否需连续？因变量是否需可微？''\\
-    \autosup{} A. 自变量需连续，因变量需可微\quad B. 自变量需离散\quad C. 因变量需不连续\quad D. 都无要求。 \ans{A}{\src{sec:local-search}{局部搜索}}
+    \autosup{A. 自变量需连续，因变量需可微\quad B. 自变量需离散\quad C. 因变量需不连续\quad D. 都无要求。} \ans{A}{\src{sec:local-search}{局部搜索}}
 
     \item \textbf{玻尔兹曼退火辨识} \textcolor{teal}{(机器人24, 选择 3)}：``下列哪个算法用到了玻尔兹曼退火？''\\
-    \autosup{} A. 模拟退火\quad B. 梯度下降\quad C. A*\quad D. KNN。 \ans{A}{\src{sec:local-search}{局部搜索}}
+    \autosup{A. 模拟退火\quad B. 梯度下降\quad C. A*\quad D. KNN。} \ans{A}{\src{sec:local-search}{局部搜索}}
 
     \item \textbf{遗传算法步骤} \textcolor{teal}{(机器人23, 选择 2；机器人24, 选择 12)}：``遗传算法的步骤\emph{不}包括以下哪项？''\\
-    \autosup{} A. 选择\quad B. 交叉\quad C. 析取\quad D. 变异。 \ans{C；析取不属于遗传算子}{\src{sec:metaheuristic}{元启发式算法}}
+    \autosup{A. 选择\quad B. 交叉\quad C. 析取\quad D. 变异。} \ans{C；析取不属于遗传算子}{\src{sec:metaheuristic}{元启发式算法}}
+
+    \item \textbf{遗传算法交叉类型} \textcolor{teal}{(机器人25, 选择 18)}：``遗传算法中\emph{不是}交叉类型的是？''\\
+    A. 一点交叉\quad B. 两点交叉\quad C. 变异\quad D. 均匀交叉。 \ans{C；变异是另一类遗传算子，不是交叉}{\src{sec:metaheuristic}{元启发式算法}}
 \end{enumerate}
 
 \noindent\textbf{\textcolor{red}{填空题：}}
 \begin{enumerate}[itemsep=0.3em, topsep=0.2em, leftmargin=1.5em]
-    \item \textcolor{blue}{(自动化23, 填空 4；自动化25, 填空 2)}：``BFS 存储待搜索节点的数据结构\underline{\ \ }，DFS 存储已搜索节点的数据结构\underline{\ \ }''。 \ans{队列；栈（CLOSED 表也常用集合）}{\src{sec:basic-search}{基础搜索算法}；\src{sec:search-tree-algorithm}{搜索树结构}}
-    \item \textcolor{blue}{(自动化24, 填空 5)}：``BFS 按照\underline{\ \ }顺序拓展节点''。 \ans{由浅到深 / 先进先出 / 逐层}{\src{sec:basic-search}{基础搜索算法}}
-    \item \textcolor{blue}{(自动化23, 填空 1)}：``A* 的 $g(n)$ 叫\underline{\ \ }，$h(n)$ 叫\underline{\ \ }''。 \ans{从初始节点到 $n$ 的实际路径代价；从 $n$ 到目标的启发式估计代价}{\src{sec:heuristic-search}{启发式搜索}}
-    \item \textcolor{blue}{(自动化25, 填空 1)}：``八数码 $h_1=$ 错位数，$h_2=$ 曼哈顿距离，$h_1$\underline{\ \ }$h_2$''。 \ans{$h_1(n)\le h_2(n)$；$h_2$ 支配 $h_1$}{\src{sec:heuristic-search}{启发式搜索}}
+    \item \textcolor{autoclassgreen}{(自动化23, 填空 4；自动化25, 填空 2)}：``BFS 存储待搜索节点的数据结构\underline{\ \ }，DFS 存储已搜索节点的数据结构\underline{\ \ }''。 \ans{队列；栈（CLOSED 表也常用集合）}{\src{sec:basic-search}{基础搜索算法}；\src{sec:search-tree-algorithm}{搜索树结构}}
+    \item \textcolor{autoclassgreen}{(自动化24, 填空 5)}：``BFS 按照\underline{\ \ }顺序拓展节点''。 \ans{由浅到深 / 先进先出 / 逐层}{\src{sec:basic-search}{基础搜索算法}}
+    \item \textcolor{autoclassgreen}{(自动化23, 填空 1)}：``A* 的 $g(n)$ 叫\underline{\ \ }，$h(n)$ 叫\underline{\ \ }''。 \ans{从初始节点到 $n$ 的实际路径代价；从 $n$ 到目标的启发式估计代价}{\src{sec:heuristic-search}{启发式搜索}}
+    \item \textcolor{autoclassgreen}{(自动化25, 填空 1)}：``八数码 $h_1=$ 错位数，$h_2=$ 曼哈顿距离，$h_1$\underline{\ \ }$h_2$''。 \ans{$h_1(n)\le h_2(n)$；$h_2$ 支配 $h_1$}{\src{sec:heuristic-search}{启发式搜索}}
 \end{enumerate}
 
 \noindent\textbf{\textcolor{red}{大题/简答：}}
 \begin{enumerate}[itemsep=0.3em, topsep=0.2em, leftmargin=1.5em]
     \item \textcolor{teal}{(机器人23, 简答 2)}：``A* 与贪婪最好优先的区别？A* 何时最优？''。 \ans{贪婪用 $f=h$，A* 用 $f=g+h$；树搜索 A* 在 $h$ 可容许时最优，图搜索还需 $h$ 一致}{\src{sec:heuristic-search}{启发式搜索}}
     \item \textcolor{teal}{(机器人23, 简答 1)}：``模拟退火算法原理与随机函数作用''。 \ans{允许以随温度下降而变小的概率接受更差状态以跳出局部最优；随机接受概率 $p=\exp(-\Delta E/T)$（玻尔兹曼分布）}{\src{sec:local-search}{局部搜索}}
-    \item \textcolor{teal}{(机器人24, 简答 2)}：``由启发函数一致性证明可容纳性''。 \ans{用 $h(n)\le c(n,n')+h(n')$ 沿任意从 $n$ 到目标的路径递归累加，最终得 $h(n)\le$ 真实最短代价 $h^*(n)$}{\src{sec:heuristic-search}{启发式搜索}}
+    \item \textcolor{teal}{(机器人24, 简答 2)}：
+    ``由启发函数一致性证明可采纳性。''
+    \ans{
+    设启发函数 $h$ 满足一致性，即对任意边 $n\to n'$，都有
+    \[
+    h(n)\le c(n,n')+h(n'),
+    \]
+    且目标节点 $g$ 满足
+    \[
+    h(g)=0.
+    \]
+    需要证明 $h$ 可采纳，即对任意节点 $n$，
+    \[
+    h(n)\le h^*(n),
+    \]
+    其中 $h^*(n)$ 表示从 $n$ 到目标节点的真实最小代价。
+
+    取从 $n$ 到某个目标节点 $g$ 的任意一条路径
+    \[
+    n=n_0\to n_1\to n_2\to \cdots \to n_k=g.
+    \]
+    由一致性可得
+    \[
+    h(n_0)\le c(n_0,n_1)+h(n_1),
+    \]
+    \[
+    h(n_1)\le c(n_1,n_2)+h(n_2),
+    \]
+    \[
+    \cdots
+    \]
+    \[
+    h(n_{k-1})\le c(n_{k-1},n_k)+h(n_k).
+    \]
+    将这些不等式递归代入，得
+    \[
+    h(n_0)
+    \le c(n_0,n_1)+c(n_1,n_2)+\cdots+c(n_{k-1},n_k)+h(n_k).
+    \]
+    因为 $n_k=g$，且 $h(g)=0$，所以
+    \[
+    h(n)
+    \le \sum_{i=0}^{k-1}c(n_i,n_{i+1}).
+    \]
+    由于上式对从 $n$ 到目标的任意路径都成立，因此也对其中代价最小的路径成立，故
+    \[
+    h(n)\le h^*(n).
+    \]
+    所以一致启发函数一定是可采纳启发函数。
+
+    \textcolor{red}{拓展学习：可采纳启发函数保证 A* 最优}
+    
+    设启发函数 $h$ 可采纳，即对任意节点 $n$，都有
+\[
+h(n)\le h^*(n),
+\]
+其中 $h^*(n)$ 表示从 $n$ 到目标节点的真实最小代价。A* 的评价函数为
+\[
+f(n)=g(n)+h(n).
+\]
+记最优解路径代价为
+\[
+C^*.
+\]
+
+反设 A* 返回了一个非最优目标节点 $G$，其路径代价为
+\[
+g(G)>C^*.
+\]
+由于 $G$ 是目标节点，通常有
+\[
+h(G)=0,
+\]
+因此
+\[
+f(G)=g(G)+h(G)=g(G)>C^*.
+\]
+
+考虑一条最优解路径。在 A* 返回 $G$ 之前，该最优路径上必然至少存在一个尚未被扩展的边界节点 $n$ 留在 OPEN 表中。因为 $n$ 位于最优路径上，所以从初始节点经过 $n$ 再到目标的总代价为 $C^*$，即
+\[
+g(n)+h^*(n)=C^*.
+\]
+又因为 $h$ 可采纳，
+\[
+h(n)\le h^*(n),
+\]
+所以
+\[
+f(n)=g(n)+h(n)\le g(n)+h^*(n)=C^*.
+\]
+于是得到
+\[
+f(n)\le C^*<f(G).
+\]
+
+但 A* 每次总是从 OPEN 表中选择 $f$ 值最小的节点进行扩展。既然 OPEN 表中存在节点 $n$ 满足
+\[
+f(n)<f(G),
+\]
+A* 就不可能先选择目标节点 $G$ 并终止。这与“A* 返回了非最优目标节点 $G$”矛盾。
+
+因此反设不成立，A* 在启发函数可采纳时返回的目标节点必为最优解。
+\[
+\boxed{
+h\text{ 可采纳} \Longrightarrow \text{A* 最优}
+}
+\]
+    }{\src{sec:heuristic-search}{启发式搜索}}
     \item \textcolor{teal}{(机器人25, 简答 2)}：``启发式算法的松弛问题与启发式质量''。 \ans{松弛问题去掉原问题部分约束以得到一致下界；质量用支配关系（$h_2\ge h_1$ 则 $h_2$ 支配）和有效分支因子 $b^*$ 衡量}{\src{sec:heuristic-search}{启发式搜索}}
     \item \textcolor{teal}{(机器人25, 简答 1)}：``爬山算法解决步长、局部最优、初始点的改进''。 \ans{步长可自适应/变步长，局部最优可用模拟退火或随机扰动，初始点可用随机重启}{\src{sec:local-search}{局部搜索}}
-    \item \textcolor{blue}{(自动化22, 大题 2)}：``A* 中 $g(n)$ 与 $h(n)$ 表示什么？写 $f(n)$，并说明可容许与一致''。 \ans{$g(n)$ 已走实际代价，$h(n)$ 估计代价，$f(n)=g(n)+h(n)$；可容许：$h(n)\le h^*(n)$；一致：$h(n)\le c(n,n')+h(n')$}{\src{sec:heuristic-search}{启发式搜索}}
-    \item \textcolor{teal}{(机器人23, 大题 1)}：``八数码 A*：初始 \texttt{025/134/678}，目标 \texttt{012/345/678}，分别用 $h_1$（错位数）、$h_2$（曼哈顿）画搜索树''。 \ans{两种 $h$ 分别计算 $f=g+h$ 扩展 OPEN；$h_2$ 支配 $h_1$，扩展节点更少}{\src{sec:heuristic-search}{启发式搜索}}
-    \item \textcolor{blue}{(自动化24, 大题 2；9 分)}：``八数码 A*：设计 $f(x)$、写各节点 $f$、列前 3 步 OPEN/CLOSED 表''。 \ans{用 $f=g+h$，每步选 OPEN 中 $f$ 最小节点扩展，移入 CLOSED 并更新后继；按表格逐步填 A–F}{\src{sec:heuristic-search}{启发式搜索}；\src{sec:search-tree-algorithm}{搜索树结构}}
+    \item \textcolor{autoclassgreen}{(自动化22, 大题 2)}：``A* 中 $g(n)$ 与 $h(n)$ 表示什么？写 $f(n)$，并说明可容许与一致''。 \ans{$g(n)$ 已走实际代价，$h(n)$ 估计代价，$f(n)=g(n)+h(n)$；可容许：$h(n)\le h^*(n)$；一致：$h(n)\le c(n,n')+h(n')$}{\src{sec:heuristic-search}{启发式搜索}}
+    \item \textcolor{teal}{(机器人23, 大题 1)}：``八数码 A*：初始 \texttt{025/134/678}，目标 \texttt{012/345/678}，分别用 $h_1$（错位数）、$h_2$（曼哈顿）画搜索树''。     \ans{
+    设每步移动代价为 $1$，因此
+    \[
+    f(n)=g(n)+h(n).
+    \]
+    本题初始状态和目标状态分别为
+    \[
+    s_0=\texttt{025/134/678},\qquad s_g=\texttt{012/345/678}.
+    \]
+    其中 $0$ 表示空格，不计入启发函数。$h_1$ 为错位数，$h_2$ 为曼哈顿距离。下面按 ``$f$ 值小者优先；若 $f$ 相同，则按进入 OPEN 表的先后顺序'' 展开。不同同分规则可能导致同分节点的展开顺序略有不同，但最优路径代价不变。
+
+    对初始状态有
+    \[
+    h_1(s_0)=5,\qquad h_2(s_0)=6.
+    \]
+
+    \textbf{使用 $h_1$（错位数）时：}
+    \[
+    \begin{array}{c|c|c|c|c}
+    \text{扩展次序} & \text{扩展节点} & g & h_1 & f=g+h_1\\
+    \hline
+    0 & \texttt{025/134/678} & 0 & 5 & 5\\
+    1 & \texttt{125/034/678} & 1 & 5 & 6\\
+    2 & \texttt{205/134/678} & 1 & 5 & 6\\
+    3 & \texttt{125/304/678} & 2 & 4 & 6\\
+    4 & \texttt{125/340/678} & 3 & 3 & 6\\
+    5 & \texttt{120/345/678} & 4 & 2 & 6\\
+    6 & \texttt{102/345/678} & 5 & 1 & 6\\
+    7 & \texttt{012/345/678} & 6 & 0 & 6
+    \end{array}
+    \]
+
+    其主要搜索过程如下：
+    \[
+    \begin{array}{c|c|c|c}
+    \text{当前扩展节点} & \text{新生成节点} & g & f=g+h_1\\
+    \hline
+    \texttt{025/134/678} & \texttt{125/034/678} & 1 & 1+5=6\\
+                              & \texttt{205/134/678} & 1 & 1+5=6\\
+    \hline
+    \texttt{125/034/678} & \texttt{125/304/678} & 2 & 2+4=6\\
+                              & \texttt{125/634/078} & 2 & 2+6=8\\
+    \hline
+    \texttt{205/134/678} & \texttt{235/104/678} & 2 & 2+5=7\\
+                              & \texttt{250/134/678} & 2 & 2+5=7\\
+    \hline
+    \texttt{125/304/678} & \texttt{125/340/678} & 3 & 3+3=6\\
+                              & \texttt{105/324/678} & 3 & 3+4=7\\
+                              & \texttt{125/374/608} & 3 & 3+5=8\\
+    \hline
+    \texttt{125/340/678} & \texttt{120/345/678} & 4 & 4+2=6\\
+                              & \texttt{125/348/670} & 4 & 4+4=8\\
+    \hline
+    \texttt{120/345/678} & \texttt{102/345/678} & 5 & 5+1=6\\
+    \hline
+    \texttt{102/345/678} & \texttt{012/345/678} & 6 & 6+0=6
+    \end{array}
+    \]
+
+    因此得到最优路径：
+    \[
+    \texttt{025/134/678}
+    \to
+    \texttt{125/034/678}
+    \to
+    \texttt{125/304/678}
+    \to
+    \texttt{125/340/678}
+    \to
+    \texttt{120/345/678}
+    \to
+    \texttt{102/345/678}
+    \to
+    \texttt{012/345/678}.
+    \]
+    最优代价为
+    \[
+    C^*=6.
+    \]
+
+    \textbf{使用 $h_2$（曼哈顿距离）时：}
+    \[
+    \begin{array}{c|c|c|c|c}
+    \text{扩展次序} & \text{扩展节点} & g & h_2 & f=g+h_2\\
+    \hline
+    0 & \texttt{025/134/678} & 0 & 6 & 6\\
+    1 & \texttt{125/034/678} & 1 & 5 & 6\\
+    2 & \texttt{125/304/678} & 2 & 4 & 6\\
+    3 & \texttt{125/340/678} & 3 & 3 & 6\\
+    4 & \texttt{120/345/678} & 4 & 2 & 6\\
+    5 & \texttt{102/345/678} & 5 & 1 & 6\\
+    6 & \texttt{012/345/678} & 6 & 0 & 6
+    \end{array}
+    \]
+
+    其主要搜索过程如下：
+    \[
+    \begin{array}{c|c|c|c}
+    \text{当前扩展节点} & \text{新生成节点} & g & f=g+h_2\\
+    \hline
+    \texttt{025/134/678} & \texttt{125/034/678} & 1 & 1+5=6\\
+                              & \texttt{205/134/678} & 1 & 1+7=8\\
+    \hline
+    \texttt{125/034/678} & \texttt{125/304/678} & 2 & 2+4=6\\
+                              & \texttt{125/634/078} & 2 & 2+6=8\\
+    \hline
+    \texttt{125/304/678} & \texttt{125/340/678} & 3 & 3+3=6\\
+                              & \texttt{105/324/678} & 3 & 3+5=8\\
+                              & \texttt{125/374/608} & 3 & 3+5=8\\
+    \hline
+    \texttt{125/340/678} & \texttt{120/345/678} & 4 & 4+2=6\\
+                              & \texttt{125/348/670} & 4 & 4+4=8\\
+    \hline
+    \texttt{120/345/678} & \texttt{102/345/678} & 5 & 5+1=6\\
+    \hline
+    \texttt{102/345/678} & \texttt{012/345/678} & 6 & 6+0=6
+    \end{array}
+    \]
+
+    因此使用 $h_2$ 时得到同一条最优路径：
+    \[
+    \texttt{025/134/678}
+    \to
+    \texttt{125/034/678}
+    \to
+    \texttt{125/304/678}
+    \to
+    \texttt{125/340/678}
+    \to
+    \texttt{120/345/678}
+    \to
+    \texttt{102/345/678}
+    \to
+    \texttt{012/345/678}.
+    \]
+    最优代价仍为
+    \[
+    C^*=6.
+    \]
+
+    比较可知，曼哈顿距离 $h_2$ 比错位数 $h_1$ 更精确，并且有
+    \[
+    h_2(n)\ge h_1(n)
+    \]
+    对八数码问题通常成立，因此 $h_2$ 支配 $h_1$。在本例中，$h_1$ 会额外扩展状态
+    \[
+    \texttt{205/134/678},
+    \]
+    而 $h_2$ 将其评价为
+    \[
+    f=1+7=8,
+    \]
+    因而不会在找到最优解前扩展它。故 $h_2$ 扩展节点更少。
+    }{\src{sec:heuristic-search}{启发式搜索}}
+    \item \textcolor{autoclassgreen}{(自动化24, 大题 2；9 分)}：``八数码 A*：设计 $f(x)$、写各节点 $f$、列前 3 步 OPEN/CLOSED 表''。 \ans{参考上一道题，用 $f=g+h$，每步选 OPEN 中 $f$ 最小节点扩展，移入 CLOSED 并更新后继；按表格逐步填 A–F}{\src{sec:heuristic-search}{启发式搜索}；\src{sec:search-tree-algorithm}{搜索树结构}}
     \item \textcolor{teal}{(机器人25, 大题 1)}：``给 A* 表达式；用迭代最佳优先求最优路径''。 \ans{$f(n)=g(n)+h(n)$；IDA* 设递增 $f$ 阈值做 DFS，每轮丢弃超过阈值节点直至找到目标}{\src{sec:heuristic-search}{启发式搜索}}
-    \item \textcolor{teal}{(机器人24, 大题 1)}：``由图求一致代价搜索过程；OPEN 数据结构；耗散函数一致性条件''。 \ans{OPEN 用按路径代价排序的优先队列；耗散函数需非负、$h$ 一致或正代价时 UCS 完备且最优}{\src{sec:basic-search}{基础搜索算法}}
+    \item \textcolor{teal}{(机器人24, 大题 1)}：``由图求一致代价搜索过程；OPEN 数据结构；耗散函数如何保持一致性''。     \ans{
+    UCS 每次从 OPEN 中取出累计路径代价 $g(n)$ 最小的节点扩展，并在取出目标节点时返回最小代价路径。
+    OPEN 通常用按 $g(n)$ 升序排列的优先队列实现，若发现到同一节点的更小代价路径，则更新其 $g$ 值和父节点。
+    所谓保持一致性，就是令耗散沿边累加：
+    \[
+    g(n')=g(n)+c(n,n'),
+    \]
+    并要求边代价非负，从而保证先扩展的节点代价不大于后扩展节点。
+    }{\src{sec:basic-search}{基础搜索算法}}
 \end{enumerate}
 
 % =====================================================================
 \subsection{命题逻辑、一阶逻辑、归结推理}
 
-\noindent\textbf{说明：本课程对一阶逻辑只在''知识驱动搜索''中简略出现，下列答案按课程常规逻辑知识补足。}
+\noindent\textbf{说明：本年度课程没有讲，似乎删去了，不知道以后还是否会有}
 
 \noindent\textbf{\textcolor{red}{选择题：}}
 \begin{enumerate}[itemsep=0.45em, topsep=0.2em, leftmargin=1.5em]
-    \item \textbf{命题逻辑判定} \textcolor{blue}{(自动化22, 选择 9)}：``下列关于命题逻辑的说法正确的是？''\\
-    \autosup{} A. 命题是有真假可判定的陈述句\quad B. 命题不可使用否定联结词\quad C. 命题逻辑能表达量词\quad D. 命题可同时为真和假。 \ans{A；命题逻辑无量词、无真假兼容}{\src{sec:knowledge-driven-search}{知识驱动搜索}}
+    \item \textbf{命题逻辑判定} \textcolor{autoclassgreen}{(自动化22, 选择 9)}：``下列关于命题逻辑的说法正确的是？''\\
+    \autosup{A. 命题是有真假可判定的陈述句\quad B. 命题不可使用否定联结词\quad C. 命题逻辑能表达量词\quad D. 命题可同时为真和假。} \ans{A；命题逻辑无量词、无真假兼容}{\src{sec:knowledge-driven-search}{知识驱动搜索}}
 
     \item \textbf{合取/析取/量词对偶（多选）} \textcolor{teal}{(机器人24, 选择 14)}：``下列语句判断哪些正确？（合取/析取、全称/存在量词的对偶性）''\\
-    \autosup{} A. $\lnot\forall x P(x)\equiv\exists x\lnot P(x)$\quad B. $\lnot\exists x P(x)\equiv\forall x\lnot P(x)$\quad C. $\lnot(P\land Q)\equiv\lnot P\lor\lnot Q$\quad D. $\lnot(P\lor Q)\equiv\lnot P\land\lnot Q$。 \ans{A、B、C、D 均正确}{\src{sec:knowledge-driven-search}{知识驱动搜索}}
+    \autosup{A. $\lnot\forall x P(x)\equiv\exists x\lnot P(x)$\quad B. $\lnot\exists x P(x)\equiv\forall x\lnot P(x)$\quad C. $\lnot(P\land Q)\equiv\lnot P\lor\lnot Q$\quad D. $\lnot(P\lor Q)\equiv\lnot P\land\lnot Q$。} \ans{A、B、C、D 均正确}{\src{sec:knowledge-driven-search}{知识驱动搜索}}
 
     \item \textbf{Horn 子句} \textcolor{teal}{(机器人25, 选择 5)}：``下列子句中哪个是 Horn 子句？''\\
     A. $p(a)\lor p(b)\lor\lnot p(c)$\quad B. $\lnot p(a)\lor\lnot p(b)\lor\lnot p(c)$\quad C. $\lnot p(a)\lor p(b)\lor\lnot p(c)$\quad D. $\lnot p(a)\lor\lnot p(b)\lor p(c)$。 \ans{B、C、D 均符合''至多一个正文字''；若单选最典型为 D（包含 1 正 2 负的明确蕴含形式）}{\src{sec:knowledge-driven-search}{知识驱动搜索}}
 
-    \item \textbf{不可满足子句集} \textcolor{blue}{(自动化23, 选择 14)}：``下列哪个子句集不可满足？''\\
-    A. $\{\dots,\lnot p, p\}$\quad B. $\{p\lor q,\ \lnot p\lor q,\ p\lor\lnot q,\ \lnot p\lor\lnot q\}$\quad \autosup{} C. $\{p\lor q\}$\quad \autosup{} D. $\{p,\ q\}$。 \ans{A、B 均不可满足；C、D 可满足}{\src{sec:knowledge-driven-search}{知识驱动搜索}}
+    \item \textbf{一阶逻辑表示类型} \textcolor{teal}{(机器人25, 选择 19)}：``一阶逻辑的表示是？''\\
+    A. 原子表示\quad B. 要素化表示\quad C. 逻辑表示\quad D. 结构化表示。 \ans{C}{\src{sec:knowledge-driven-search}{知识驱动搜索}}
 
-    \item \textbf{合一判定} \textcolor{blue}{(自动化24, 选择 8)}：``下列公式中，\emph{不能}进行合一的是？''\\
+    \item \textbf{不可满足子句集} \textcolor{autoclassgreen}{(自动化23, 选择 14)}：``下列哪个子句集不可满足？''\\
+    A. $\{\dots,\lnot p, p\}$\quad B. $\{p\lor q,\ \lnot p\lor q,\ p\lor\lnot q,\ \lnot p\lor\lnot q\}$\quad \autosup{C. $\{p\lor q\}$}\quad \autosup{D. $\{p,\ q\}$}。 \ans{A、B 均不可满足；C、D 可满足}{\src{sec:knowledge-driven-search}{知识驱动搜索}}
+
+    \item \textbf{合一判定} \textcolor{autoclassgreen}{(自动化24, 选择 8)}：``下列公式中，\emph{不能}进行合一的是？''\\
     A. $P(a,b),\ P(x,y)$\quad B. $P(f(x),b),\ P(y,z)$\quad C. $P(f(x),y),\ P(y,f(b))$\quad D. $P(f(x),y,x),\ P(x,f(a),f(b))$。 \ans{D；出现 $x=f(x)$ 类 occurs-check 冲突}{\src{sec:knowledge-driven-search}{知识驱动搜索}}
 
-    \item \textbf{Skolem 函数} \textcolor{blue}{(自动化24, 选择 9)}：``$\forall y\,\exists x\,P(x,y)$ 中显式定义 $x$ 对 $y$ 的依赖函数叫？''\\
+    \item \textbf{Skolem 函数} \textcolor{autoclassgreen}{(自动化24, 选择 9)}：``$\forall y\,\exists x\,P(x,y)$ 中显式定义 $x$ 对 $y$ 的依赖函数叫？''\\
     A. 依赖函数\quad B. Skolem 函数\quad C. 决定函数\quad D. 多元函数。 \ans{B}{\src{sec:knowledge-driven-search}{知识驱动搜索}}
 
-    \item \textbf{CNF 化子句集} \textcolor{blue}{(自动化24, 选择 11)}：``$(\forall x)(\exists y)(P(x,y)\lor(Q(x,y)\to R(x,y)))$ 化子句集''\\
+    \item \textbf{CNF 化子句集} \textcolor{autoclassgreen}{(自动化24, 选择 11)}：``$(\forall x)(\exists y)(P(x,y)\lor(Q(x,y)\to R(x,y)))$ 化子句集''\\
     A. $\{P(x,f(x))\lor\lnot Q(x,f(x))\lor R(x,f(x))\}$\quad B. $\{P(x,f(x))\lor\lnot Q(x,f(x)),\ R(x,f(x))\}$\quad C. $\{P(x,f(x)),\ \lnot Q(x,f(x)),\ R(x,f(x))\}$\quad D. $\{P(x,f(x)),\ \lnot Q(x,f(x))\lor R(x,f(x))\}$。 \ans{A}{\src{sec:knowledge-driven-search}{知识驱动搜索}}
 
     \item \textbf{自然语言→一阶逻辑（1）} \textcolor{teal}{(机器人24, 选择 8)}：``''任意时间都存在某些人''形式化为？''\\
-    \autosup{} A. $\forall t\,\exists x\,\mathrm{Person}(x,t)$\quad B. $\exists t\,\forall x\,\mathrm{Person}(x,t)$\quad C. $\forall x\,\forall t\,\mathrm{Person}(x,t)$\quad D. $\exists x\,\exists t\,\mathrm{Person}(x,t)$。 \ans{A}{\src{sec:knowledge-driven-search}{知识驱动搜索}}
+    \autosup{A. $\forall t\,\exists x\,\mathrm{Person}(x,t)$\quad B. $\exists t\,\forall x\,\mathrm{Person}(x,t)$\quad C. $\forall x\,\forall t\,\mathrm{Person}(x,t)$\quad D. $\exists x\,\exists t\,\mathrm{Person}(x,t)$。} \ans{A}{\src{sec:knowledge-driven-search}{知识驱动搜索}}
 
-    \item \textbf{自然语言→一阶逻辑（2）} \textcolor{teal}{(机器人25, 选择 15)}：``''任何人都有人喜欢''形式化为？''\\
-    \autosup{} A. $\forall x\,\mathrm{Person}(x)\to\exists y\,\mathrm{Like}(y,x)$\quad B. $\exists y\,\forall x\,\mathrm{Like}(y,x)$\quad C. $\forall x\,\forall y\,\mathrm{Like}(y,x)$\quad D. $\exists x\,\exists y\,\mathrm{Like}(y,x)$。 \ans{A}{\src{sec:knowledge-driven-search}{知识驱动搜索}}
+    \item \textbf{自然语言→一阶逻辑（2）} \textcolor{teal}{(机器人25, 选择 15)}：``任何人都有人喜欢，其中 $\mathrm{Like}(x,y)$ 表示 $x$ 喜欢 $y$，形式化为？''\\
+    A. $\forall x\forall y\,\mathrm{Like}(x,y)$\quad B. $\forall x\exists y\,\mathrm{Like}(y,x)$\quad C. $\exists x\forall y\,\mathrm{Like}(y,x)$\quad D. $\exists x\exists y\,\mathrm{Like}(x,y)$。 \ans{B；每个人 $x$ 都存在某人 $y$ 喜欢他}{\src{sec:knowledge-driven-search}{知识驱动搜索}}
 \end{enumerate}
 
 \noindent\textbf{\textcolor{red}{填空题：}}
 \begin{enumerate}[itemsep=0.3em, topsep=0.2em, leftmargin=1.5em]
-    \item \textcolor{blue}{(自动化22, 填空 3)}：``$P$ 为原子谓词公式，则 $P$ 和 $\lnot P$ 互为\underline{\ \ }''。 \ans{文字（互补文字）}{\src{sec:knowledge-driven-search}{知识驱动搜索}}
-    \item \textcolor{blue}{(自动化22, 填空 5)}：``若 $P,R$ 为 F，$Q$ 为 T，则 $(P\lor R)\to Q$ 为\underline{\ \ }''。 \ans{T/真}{\src{sec:knowledge-driven-search}{知识驱动搜索}}
-    \item \textcolor{blue}{(自动化22, 填空 6)}：``$\mathrm{Teacher}(\mathrm{Father}(\mathrm{Zhan}))$ 的个体（项）是\underline{\ \ }''。 \ans{$\mathrm{Father}(\mathrm{Zhan})$（最外层主语项）；其底层个体常量为 $\mathrm{Zhan}$}{\src{sec:knowledge-driven-search}{知识驱动搜索}}
-    \item \textcolor{blue}{(自动化24, 填空 2)}：``谓词 $\mathrm{Professor}(\mathrm{father}(\mathrm{Wang}))$ 的项是\underline{\ \ }，含义是\underline{\ \ }''。 \ans{$\mathrm{father}(\mathrm{Wang})$；王的父亲是教授}{\src{sec:knowledge-driven-search}{知识驱动搜索}}
-    \item \textcolor{blue}{(自动化24, 填空 3)}：``假言推理 $(A\to B)\land A\Rightarrow$（\ ），假言三段论 $(A\to B)\land(B\to C)\Rightarrow$（\ ）''。 \ans{$B$；$A\to C$}{\src{sec:knowledge-driven-search}{知识驱动搜索}}
-    \item \textcolor{blue}{(自动化24, 填空 4)}：``反演归结证明定理时，当前归结式是\underline{\ \ }时定理得证''。 \ans{空子句 $\Box$}{\src{sec:knowledge-driven-search}{知识驱动搜索}}
+    \item \textcolor{autoclassgreen}{(自动化22, 填空 3)}：``$P$ 为原子谓词公式，则 $P$ 和 $\lnot P$ 互为\underline{\ \ }''。 \ans{文字（互补文字）}{\src{sec:knowledge-driven-search}{知识驱动搜索}}
+    \item \textcolor{autoclassgreen}{(自动化22, 填空 5)}：``若 $P,R$ 为 F，$Q$ 为 T，则 $(P\lor R)\to Q$ 为\underline{\ \ }''。 \ans{T/真}{\src{sec:knowledge-driven-search}{知识驱动搜索}}
+    \item \textcolor{autoclassgreen}{(自动化22, 填空 6)}：``$\mathrm{Teacher}(\mathrm{Father}(\mathrm{Zhan}))$ 的个体（项）是\underline{\ \ }''。 \ans{$\mathrm{Father}(\mathrm{Zhan})$（最外层主语项）；其底层个体常量为 $\mathrm{Zhan}$}{\src{sec:knowledge-driven-search}{知识驱动搜索}}
+    \item \textcolor{autoclassgreen}{(自动化24, 填空 2)}：``谓词 $\mathrm{Professor}(\mathrm{father}(\mathrm{Wang}))$ 的项是\underline{\ \ }，含义是\underline{\ \ }''。 \ans{$\mathrm{father}(\mathrm{Wang})$；王的父亲是教授}{\src{sec:knowledge-driven-search}{知识驱动搜索}}
+    \item \textcolor{autoclassgreen}{(自动化24, 填空 3)}：``假言推理 $(A\to B)\land A\Rightarrow$（\ ），假言三段论 $(A\to B)\land(B\to C)\Rightarrow$（\ ）''。 \ans{$B$；$A\to C$}{\src{sec:knowledge-driven-search}{知识驱动搜索}}
+    \item \textcolor{autoclassgreen}{(自动化24, 填空 4)}：``反演归结证明定理时，当前归结式是\underline{\ \ }时定理得证''。 \ans{空子句 $\Box$}{\src{sec:knowledge-driven-search}{知识驱动搜索}}
 \end{enumerate}
 
 \noindent\textbf{\textcolor{red}{大题：}}
 \begin{enumerate}[itemsep=0.3em, topsep=0.2em, leftmargin=1.5em]
-    \item \textcolor{blue}{(自动化22, 大题 3)}：``赵钱孙李四人有人偷了东西，已知 A/B/C/D/E 五条陈述，用归结反演证明小偷是谁''。 \ans{标准步骤：定义谓词 $\text{Steal}(\cdot)$ 等，写出 $\text{Steal}(\text{赵})\lor\text{Steal}(\text{钱})$ 等子句，加入待证结论否定，反复合一归结至空子句；按典型答案小偷为''钱''}{\src{sec:knowledge-driven-search}{知识驱动搜索}}
-    \item \textcolor{blue}{(自动化23, 大题 2)}：``''干净的东西有人喜欢''、''没人喜欢苍蝇''，归结证明''苍蝇不干净''''。 \ans{设 $\forall x(\text{Clean}(x)\to\exists y\,\text{Likes}(y,x))$，$\text{Fly}(f)$，$\forall y\,\lnot\text{Likes}(y,f)$；否定结论加 $\text{Clean}(f)$，Skolem 化后归结至空子句}{\src{sec:knowledge-driven-search}{知识驱动搜索}}
+    \item \textcolor{autoclassgreen}{(自动化22, 大题 3)}：``赵钱孙李四人有人偷了东西，已知 A/B/C/D/E 五条陈述，用归结反演证明小偷是谁''。 \ans{标准步骤：定义谓词 $\text{Steal}(\cdot)$ 等，写出 $\text{Steal}(\text{赵})\lor\text{Steal}(\text{钱})$ 等子句，加入待证结论否定，反复合一归结至空子句；按典型答案小偷为''钱''}{\src{sec:knowledge-driven-search}{知识驱动搜索}}
+    \item \textcolor{autoclassgreen}{(自动化23, 大题 2)}：``''干净的东西有人喜欢''、''没人喜欢苍蝇''，归结证明''苍蝇不干净''''。 \ans{设 $\forall x(\text{Clean}(x)\to\exists y\,\text{Likes}(y,x))$，$\text{Fly}(f)$，$\forall y\,\lnot\text{Likes}(y,f)$；否定结论加 $\text{Clean}(f)$，Skolem 化后归结至空子句}{\src{sec:knowledge-driven-search}{知识驱动搜索}}
     \item \textcolor{teal}{(机器人23, 大题 2)}：``A 喜欢吃所有食物；苹果/蔬菜是食物；吃了不会死的东西是食物；B 吃了 $xx$ 没死；C 吃过 B 吃过的东西。证明 A 喜欢吃 $xx$''。 \ans{谓词化 $\text{Food}(\cdot)$、$\text{Eat}(\cdot,\cdot)$、$\text{Likes}(\cdot,\cdot)$，结合 $\text{Eat}(B,xx)\land\lnot\text{Die}(B)\Rightarrow\text{Food}(xx)$，再由 $\forall x\,\text{Food}(x)\to\text{Likes}(A,x)$ 合一推出 $\text{Likes}(A,xx)$}{\src{sec:knowledge-driven-search}{知识驱动搜索}}
-    \item \textcolor{teal}{(机器人24/25, 大题 2)}：``给 5 个谓词语句，用归结反证法证明结论，写出合一过程''。 \ans{谓词化、消去蕴含、前束/Skolem 化、化 CNF、加结论否定、逐步合一归结至空子句}{\src{sec:knowledge-driven-search}{知识驱动搜索}}
+    \item \textcolor{teal}{(机器人24/25, 大题 2)}：``给 5 个谓词语句，用归结反证法证明结论，写出合一过程；机器人25 语句为：犬类晚上都会嚎叫；家里有猫则家里无鼠；睡眠轻则家里没有会嚎叫的动物；John 家里要么有猫要么有狗；证明若 John 睡眠轻，则 John 家里没有老鼠''。 \ans{谓词化可设 $\mathrm{Hound}(x),\mathrm{Howl}(x),\mathrm{Cat}(x),\mathrm{Mouse}(x),\mathrm{AtHome}(x,j),\mathrm{LightSleep}(j)$ 等；消去蕴含、Skolem 化、化 CNF 后加入结论否定 $\mathrm{LightSleep}(j)\land\mathrm{MouseAtHome}(j)$，由轻睡推出无嚎叫动物、犬类会嚎叫、猫鼠互斥和猫/狗析取逐步归结至空子句}{\src{sec:knowledge-driven-search}{知识驱动搜索}}
 \end{enumerate}
 
 % =====================================================================
@@ -496,24 +838,33 @@
 \noindent\textbf{\textcolor{red}{选择题：}}
 \begin{enumerate}[itemsep=0.45em, topsep=0.2em, leftmargin=1.5em]
     \item \textbf{$\alpha$-$\beta$ 剪枝正误（A）} \textcolor{teal}{(机器人24, 选择 9)}：``关于 $\alpha$-$\beta$ 剪枝描述正确的是？''\\
-    A. 需要遍历决策树\quad B. $\alpha$ 是 MAX 节点的最大值（最好下界）\quad C. $\beta$ 是 MAX 节点的最小值\quad D. 只剪叶子节点。 \ans{B 最接近正确；$\alpha$ 是 MAX 当前最好下界，$\beta$ 是 MIN 当前最好上界，剪枝不改变 minimax 结果}{\src{sec:minimax-alpha-beta}{极大极小与剪枝}}
+    A. 需要遍历决策树\quad B. $\alpha$ 是 MAX 节点的最大值（最好下界）\quad C. $\beta$ 是 MAX 节点的最小值\quad D. 只剪叶子节点。 \ans{B 正确；$\alpha$ 是 MAX 当前最好下界，$\beta$ 是 MIN 当前最好上界，剪枝不改变 minimax 结果}{\src{sec:minimax-alpha-beta}{极大极小与剪枝}}
 
     \item \textbf{$\alpha$-$\beta$ 剪枝正误（B）} \textcolor{teal}{(机器人25, 选择 16)}：``关于 $\alpha$-$\beta$ 剪枝说法正确的是？''\\
     A. $\alpha$ 是 MAX 节点的最优值\quad B. $\beta$ 是 MAX 节点的最优值\quad C. 只剪叶子节点\quad D. 剪枝后最佳路径会变化。 \ans{A 正确；剪枝后最佳路径/回推值不变}{\src{sec:minimax-alpha-beta}{极大极小与剪枝}}
 
-    \item \textbf{$\alpha$-$\beta$ 改进意义} \textcolor{blue}{(自动化25, 选择 1)}：``$\alpha$-$\beta$ 剪枝改进的主要意义是？''\\
+    \item \textbf{$\alpha$-$\beta$ 改进意义} \textcolor{autoclassgreen}{(自动化25, 选择 1)}：``$\alpha$-$\beta$ 剪枝改进的主要意义是？''\\
     A. 提高解的最优性\quad B. 减少不必要节点的扩展\quad C. 降低空间复杂度\quad D. 适应多智能体协作。 \ans{B}{\src{sec:minimax-alpha-beta}{极大极小与剪枝}}
 \end{enumerate}
 
 \noindent\textbf{\textcolor{red}{填空题：}}
 \begin{enumerate}[itemsep=0.3em, topsep=0.2em, leftmargin=1.5em]
-    \item \textcolor{blue}{(自动化25, 填空 4)}：``$\alpha$ 是路径上发现的 MAX 值的\underline{\ \ }选择，$\beta$ 是 MIN 值的\underline{\ \ }选择''。 \ans{最大/最好下界；最小/最好上界}{\src{sec:minimax-alpha-beta}{极大极小与剪枝}}
+    \item \textcolor{autoclassgreen}{(自动化25, 填空 4)}：``$\alpha$ 是路径上发现的 MAX 值的\underline{\ \ }选择，$\beta$ 是 MIN 值的\underline{\ \ }选择''。 \ans{最大/最好下界；最小/最好上界}{\src{sec:minimax-alpha-beta}{极大极小与剪枝}}
 \end{enumerate}
 
 \noindent\textbf{\textcolor{red}{大题：}}
 \begin{enumerate}[itemsep=0.3em, topsep=0.2em, leftmargin=1.5em]
-    \item \textcolor{blue}{(自动化22 大题 1；自动化23 大题 1；自动化24 大题 1)}：``给定博弈树，求各节点的倒推值；简述 $\alpha$-$\beta$ 剪枝原理；标出剪去的分支''。\textit{原卷题面含具体博弈树插图，此处仅作通法答}。 \ans{自底向上 MAX 取最大、MIN 取最小回推；维护 $\alpha,\beta$，当 $\alpha\ge\beta$ 时剪去后续分支}{\src{sec:minimax-alpha-beta}{极大极小与剪枝}}
-    \item \textcolor{teal}{(机器人24, 简答 1)}：``给定 24 个叶子节点的博弈树，用 $\alpha$-$\beta$ 剪枝求解并给出博弈路径''。 \ans{按从左到右访问顺序更新 $\alpha,\beta$，标出满足 $\alpha\ge\beta$ 的未访问分支，最终路径为根节点选择的 minimax 最优分支}{\src{sec:minimax-alpha-beta}{极大极小与剪枝}}
+    \item \textcolor{autoclassgreen}{(自动化22 大题 1；自动化23 大题 1；自动化24 大题 1)}：``给定博弈树，求各节点的倒推值；简述 $\alpha$-$\beta$ 剪枝原理；标出剪去的分支''。\textit{原卷题面含具体博弈树插图，}。 \ans{\(\alpha\)-\(\beta\) 剪枝是在极小极大搜索中维护两个界：
+\[
+\alpha=\text{MAX 当前可保证的最好值},\qquad
+\beta=\text{MIN 当前可保证的最好值}.
+\]
+搜索过程中若出现
+\[
+\alpha\ge \beta,
+\]
+则说明该分支不可能影响最终的极小极大值，可直接剪去。该方法不改变最终决策，只减少需要展开的节点数。具体看例题吧，这里只回答一个原理了。}{\src{sec:minimax-alpha-beta}{极大极小与剪枝}}
+    \item \textcolor{teal}{(机器人24, 简答 1)}：``给定 24 个叶子节点的博弈树，用 $\alpha$-$\beta$ 剪枝求解并给出博弈路径''。 \ans{同上}{\src{sec:minimax-alpha-beta}{极大极小与剪枝}}
 \end{enumerate}
 
 % =====================================================================
@@ -523,24 +874,24 @@
 
 \noindent\textbf{\textcolor{red}{选择题：}}
 \begin{enumerate}[itemsep=0.45em, topsep=0.2em, leftmargin=1.5em]
-    \item \textbf{RTA* 核心目标} \textcolor{blue}{(自动化25, 选择 9)}：``RTA*（实时 A*）的核心设计目标是？''\\
-    \autosup{} A. 在时间受限/动态环境下进行有限前瞻并立即行动，同时更新启发值\quad B. 全局最优\quad C. 完备\quad D. 最低空间复杂度。 \ans{A}{\src{sec:realtime-incremental-search}{实时与增量搜索}}
+    \item \textbf{RTA* 核心目标} \textcolor{autoclassgreen}{(自动化25, 选择 9)}：``RTA*（实时 A*）的核心设计目标是？''\\
+    \autosup{A. 在时间受限/动态环境下进行有限前瞻并立即行动，同时更新启发值\quad B. 全局最优\quad C. 完备\quad D. 最低空间复杂度。} \ans{A}{\src{sec:realtime-incremental-search}{实时与增量搜索}}
 
-    \item \textbf{DP 在增量搜索的核心作用} \textcolor{blue}{(自动化25, 选择 10)}：``动态规划在增量式搜索中的核心作用是？''\\
-    \autosup{} A. 复用子问题/历史计算结果，通过局部更新避免从头搜索\quad B. 用启发函数剪枝\quad C. 强制最优\quad D. 加速排序。 \ans{A}{\src{sec:realtime-incremental-search}{实时与增量搜索}}
+    \item \textbf{DP 在增量搜索的核心作用} \textcolor{autoclassgreen}{(自动化25, 选择 10)}：``动态规划在增量式搜索中的核心作用是？''\\
+    \autosup{A. 复用子问题/历史计算结果，通过局部更新避免从头搜索\quad B. 用启发函数剪枝\quad C. 强制最优\quad D. 加速排序。} \ans{A}{\src{sec:realtime-incremental-search}{实时与增量搜索}}
 
-    \item \textbf{人脸识别步骤} \textcolor{blue}{(自动化24, 选择 17；自动化25, 选择 16)}：``人脸识别算法的实现步骤是哪个？''\\
+    \item \textbf{人脸识别步骤} \textcolor{autoclassgreen}{(自动化24, 选择 17；自动化25, 选择 16)}：``人脸识别算法的实现步骤是哪个？''\\
     A. 人脸识别 – 人脸对齐 – 特征提取 – 关键点检测 – 人脸比对\quad B. 人脸对齐 – 关键点检测 – 特征提取 – 人脸识别 – 人脸比对\quad C. 人脸识别 – 关键点检测 – 人脸对齐 – 特征提取 – 人脸比对\quad D. 关键点检测 – 人脸对齐 – 人脸识别 – 特征提取 – 人脸比对。 \ans{C}{\src{sec:knowledge-driven-search}{知识驱动搜索}}
 
-    \item \textbf{人脸检测顺序（2023）} \textcolor{blue}{(自动化23, 选择 12)}：``人脸识别算法的实现顺序''。\\
-    \autosup{} A. 检测 – 关键点 – 对齐 – 特征 – 比对\quad B. 比对 – 检测 – 对齐 – 特征 – 关键点\quad C. 关键点 – 对齐 – 比对 – 检测 – 特征\quad D. 检测 – 比对 – 关键点 – 特征 – 对齐。 \ans{A}{\src{sec:knowledge-driven-search}{知识驱动搜索}}
+    \item \textbf{人脸检测顺序（2023）} \textcolor{autoclassgreen}{(自动化23, 选择 12)}：``人脸识别算法的实现顺序''。\\
+    \autosup{A. 检测 – 关键点 – 对齐 – 特征 – 比对\quad B. 比对 – 检测 – 对齐 – 特征 – 关键点\quad C. 关键点 – 对齐 – 比对 – 检测 – 特征\quad D. 检测 – 比对 – 关键点 – 特征 – 对齐。} \ans{A}{\src{sec:knowledge-driven-search}{知识驱动搜索}}
 
-    \item \textbf{布隆过滤器判断} \textcolor{blue}{(自动化25, 判断 1)}：``布隆过滤器是一种可以 100\% 准确判断元素是否存在的数据结构''。 \ans{错误；可能假阳性，但无假阴性}{\src{sec:realtime-incremental-search}{实时与增量搜索}}
+    \item \textbf{布隆过滤器判断} \textcolor{autoclassgreen}{(自动化25, 判断 1)}：``布隆过滤器是一种可以 100\% 准确判断元素是否存在的数据结构''。 \ans{错误；可能假阳性，但无假阴性}{\src{sec:realtime-incremental-search}{实时与增量搜索}}
 \end{enumerate}
 
 \noindent\textbf{\textcolor{red}{填空题：}}
 \begin{enumerate}[itemsep=0.3em, topsep=0.2em, leftmargin=1.5em]
-    \item \textcolor{blue}{(自动化25, 填空 3)}：``动态规划的两要素是\underline{\ \ }和\underline{\ \ }''。 \ans{最优子结构；重叠子问题}{\src{sec:realtime-incremental-search}{实时与增量搜索}}
+    \item \textcolor{autoclassgreen}{(自动化25, 填空 3)}：``动态规划的两要素是\underline{\ \ }和\underline{\ \ }''。 \ans{最优子结构；重叠子问题}{\src{sec:realtime-incremental-search}{实时与增量搜索}}
 \end{enumerate}
 
 % =====================================================================
@@ -550,12 +901,12 @@
 
 \noindent\textbf{\textcolor{red}{选择题/判断：}}
 \begin{enumerate}[itemsep=0.45em, topsep=0.2em, leftmargin=1.5em]
-    \item \textbf{交错分解 vs.\ 分解优先} \textcolor{blue}{(自动化25, 选择 2)}：``智能体任务规划中，交错分解（如 ReAct）与分解优先（如 HuggingGPT）的主要区别？''\\
-    \autosup{} A. 二者完全等价\quad B. 分解优先在分解时不需任何模型\quad C. 交错分解在任务分解与子任务规划间交错进行，并可根据环境反馈动态调整\quad D. 交错分解只能用于单步任务。 \ans{C}{\src{sec:agent-task-planning}{智能体任务规划}}
+    \item \textbf{交错分解 vs.\ 分解优先} \textcolor{autoclassgreen}{(自动化25, 选择 2)}：``智能体任务规划中，交错分解（如 ReAct）与分解优先（如 HuggingGPT）的主要区别？''\\
+    \autosup{A. 二者完全等价}\quad \autosup{B. 分解优先在分解时不需任何模型}\quad C. 交错分解在任务分解与子任务规划间交错进行，并可根据环境反馈动态调整\quad \autosup{D. 交错分解只能用于单步任务}。 \ans{C}{\src{sec:agent-task-planning}{智能体任务规划}}
 
-    \item \textbf{符号 vs.\ 神经规划器（判断）} \textcolor{blue}{(自动化25, 判断 2)}：``符号规划器（如 PDDL）通常比神经规划器（如基于 LLM）具有可解释性，但在处理自然语言描述的非结构化任务时灵活性较差''。 \ans{正确}{\src{sec:agent-task-planning}{智能体任务规划}}
+    \item \textbf{符号 vs.\ 神经规划器（判断）} \textcolor{autoclassgreen}{(自动化25, 判断 2)}：``符号规划器（如 PDDL）通常比神经规划器（如基于 LLM）具有可解释性，但在处理自然语言描述的非结构化任务时灵活性较差''。 \ans{正确}{\src{sec:agent-task-planning}{智能体任务规划}}
 
-    \item \textbf{学习智能体的问题生成器（判断）} \textcolor{blue}{(自动化25, 判断 3)}：``学习智能体的''问题生成器''组件作用是提出可能带来新信息的探索性行动，即使短期内可能次优''。 \ans{正确}{\src{sec:agent-theory}{智能体理论框架}}
+    \item \textbf{学习智能体的问题生成器（判断）} \textcolor{autoclassgreen}{(自动化25, 判断 3)}：``学习智能体的''问题生成器''组件作用是提出可能带来新信息的探索性行动，即使短期内可能次优''。 \ans{正确}{\src{sec:agent-theory}{智能体理论框架}}
 \end{enumerate}
 
 % =====================================================================
@@ -565,18 +916,18 @@
 
 \noindent\textbf{\textcolor{red}{选择题：}}
 \begin{enumerate}[itemsep=0.45em, topsep=0.2em, leftmargin=1.5em]
-    \item \textbf{AIGC vs.\ 搜索引擎} \textcolor{blue}{(自动化25, 选择 5)}：``AIGC 与搜索引擎的区别？''\\
-    A. AIGC 根据提示生成全新内容，搜索引擎只检索已有内容\quad B. 均需关键词匹配\quad C. AIGC 生成式模拟创作内容\quad \autosup{} D. 二者完全等价。 \ans{A、C 均正确；若单选取 A}{\src{sec:llm-core-features}{大模型核心特征}}
+    \item \textbf{AIGC vs.\ 搜索引擎} \textcolor{autoclassgreen}{(自动化25, 选择 5)}：``AIGC 与搜索引擎的区别？''\\
+    A. AIGC 根据提示生成全新内容，搜索引擎只检索已有内容\quad B. 均需关键词匹配\quad C. AIGC 生成式模拟创作内容\quad \autosup{D. 二者完全等价}。 \ans{A、C 均正确；若单选取 A}{\src{sec:llm-core-features}{大模型核心特征}}
 \end{enumerate}
 
 \noindent\textbf{\textcolor{red}{填空题：}}
 \begin{enumerate}[itemsep=0.3em, topsep=0.2em, leftmargin=1.5em]
-    \item \textcolor{blue}{(自动化25, 填空 5)}：``大模型五大特征：\underline{\ \ }、\underline{\ \ }、\underline{\ \ }、知识融合与通用性、\underline{\ \ }''。 \ans{涌现能力；上下文学习；指令遵循与对齐；同质化与基座模型范式}{\src{sec:llm-core-features}{大模型核心特征}}
+    \item \textcolor{autoclassgreen}{(自动化25, 填空 5)}：``大模型五大特征：\underline{\ \ }、\underline{\ \ }、\underline{\ \ }、知识融合与通用性、\underline{\ \ }''。 \ans{涌现能力；上下文学习；指令遵循与对齐；同质化与基座模型范式}{\src{sec:llm-core-features}{大模型核心特征}}
 \end{enumerate}
 
 \noindent\textbf{\textcolor{red}{大题：}}
 \begin{enumerate}[itemsep=0.3em, topsep=0.2em, leftmargin=1.5em]
-    \item \textcolor{blue}{(自动化25, 大题 2；5 分)}：``缩放定律（Scaling Law）是什么？OpenAI 与 Chinchilla 结论有何不同？实践启示？''。 \ans{Scaling Law 描述损失与参数 $N$、数据 $D$、算力 $C$ 的幂律关系；OpenAI 强调随算力优先增大模型，Chinchilla 强调参数量和训练 token 近似等比例增长（约 $D\approx 20N$）；启示是不能只堆参数，需匹配足够高质量数据}{\src{sec:scaling-law}{Scaling Law}}
+    \item \textcolor{autoclassgreen}{(自动化25, 大题 2；5 分)}：``缩放定律（Scaling Law）是什么？OpenAI 与 Chinchilla 结论有何不同？实践启示？''。 \ans{Scaling Law 描述损失与参数 $N$、数据 $D$、算力 $C$ 的幂律关系；OpenAI 强调随算力优先增大模型，Chinchilla 强调参数量和训练 token 近似等比例增长（约 $D\approx 20N$）；启示是不能只堆参数，需匹配足够高质量数据}{\src{sec:scaling-law}{Scaling Law}}
 \end{enumerate}
 
 % =====================================================================
@@ -586,18 +937,18 @@
 
 \noindent\textbf{\textcolor{red}{选择题/判断：}}
 \begin{enumerate}[itemsep=0.45em, topsep=0.2em, leftmargin=1.5em]
-    \item \textbf{自注意力复杂度} \textcolor{blue}{(自动化25, 选择 3)}：``大模型自注意力机制的计算和内存复杂度与输入序列长度 $N$ 的关系为？''\\
-    \autosup{} A. $O(N)$\quad B. $O(N\log N)$\quad C. $O(N^2)$\quad D. $O(2^N)$。 \ans{C}{\src{sec:transformer-self-attention}{Transformer 与自注意力}；\src{sec:inference-optimization}{推理优化}}
+    \item \textbf{自注意力复杂度} \textcolor{autoclassgreen}{(自动化25, 选择 3)}：``大模型自注意力机制的计算和内存复杂度与输入序列长度 $N$ 的关系为？''\\
+    \autosup{A. $O(N)$}\quad \autosup{B. $O(N\log N)$}\quad C. $O(N^2)$\quad \autosup{D. $O(2^N)$}。 \ans{C}{\src{sec:transformer-self-attention}{Transformer 与自注意力}；\src{sec:inference-optimization}{推理优化}}
 
-    \item \textbf{训练 vs.\ 推理} \textcolor{blue}{(自动化25, 选择 4)}：``大模型推理与训练的核心区别？''\\
-    A. 训练是应用知识、推理是学习知识（错）\quad B. 训练阶段涉及大规模、高并行度的前向与反向传播；推理阶段以小规模、串行自回归的前向传播为主\quad \autosup{} C. 推理与训练完全相同\quad D. 推理优化聚焦算法收敛、分布式训练效率（错）。 \ans{B}{\src{sec:inference-optimization}{推理及优化}}
+    \item \textbf{训练 vs.\ 推理} \textcolor{autoclassgreen}{(自动化25, 选择 4)}：``大模型推理与训练的核心区别？''\\
+    A. 训练是应用知识、推理是学习知识\quad B. 训练阶段涉及大规模、高并行度的前向与反向传播；推理阶段以小规模、串行自回归的前向传播为主\quad \autosup{C. 推理与训练完全相同}\quad D. 推理优化聚焦算法收敛、分布式训练效率。 \ans{B}{\src{sec:inference-optimization}{推理及优化}}
 
-    \item \textbf{多头注意力（判断）} \textcolor{blue}{(自动化25, 判断 4)}：``Transformer 多头注意力的多个''头''是为了并行处理多个句子，从而提升训练速度''。 \ans{错误；多头用于从不同表示子空间关注不同关系}{\src{sec:transformer-self-attention}{Transformer 与自注意力}}
+    \item \textbf{多头注意力（判断）} \textcolor{autoclassgreen}{(自动化25, 判断 4)}：``Transformer 多头注意力的多个''头''是为了并行处理多个句子，从而提升训练速度''。 \ans{错误；多头用于从不同表示子空间关注不同关系}{\src{sec:transformer-self-attention}{Transformer 与自注意力}}
 \end{enumerate}
 
 \noindent\textbf{\textcolor{red}{填空题：}}
 \begin{enumerate}[itemsep=0.3em, topsep=0.2em, leftmargin=1.5em]
-    \item \textcolor{blue}{(自动化25, 填空 6)}：``MLLM 是\underline{\ \ }模型''。 \ans{多模态大模型}{\src{sec:multimodal-llm}{多模态大模型}}
+    \item \textcolor{autoclassgreen}{(自动化25, 填空 6)}：``MLLM 是\underline{\ \ }模型''。 \ans{多模态大语言}{\src{sec:multimodal-llm}{多模态大模型}}
 \end{enumerate}
 
 % =====================================================================
@@ -607,51 +958,434 @@
 
 \noindent\textbf{\textcolor{red}{选择题/判断：}}
 \begin{enumerate}[itemsep=0.45em, topsep=0.2em, leftmargin=1.5em]
-    \item \textbf{推理性能指标（多选）} \textcolor{blue}{(自动化25, 选择 6)}：``衡量大模型推理性能的指标？''\\
-    A. 延迟（TTFT、ITL）\quad B. 吞吐量\quad C. 成本\quad \autosup{} D. 训练损失。 \ans{A、B、C；D 是训练阶段指标}{\src{sec:inference-performance}{推理性能评估}}
+    \item \textbf{推理性能指标（多选）} \textcolor{autoclassgreen}{(自动化25, 选择 6)}：``衡量大模型推理性能的指标？''\\
+    A. 延迟（TTFT、ITL）\quad B. 吞吐量\quad C. 成本\quad \autosup{D. 训练损失}。 \ans{A、B、C；D 是训练阶段指标}{\src{sec:inference-performance}{推理性能评估}}
 
-    \item \textbf{推理三重瓶颈（多选）} \textcolor{blue}{(自动化25, 选择 7)}：``大模型推理的''三重瓶颈''？''\\
+    \item \textbf{推理三重瓶颈（多选）} \textcolor{autoclassgreen}{(自动化25, 选择 7)}：``大模型推理的''三重瓶颈''？''\\
     A. 模型尺寸巨大\quad B. 自回归解码的串行性\quad C. 自注意力机制的二次复杂度\quad D. 训练数据不足（干扰项）。 \ans{A、B、C；D 是训练问题不属于推理瓶颈}{\src{sec:inference-optimization}{推理及优化}}
 
-    \item \textbf{量化判断} \textcolor{blue}{(自动化25, 判断 5)}：``量化技术通过降低权重/激活精度（FP16→INT8）减小体积、加速计算，但通常不会对模型输出质量产生任何影响''。 \ans{错误；量化可能损失精度}{\src{sec:inference-optimization}{推理及优化}}
+    \item \textbf{量化判断} \textcolor{autoclassgreen}{(自动化25, 判断 5)}：``量化技术通过降低权重/激活精度（FP16→INT8）减小体积、加速计算，但通常不会对模型输出质量产生任何影响''。 \ans{错误；量化可能损失精度}{\src{sec:inference-optimization}{推理及优化}}
 \end{enumerate}
 
 \noindent\textbf{\textcolor{red}{大题：}}
 \begin{enumerate}[itemsep=0.3em, topsep=0.2em, leftmargin=1.5em]
-    \item \textcolor{blue}{(自动化25, 大题 1；8 分)}：``部署 700 亿参数模型，高延时高成本、输出太一致缺乏创新''。 \ans{(1) 至少 3 种降延时/成本方法：量化、剪枝、知识蒸馏、KV-Cache、运行时批处理（continuous batching）、模型/流水线并行、推测性解码（speculative decoding）；(2) 输出多样性可用 Top-k/Top-p（核采样）、温度（Temperature）调节、$n$-best/repetition penalty 等}{\src{sec:inference-optimization}{推理及优化}；\src{sec:decoding-strategy}{推理策略}}
+    \item \textcolor{autoclassgreen}{(自动化25, 大题 1；8 分)}：``部署 700 亿参数模型，高延时高成本、输出太一致缺乏创新''。 \ans{(1) 至少 3 种降延时/成本方法：量化、剪枝、知识蒸馏、KV-Cache、运行时批处理（continuous batching）、模型/流水线并行、推测性解码（speculative decoding）；(2) 输出多样性可用 Top-k/Top-p（核采样）、温度（Temperature）调节、$n$-best/repetition penalty 等}{\src{sec:inference-optimization}{推理及优化}；\src{sec:decoding-strategy}{推理策略}}
 \end{enumerate}
 
 % =====================================================================
-\subsection{跨专业/开放综合题}
+\subsection{综合题和送分题}
 
 \noindent\textbf{\textcolor{red}{大题：}}
 \begin{enumerate}[itemsep=0.3em, topsep=0.2em, leftmargin=1.5em]
-    \item \textcolor{blue}{(自动化23, 大题 3)}：``过控流程：数据收集与分析 → 系统建模 → 控制系统设计 → 离线验证 → 实地部署；至少三种方法说明应用与可行性''。 \ans{可选监督学习做故障/质量预测、聚类做工况发现、贝叶斯/置信区间做不确定性评估、强化学习做策略优化、搜索/规划做路径或调度；逐一说明数据输入、输出目标和可行性}{\src{sec:ml-task-types}{学习任务分类}；\src{sec:bayesian-learning}{贝叶斯学习}；\src{sec:mdp-rl}{MDP 与强化学习}}
-    \item \textcolor{blue}{(自动化24, 大题 3)}：``结合自身专业背景说明 AI 挑战与趋势''（与本章首节同题，已答）。
+    \item \textcolor{autoclassgreen}{(自动化23, 大题 3)}：``过控流程：数据收集与分析 → 系统建模 → 控制系统设计 → 离线验证 → 实地部署；至少三种方法说明应用与可行性''。 \ans{这啥？没看懂}{\src{sec:ml-task-types}{学习任务分类}；\src{sec:bayesian-learning}{贝叶斯学习}；\src{sec:mdp-rl}{MDP 与强化学习}}
+    \item \textcolor{autoclassgreen}{(自动化24, 大题 3)}：``结合自身专业背景说明 AI 挑战与趋势''。
 \end{enumerate}
 
 % =====================================================================
-\subsection{源卷未录入题位与缺失说明}
+补充三道来自22级机器人的自测练习题：
 
-\noindent 本节列出 7 套源 \texttt{Test/*.md} 中明确标记为 \texttt{[待补充]} 或 \texttt{[补全]} 但题面/选项均缺失，无法分类至上述具体知识点的题位，列在此处以保持\textbf{题号一一对应}的完整性：
+\begin{enumerate}
+    \item 简述广度优先搜索、深度优先搜索、有限深度搜索和迭代加深搜索的基本原理，并就附图所示搜索树给出广度优先搜索和深度优先搜索的节点扩展顺序。
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.3\linewidth]{sections//images/bfsdfs.png}
+        \caption{自测练习题1题图}
+        \label{fig:placeholder}
+    \end{figure}
+\ans{
+\begin{enumerate}
+    \item \textbf{广度优先搜索（Breadth-First Search, BFS）：}
+    从初始节点开始，按节点深度由浅到深逐层扩展；通常使用队列（FIFO）保存待扩展节点。
+    若每步代价相同，BFS 可以保证找到最浅的目标节点，即步数最少解。
 
-\begin{itemize}[itemsep=0.2em, topsep=0.2em]
-    \item \textcolor{teal}{\textbf{机器人24, 选择 19}}：原卷题面未记录（\texttt{[待补充]}），无法收录；保留题位以示完整。
-    \item \textcolor{teal}{\textbf{机器人24, 选择 20}}：原卷题面未记录（\texttt{[待补充]}），无法收录；保留题位以示完整。
-    \item \textcolor{blue}{\textbf{自动化22 选择 12--20}}：源回忆卷只录入了选择 1--11，其余 9 题题干未在 \texttt{Test/automation\_22.md} 中给出，已就笔记常考点的对应题分散收入相关章节，但具体题号无从复原。
-    \item \textcolor{blue}{\textbf{自动化23 选择 16--20}}：源回忆卷只录入了选择 1--15，缺 5 题。
-    \item \textcolor{teal}{\textbf{机器人23 选择 4--20}}：源回忆卷正文仅明确录入 1--3，其余写为``合并入其他卷次''。已在前文按知识点对应位置匹配。
-    \item \textcolor{teal}{\textbf{机器人25 选择 17--20}}：源回忆卷只录入了选择 1--16，缺 4 题。
-\end{itemize}
+    \item \textbf{深度优先搜索（Depth-First Search, DFS）：}
+    从初始节点开始，总是优先扩展当前节点的某一个子节点，直到不能继续扩展时再回溯；通常使用栈（LIFO）或递归实现。
+    DFS 空间开销较小，但不一定能找到最浅解。
 
-% =====================================================================
-\subsection*{小结：考点分布与复习建议}
+    \item \textbf{有限深度搜索（Depth-Limited Search, DLS）：}
+    在 DFS 的基础上增加深度限制 $l$，搜索深度超过 $l$ 的节点不再继续扩展。
+    它可以避免 DFS 在无限深路径上陷入死循环，但若目标节点深度大于 $l$，则无法找到目标。
 
-\begin{itemize}[itemsep=0.2em, topsep=0.2em]
-    \item \textbf{常青考点}：$\alpha$-$\beta$ 剪枝、A* / 八数码、BFS/DFS 数据结构与性质、Find-S、朴素贝叶斯、MDP 建模、决策树剪枝与过拟合、激活函数。
-    \item \textbf{自动化 vs 机器人差异}：机器人班更偏一致代价搜索、启发式可容许性证明、MDP 建模、置信区间；自动化班近年显著增加大模型、Scaling Law、推理优化、归纳偏置与 NFL。
-    \item \textbf{覆盖范围（保守表述）}：源 \texttt{Test/*.md} 中\textbf{已录入题面的全部题目}已逐题列入分类汇总；\textbf{源文件本身缺失题面}的题位（机器人24 选择 19/20，自动化22 选择 12--20，自动化23 选择 16--20，机器人23 选择 4--20，机器人25 选择 17--20）已在上一节集中列出。
-    \item \textbf{自补选项标记}：所有以 \autosup{} 标注的选项均为根据笔记口径补全的合理候选，仅供复习参考；考试以原卷为准。
-\end{itemize}
+    \item \textbf{迭代加深搜索（Iterative Deepening Search, IDS/IDDFS）：}
+    反复执行有限深度搜索，深度限制依次取
+    \[
+    l=0,1,2,\ldots
+    \]
+    直到找到目标节点为止。它结合了 BFS 的完备性和 DFS 的低空间复杂度。
+\end{enumerate}
 
+广度优先搜索（BFS）的节点扩展顺序为：
+\[
+1\to 2\to 3\to 4\to 5\to 6\to 7\to 8\to 9\to 10\to 11\to 12\to 13.
+\]
+
+深度优先搜索（DFS）的节点扩展顺序为：
+\[
+1\to 2\to 5\to 6\to 10\to 11\to 3\to 7\to 12\to 13\to 4\to 8\to 9.
+\]
+}
+    \item 对于八数码难题按下式定义估价函数：
+\[
+f(x)=d(x)+h(x),
+\]
+其中，$d(x)$ 为节点 $x$ 的深度；$h(x)$ 是所有棋子偏离目标位置的曼哈顿距离，即棋子偏离目标位置的水平距离与垂直距离之和。初始状态 $S_0$ 与目标状态 $S_g$ 如下：
+\[
+S_0=
+\begin{array}{|ccc|}
+\hline
+2 & 3 & \phantom{0}\\
+1 & 7 & 4\\
+8 & 5 & 6\\
+\hline
+\end{array}
+\qquad
+S_g=
+\begin{array}{|ccc|}
+\hline
+1 & 2 & 3\\
+7 & 5 & 4\\
+8 & 6 & \phantom{0}\\
+\hline
+\end{array}
+\]
+例如，初始状态 $S_0$ 中，棋子 $8$ 的曼哈顿距离为 $1$，棋子 $2$ 的曼哈顿距离为 $1$。用 A* 搜索法搜索目标，画出完整的搜索树，并给出各扩展节点的 $f$ 值。
+
+\ans{
+用空格表示空白格。A* 每次从 OPEN 表中选择 $f=g+h$ 最小的节点扩展。若 $f$ 相同，下面按先进入 OPEN 的节点优先扩展。
+
+初始节点为
+\[
+S_0=
+\begin{array}{|ccc|}
+\hline
+2 & 3 & \phantom{0}\\
+1 & 7 & 4\\
+8 & 5 & 6\\
+\hline
+\end{array}
+\]
+其曼哈顿距离为
+\[
+h(S_0)=1+1+0+3+1+0+0+0=6,
+\]
+故
+\[
+f(S_0)=g(S_0)+h(S_0)=0+6=6.
+\]
+
+\textbf{第 $1$ 步：扩展 $S_0$}
+\[
+\begin{array}{c|c|c|c|c}
+\text{方向} & \text{子节点} & g & h & f\\
+\hline
+\text{左} &
+\begin{array}{|ccc|}
+\hline
+2 & \phantom{0} & 3\\
+1 & 7 & 4\\
+8 & 5 & 6\\
+\hline
+\end{array}
+& 1 & 5 & 6\\[1.2em]
+\text{下} &
+\begin{array}{|ccc|}
+\hline
+2 & 3 & 4\\
+1 & 7 & \phantom{0}\\
+8 & 5 & 6\\
+\hline
+\end{array}
+& 1 & 7 & 8
+\end{array}
+\]
+选择 $f$ 最小的左移节点继续扩展：
+\[
+S_1=
+\begin{array}{|ccc|}
+\hline
+2 & \phantom{0} & 3\\
+1 & 7 & 4\\
+8 & 5 & 6\\
+\hline
+\end{array}.
+\]
+
+\textbf{第 $2$ 步：扩展 $S_1$}
+\[
+\begin{array}{c|c|c|c|c}
+\text{方向} & \text{子节点} & g & h & f\\
+\hline
+\text{左} &
+\begin{array}{|ccc|}
+\hline
+\phantom{0} & 2 & 3\\
+1 & 7 & 4\\
+8 & 5 & 6\\
+\hline
+\end{array}
+& 2 & 4 & 6\\[1.2em]
+\text{下} &
+\begin{array}{|ccc|}
+\hline
+2 & 7 & 3\\
+1 & \phantom{0} & 4\\
+8 & 5 & 6\\
+\hline
+\end{array}
+& 2 & 6 & 8
+\end{array}
+\]
+选择 $f$ 最小的左移节点继续扩展：
+\[
+S_2=
+\begin{array}{|ccc|}
+\hline
+\phantom{0} & 2 & 3\\
+1 & 7 & 4\\
+8 & 5 & 6\\
+\hline
+\end{array}.
+\]
+
+\textbf{第 $3$ 步：扩展 $S_2$}
+\[
+\begin{array}{c|c|c|c|c}
+\text{方向} & \text{子节点} & g & h & f\\
+\hline
+\text{下} &
+\begin{array}{|ccc|}
+\hline
+1 & 2 & 3\\
+\phantom{0} & 7 & 4\\
+8 & 5 & 6\\
+\hline
+\end{array}
+& 3 & 3 & 6
+\end{array}
+\]
+选择该节点继续扩展：
+\[
+S_3=
+\begin{array}{|ccc|}
+\hline
+1 & 2 & 3\\
+\phantom{0} & 7 & 4\\
+8 & 5 & 6\\
+\hline
+\end{array}.
+\]
+
+\textbf{第 $4$ 步：扩展 $S_3$}
+\[
+\begin{array}{c|c|c|c|c}
+\text{方向} & \text{子节点} & g & h & f\\
+\hline
+\text{右} &
+\begin{array}{|ccc|}
+\hline
+1 & 2 & 3\\
+7 & \phantom{0} & 4\\
+8 & 5 & 6\\
+\hline
+\end{array}
+& 4 & 2 & 6\\[1.2em]
+\text{下} &
+\begin{array}{|ccc|}
+\hline
+1 & 2 & 3\\
+8 & 7 & 4\\
+\phantom{0} & 5 & 6\\
+\hline
+\end{array}
+& 4 & 4 & 8
+\end{array}
+\]
+选择 $f$ 最小的右移节点继续扩展：
+\[
+S_4=
+\begin{array}{|ccc|}
+\hline
+1 & 2 & 3\\
+7 & \phantom{0} & 4\\
+8 & 5 & 6\\
+\hline
+\end{array}.
+\]
+
+\textbf{第 $5$ 步：扩展 $S_4$}
+\[
+\begin{array}{c|c|c|c|c}
+\text{方向} & \text{子节点} & g & h & f\\
+\hline
+\text{右} &
+\begin{array}{|ccc|}
+\hline
+1 & 2 & 3\\
+7 & 4 & \phantom{0}\\
+8 & 5 & 6\\
+\hline
+\end{array}
+& 5 & 3 & 8\\[1.2em]
+\text{上} &
+\begin{array}{|ccc|}
+\hline
+1 & \phantom{0} & 3\\
+7 & 2 & 4\\
+8 & 5 & 6\\
+\hline
+\end{array}
+& 5 & 3 & 8\\[1.2em]
+\text{下} &
+\begin{array}{|ccc|}
+\hline
+1 & 2 & 3\\
+7 & 5 & 4\\
+8 & \phantom{0} & 6\\
+\hline
+\end{array}
+& 5 & 1 & 6
+\end{array}
+\]
+选择 $f$ 最小的下移节点继续扩展：
+\[
+S_5=
+\begin{array}{|ccc|}
+\hline
+1 & 2 & 3\\
+7 & 5 & 4\\
+8 & \phantom{0} & 6\\
+\hline
+\end{array}.
+\]
+
+\textbf{第 $6$ 步：扩展 $S_5$}
+\[
+\begin{array}{c|c|c|c|c}
+\text{方向} & \text{子节点} & g & h & f\\
+\hline
+\text{左} &
+\begin{array}{|ccc|}
+\hline
+1 & 2 & 3\\
+7 & 5 & 4\\
+\phantom{0} & 8 & 6\\
+\hline
+\end{array}
+& 6 & 2 & 8\\[1.2em]
+\text{右} &
+\begin{array}{|ccc|}
+\hline
+1 & 2 & 3\\
+7 & 5 & 4\\
+8 & 6 & \phantom{0}\\
+\hline
+\end{array}
+& 6 & 0 & 6
+\end{array}
+\]
+选择 $f$ 最小的右移节点，得到目标状态：
+\[
+S_g=
+\begin{array}{|ccc|}
+\hline
+1 & 2 & 3\\
+7 & 5 & 4\\
+8 & 6 & \phantom{0}\\
+\hline
+\end{array}.
+\]
+
+因此 A* 搜索得到的解路径为
+\[
+S_0\to S_1\to S_2\to S_3\to S_4\to S_5\to S_g,
+\]
+即
+\[
+\begin{array}{|ccc|}
+\hline
+2 & 3 & \phantom{0}\\
+1 & 7 & 4\\
+8 & 5 & 6\\
+\hline
+\end{array}
+\to
+\begin{array}{|ccc|}
+\hline
+2 & \phantom{0} & 3\\
+1 & 7 & 4\\
+8 & 5 & 6\\
+\hline
+\end{array}
+\to
+\begin{array}{|ccc|}
+\hline
+\phantom{0} & 2 & 3\\
+1 & 7 & 4\\
+8 & 5 & 6\\
+\hline
+\end{array}
+\to
+\begin{array}{|ccc|}
+\hline
+1 & 2 & 3\\
+\phantom{0} & 7 & 4\\
+8 & 5 & 6\\
+\hline
+\end{array}
+\to
+\begin{array}{|ccc|}
+\hline
+1 & 2 & 3\\
+7 & \phantom{0} & 4\\
+8 & 5 & 6\\
+\hline
+\end{array}
+\to
+\begin{array}{|ccc|}
+\hline
+1 & 2 & 3\\
+7 & 5 & 4\\
+8 & \phantom{0} & 6\\
+\hline
+\end{array}
+\to
+\begin{array}{|ccc|}
+\hline
+1 & 2 & 3\\
+7 & 5 & 4\\
+8 & 6 & \phantom{0}\\
+\hline
+\end{array}.
+\]
+最优解深度为
+\[
+d=6.
+\]
+}
+
+
+    \item MAX和MIN交替出招，写出\(\alpha\)-\(\beta\)剪枝过程以及\(\alpha\)、\(\beta\)值的变化过程。
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.8\linewidth]{sections//images/maxminalphabeta.png}
+        \caption{自测练习题3题图}
+        \label{fig:placeholder}
+    \end{figure}
+    
+    \ans{
+    注意看下面有一处错误：序号5那一步，F节点的值确实是2，但是此时$\alpha$的值应该还是5，比1和2都大，不更新；因此C节点的$\beta$的值更新为5，而不是图中的2，不过仍然是满足剪枝条件了。
+
+    总而言之，如图~\ref{gptimage} 所示，剪枝2部分结果对了，但是过程不太对。
+    }
+    
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.8\linewidth]{sections//images/gptimage2.png}
+        \caption{GPT-Image-2的一个解}
+        \label{gptimage}
+    \end{figure}
+    
+\end{enumerate}
 \end{document}
+
+
