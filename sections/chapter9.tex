@@ -1,7 +1,7 @@
 \documentclass[../main.tex]{subfiles}
 \begin{document}
-\section{搜索与优化基础}
-\subsection{状态空间与搜索树}
+\section{搜索与优化基础}\label{sec:search-optimization}
+\subsection{状态空间与搜索树}\label{sec:state-space-search-tree}
 \begin{enumerate}
     \item \textbf{状态空间：}利用状态变量和操作符号，表示系统或问题的有关知识的符号体系。
     \begin{itemize}
@@ -65,7 +65,7 @@
     问题的环境用状态空间表示，状态空间中从初始状态到达目标状态的路径是一个解。
 \end{enumerate}
 
-\subsection{搜索树结构与算法}
+\subsection{搜索树结构与算法}\label{sec:search-tree-algorithm}
 \begin{enumerate}
     \item \textbf{搜索技术：}
     \begin{itemize}
@@ -160,7 +160,7 @@
         \end{itemize}
     \end{itemize}
 \end{enumerate}
-\subsection{基础搜索算法}
+\subsection{基础搜索算法}\label{sec:basic-search}
 问题定义中提供的状态信息外，无任何附加信息的搜索算法，根据\textbf{扩展节点的次序}分类：
 \begin{enumerate}
     \item \textbf{广度优先搜索（Breadth-first Search, BFS）}
@@ -247,7 +247,7 @@
 \end{enumerate}
 
 
-\subsection{启发式搜索算法}
+\subsection{启发式搜索算法}\label{sec:heuristic-search}
 \begin{enumerate}
     \item \textbf{贪婪最佳优先搜索}
     \begin{itemize}
@@ -362,7 +362,7 @@ IDA*
 
 
 
-\subsection{局部搜索算法}
+\subsection{局部搜索算法}\label{sec:local-search}
 
 启发式搜索一般适用于：环境\textbf{可观察、确定、已知}，问题的解是一个\textbf{行动序列}，关注的是\textbf{路径代价}；而局部搜索更适用于那些\textbf{解与路径无关}的问题，即只关心最终达到的状态是否足够好，而不关心是怎样到达该状态的。局部搜索直接把\textbf{状态本身}作为优化对象。
 
@@ -441,7 +441,7 @@ IDA*
 \end{enumerate}
 
 
-\subsection{元启发式算法}
+\subsection{元启发式算法}\label{sec:metaheuristic}
     \begin{figure}[H]
         \centering
         \includegraphics[width=0.75\linewidth]{images/yichuansuanfa.png}

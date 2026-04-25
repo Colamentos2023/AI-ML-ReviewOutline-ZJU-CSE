@@ -1,7 +1,7 @@
 \documentclass[../main.tex]{subfiles}
 
 \begin{document}
-\section{线性模型}
+\section{线性模型}\label{sec:linear-model}
 线性模型一般形式
 
 $$f(x)=w_{1}x_{1}+w_{2}x_{2}+\cdots+w_{d}x_{d}+b$$
@@ -14,7 +14,7 @@ f(x)=w^{\mathrm{T}}x+b$$
 
 其中$w=(w_{1};w_{2};\ldots;w_{d})$
 
-\subsection{线性回归（linear regression）}
+\subsection{线性回归（linear regression）}\label{sec:linear-regression}
 \begin{enumerate}
     \item \textbf{线性回归目的：}学得一个线性模型，以尽可能准确地预测实值输出标记。
 
@@ -231,7 +231,7 @@ f(x)=w^{\mathrm{T}}x+b$$
 
 
 
-\subsection{线性分类}
+\subsection{线性分类}\label{sec:linear-classification}
 线性回归直接做分类问题\footnote{分类本质上是要在数据点之间找到一个决策边界，因此在线性回归基础上引入一个非线性映射函数（激活函数）映射为我们想要的输出，比如类别或概率}：（1）输出值范围不匹配（2）对异常值敏感
 \begin{enumerate}
     \item \textbf{对数几率回归}
@@ -325,7 +325,7 @@ f(x)=w^{\mathrm{T}}x+b$$
         \item \textbf{多对多（Many vs. Many, MvM）}
     \end{itemize}
 \end{enumerate}
-\subsection{关键问题扩展}
+\subsection{关键问题扩展}\label{sec:linear-key-issues}
 \begin{enumerate}
     \item \textbf{过拟合阶数选择}
     \begin{enumerate}

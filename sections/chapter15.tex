@@ -1,7 +1,7 @@
 \documentclass[../main.tex]{subfiles}
 \begin{document}
-\section{大模型推理技术}
-\subsection{推理及优化}
+\section{大模型推理技术}\label{sec:llm-inference}
+\subsection{推理及优化}\label{sec:inference-optimization}
 \begin{table}[H]
     \centering
     \caption{训练与推理对比}
@@ -112,7 +112,7 @@
         \bottomrule
     \end{tabular}
 \end{table}
-\subsection{推理策略}
+\subsection{推理策略}\label{sec:decoding-strategy}
 \begin{enumerate}
     \item \textbf{确定性策略：}
     \begin{itemize}
@@ -200,7 +200,7 @@
         \bottomrule
     \end{tabularx}
 \end{table}
-\subsection{推理性能评估}
+\subsection{推理性能评估}\label{sec:inference-performance}
 \begin{enumerate}
     \item 一些经典benchmark：MMLU、HumanEval、TruthfulQA、MT-Bench
     \item 推理性能基准：\textbf{延迟（TTFT、ITL）、吞吐量、成本}

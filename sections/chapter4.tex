@@ -1,6 +1,6 @@
 \documentclass[../main.tex]{subfiles}
 \begin{document}
-\section{决策树学习}
+\section{决策树学习}\label{sec:decision-tree}
 
 \subsection{决策树的概念}
 \begin{enumerate}
@@ -17,7 +17,7 @@
 \end{enumerate}
 
 
-\subsection{ID3算法}
+\subsection{ID3算法}\label{sec:id3}
 \begin{enumerate}
     \item \textbf{方法：}采用自顶向下的\textbf{贪婪搜索}遍历可能的决策树空间，使用\textbf{信息增益度}选择测试属性。
     \item \textbf{核心问题：}选取在树的每个节点要测试的属性。
@@ -102,7 +102,7 @@
     \end{enumerate}
     }
 \end{enumerate}
-\subsection{假设空间和归纳偏置}
+\subsection{假设空间和归纳偏置}\label{sec:dt-inductive-bias}
 是指决策树学习的假设空间和归纳偏置。
 \begin{enumerate}
     \item \textbf{假设空间：}ID3算法搜索的假设空间就是可能的决策树的集合。
@@ -155,7 +155,7 @@
     \end{itemize}
     针对这些问题，ID3 被进一步扩展为 C4.5。
 \end{enumerate}
-\subsection{过拟合}
+\subsection{过拟合}\label{sec:dt-overfitting}
 \begin{enumerate}
     \item \textbf{原因：}
     \begin{enumerate}
@@ -173,7 +173,7 @@
     \end{itemize}
 \end{enumerate}
 
-\subsection{ID3算法的扩展}
+\subsection{ID3算法的扩展}\label{sec:dt-extensions}
 \begin{enumerate}
     \item \textbf{原因：}
     \begin{itemize}

@@ -1,6 +1,6 @@
 \documentclass[../main.tex]{subfiles}
 \begin{document}
-\section{贝叶斯学习}
+\section{贝叶斯学习}\label{sec:bayesian-learning}
 \textbf{导读：}这一章是干嘛？其实就是用贝叶斯公式。现在我们有很多个假设$h$了，来比比看，哪个假设更好呢？在得到一批数据之前，我们根据我们的知识储备或者信息，可能预先知道某些假设可能更好，这个概率就是先验概率。现在我们得到了一批数据，经过这批数据作为条件观察之后，修正了我们的先验，得到了后验概率。后验概率越大，这个假设就越“真”，就越好。所以贝叶斯学习其实就是算出所有假设各自的后验概率，取最大的那个假设$h$，这个假设就叫“极大后验假设”。那怎么算后验概率呢？用贝叶斯公式。
 
 \textbf{概念：}贝叶斯推理提供了推理的一种概率手段，基于如下的假定：待考察的量遵循某概率分布，且可根据这些概率及已观察到的数据进行推理，以作出最优的决策。为衡量多个假设的置信度提供定量的方法，为直接操作概率的学习算法提供了基础，也为其它算法的分析提供了理论框架\footnote{这一章的ppt写的巨史无比，混乱不堪，总而言之其实就是用我们小学二年级就学过的贝叶斯公式，通过已知条件计算条件概率，完全是高中概率题的难度。我们知道，机器学习的任务就是在给定训练数据D时，确定假设空间H中的最佳假设，最佳假设是指一种方法是把它定义为在给定数据D以及H中不同假设的先验概率的有关知识下的最可能假设。我们最终用来比较在先验知识下哪种假设更加好。}。难度主要在于：
@@ -9,7 +9,7 @@
     \item 确定贝叶斯最优假设的计算代价比较大
 \end{itemize}
 
-\subsection{贝叶斯理论}
+\subsection{贝叶斯理论}\label{sec:bayes-theory}
 \begin{enumerate}
     \item 三种信息：总体信息、样本信息、先验信息；
     \begin{itemize}
@@ -89,7 +89,7 @@
 \end{enumerate}
 
 
-\subsection{极大后验假设和极大似然假设}
+\subsection{极大后验假设和极大似然假设}\label{sec:map-ml}
 \begin{enumerate}
     \item \textbf{极大后验假设（MAP）：}在候选假设集合 $H$ 中，寻找给定数据 $D$ 时后验概率最大的假设：
     $$
@@ -398,7 +398,7 @@
     
 
 
-\subsection{贝叶斯最优分类器}
+\subsection{贝叶斯最优分类器}\label{sec:bayes-optimal-classifier}
 \begin{enumerate}
     \item \textbf{问题：}前面讨论的是：\textbf{给定训练数据，哪个假设最可能？}  
     但更直接的问题是：\textbf{给定训练数据，对新实例的最可能分类是什么？}
@@ -459,7 +459,7 @@
 \end{enumerate}
 
 
-\subsection{Gibbs算法}
+\subsection{Gibbs算法}\label{sec:gibbs-algorithm}
 \begin{enumerate}
     \item \textbf{地位：}替代贝叶斯最优分类器的、非最优的方法；
     \item \textbf{定义：}按照H上的后验概率分布，从H中随机选择假设h，使用h来预言下一个实例x的分类
@@ -469,7 +469,7 @@
         \item 如果学习器假定H上有均匀的先验概率，而且如果目标概念实际上也按该分布抽取，那么当前变型空间中随机抽取的假设对下一实例分类的期望误差最多为贝叶斯分类器的两倍。
     \end{itemize}
 \end{enumerate}
-\subsection{朴素贝叶斯分类器\texorpdfstring{\protect\footnote{\href{https://www.bilibili.com/video/BV1eT411V7jM?spm_id_from=333.788.videopod.sections&vd_source=5deca47094767260f853b759a625a68f}{推荐看B站参考视频：朴素贝叶斯分类器}}}{}}
+\subsection{朴素贝叶斯分类器\texorpdfstring{\protect\footnote{\href{https://www.bilibili.com/video/BV1eT411V7jM?spm_id_from=333.788.videopod.sections&vd_source=5deca47094767260f853b759a625a68f}{推荐看B站参考视频：朴素贝叶斯分类器}}}{}}\label{sec:naive-bayes}
 \begin{enumerate}
     \item \textbf{应用的学习任务：}每个实例 $x$ 可由属性值的合取描述，而目标函数 $f(x)$ 从某有限集合 $V$ 中取值。
 
@@ -549,7 +549,7 @@
     \end{itemize}
 \end{enumerate}
 
-\subsection{贝叶斯信念网}
+\subsection{贝叶斯信念网}\label{sec:bayesian-belief-net}
 \begin{enumerate}
     \item \textbf{贝叶斯信念网（Bayesian Belief Network, Bayesian Network）：}
     \begin{itemize}
@@ -650,7 +650,7 @@
         \item 在含隐变量或部分变量不可观测时，常用的替代方法是 \textbf{EM 算法}。
     \end{itemize}
 \end{enumerate}
-\subsection{EM算法\texorpdfstring{\protect\footnote{\href{https://www.bilibili.com/video/BV1RT411G7jJ?spm_id_from=333.788.videopod.sections&vd_source=5deca47094767260f853b759a625a68f}{推荐看B站参考视频：EM算法}}}{}}
+\subsection{EM算法\texorpdfstring{\protect\footnote{\href{https://www.bilibili.com/video/BV1RT411G7jJ?spm_id_from=333.788.videopod.sections&vd_source=5deca47094767260f853b759a625a68f}{推荐看B站参考视频：EM算法}}}{}}\label{sec:em-algorithm}
 \begin{enumerate}
     \item \textbf{基本思想：}EM（Expectation Maximization）即\textbf{期望最大化算法}，用于处理\textbf{含有未观测变量（隐变量）}的极大似然估计问题。
 
@@ -763,7 +763,7 @@
 
 \end{enumerate}
 
-\subsection{K均值（k-Means）算法}
+\subsection{K均值（k-Means）算法}\label{sec:k-means}
 \begin{enumerate}
     \item \textbf{目标：}将样本划分为 $k$ 个簇，并求每个簇的中心，使样本到所属簇中心的平方误差尽可能小。
 

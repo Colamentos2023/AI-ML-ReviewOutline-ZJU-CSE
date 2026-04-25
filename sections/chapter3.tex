@@ -1,8 +1,8 @@
 \documentclass[../main.tex]{subfiles}
 \begin{document}
-\section{神经网络}
+\section{神经网络}\label{sec:neural-network}
 
-\subsection{感知器}
+\subsection{感知器}\label{sec:perceptron}
 \begin{enumerate}
     \item \textbf{一般形式：}感知器以一个实数值向量作为输入，计算这些输入的线性组合，如果结果大于某个阈值，就输出1，否则输出-1\footnote{可以把感知器看作是n维实例空间（即点空间）中的超平面决策面，对于超平面一侧的实例，感知器输出1，对于另一侧的实例，输出-1；可以被某个超平面分割的样例集合，称为线性可分样例集合}。
     \[
@@ -138,7 +138,7 @@
     \end{tabular}
 \end{table}
 
-\subsection{非线性单元}
+\subsection{非线性单元}\label{sec:nonlinear-unit}
 \begin{enumerate}
     \begin{figure}[H]
         \centering
@@ -158,7 +158,7 @@
         \item 导数很容易用函数本身表示
     \end{itemize}
 \end{enumerate}
-\subsection{反向传播算法}
+\subsection{反向传播算法}\label{sec:backprop}
 \begin{enumerate}
     \item \textbf{概念}：用来学习多层网络的权值，采用梯度下降方法试图最小化网络输出值和目标值之间的误差平方\footnote{它似乎默认损失函数就是 MSE，就这样吧，懒得管了。这里不整理太多了，如果确实有不了解反向传播算法的同学，推荐看 3Blue1Brown 的视频：\href{https://www.bilibili.com/video/BV16x411V7Qg/?spm_id_from=333.337.search-card.all.click&vd_source=5deca47094767260f853b759a625a68f}{B 站链接}}。
     \item \textbf{梯度下降更新法则与delta法则：}
@@ -191,7 +191,7 @@
     \end{itemize}
     }
 \end{enumerate}
-\subsection{前馈网络的表征能力}
+\subsection{前馈网络的表征能力}\label{sec:ffn-capacity}
 \begin{enumerate}
     \item \textbf{布尔函数}：任何布尔函数可以被具有\textbf{两层}单元的网络准确表示，尽管在最坏情况下所需隐层单元的数量随着网络输入数量的增加成指数级增长。
     \item \textbf{连续函数}：每个有界的连续函数可以由一个\textbf{两层}的网络以任意小的误差\textbf{逼近}。这个结论适用于在隐藏层使用sigmoid单元、在输出层使用（非阈值）线性单元的网络。所需的隐层单元数量依赖于要逼近的函数。
@@ -218,7 +218,7 @@
     \end{itemize}
     }
 \end{enumerate}
-\subsection{泛化、过拟合与停止判据}
+\subsection{泛化、过拟合与停止判据}\label{sec:nn-generalization}
 \begin{enumerate}
     \item \textbf{权值更新算法的终止条件：}对训练样例的误差降低至某个预先定义的阈值之下？不好，因为反向传播容易过拟合
     \item \textbf{泛化精度：}网络拟合训练数据外的实例的精度

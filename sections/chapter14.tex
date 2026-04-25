@@ -1,6 +1,6 @@
 \documentclass[../main.tex]{subfiles}
 \begin{document}
-\section{大模型架构基础}
+\section{大模型架构基础}\label{sec:llm-architecture}
 \subsection{自然语言处理任务基础}
 \begin{enumerate}
     \item \textbf{分词}\footnote{就是把自然语言构建出一个词汇表，不能切分太细使得词表太大，也不能切分太粗丧失语义自由度。之后用Tokenizer这个结构可以将文本转换为独立的 token 序列，再进一步变成模型可处理的向量形式}
@@ -238,7 +238,7 @@
         \item \textbf{意义：}首次提供了统一的变长输入到变长输出的深度学习框架，突破了固定长度处理的限制。
     \end{itemize}
 \end{enumerate}
-\subsection{Transformer结构与自注意力机制}
+\subsection{Transformer结构与自注意力机制}\label{sec:transformer-self-attention}
 \begin{enumerate}
     \item \textbf{前Transformer时代}
     \begin{itemize}

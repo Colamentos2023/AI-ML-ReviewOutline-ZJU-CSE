@@ -1,7 +1,7 @@
 \documentclass[../main.tex]{subfiles}
 \begin{document}
-\section{马尔可夫决策过程与强化学习}
-\subsection{马尔可夫决策过程（MDP）}
+\section{马尔可夫决策过程与强化学习}\label{sec:mdp-rl}
+\subsection{马尔可夫决策过程（MDP）}\label{sec:mdp}
 \begin{enumerate}
     \item \textbf{马尔可夫性质：}在某一任务中，如果Agent从环境中得到的下一状态仅依赖于当前状态，而不考虑历史状态，即
     $$P\left\lbrack  {{S}_{t + 1} \mid  {S}_{t}}\right\rbrack   = P\left\lbrack  {{S}_{t + 1} \mid  {S}_{1},\ldots ,{S}_{t}}\right\rbrack$$
@@ -195,7 +195,7 @@
     \caption{基于MDP强化学习的基本框架}
     \label{fig:placeholder}
 \end{figure}
-\subsection{强化学习}
+\subsection{强化学习}\label{sec:reinforcement-learning}
 \begin{enumerate}
     \item \textbf{含义：}从环境状态到行为映射的学习，以使系统行为从环境中获得的累积奖赏（reward）最大；三类机器学习方法之一（监督学习、无监督学习、强化学习）。
     
@@ -294,7 +294,7 @@
 \end{enumerate}
 
 
-\subsection{求解强化学习任务}
+\subsection{求解强化学习任务}\label{sec:rl-solving}
 强化学习的目的就是：在MDP中搜索到最优策略。
 \begin{enumerate}
     \item \textbf{策略：}策略表示状态到动作的映射，即在状态 $s$ 下采取动作 $a$ 的概率，记为

@@ -1,13 +1,13 @@
 \documentclass[../main.tex]{subfiles}
 \begin{document}
-\section{评估假设}
+\section{评估假设}\label{sec:hypothesis-evaluation}
 本章目的是什么？其实就是用我们概统里面数理统计的知识，来做假设检验。具体而言是实现对假设的评估、对两个假设精度的比较、对两个学习算法精度的比较，使用概统方法，用有限数据样本上的观察，逼近整个数据分布上的真实精度。关键在于：
 \begin{itemize}
     \item 估计的偏差
     \item 估计的方差
 \end{itemize}
 问题：给定假设h和包含若干按D分布抽取的样例的数据集，如何针对将来按同样分布抽取的实例，得到对h的精度最好估计，这一精度估计的可能的误差是多少？
-\subsection{估计与置信区间}
+\subsection{估计与置信区间}\label{sec:confidence-interval}
 \begin{enumerate}
     \item \textbf{样本错误率和真实错误率：}利用前者估计后者\footnote{经典永流传之样本估计总体,我想不明白一个ppt怎么能把这么简单的事情说的这么复杂。}
     \begin{itemize}
@@ -119,7 +119,7 @@
         \end{enumerate}
     \end{itemize}
 \end{enumerate}
-\subsection{中心极限定理}
+\subsection{中心极限定理}\label{sec:central-limit-theorem}
 \begin{enumerate}
     \item \textbf{内容：}设 ${Y}_{1},\ldots,{Y}_{n}$ 是独立同分布的随机变量，它们服从任意概率分布，均值为 $\mu$，有限方差为 $\sigma^2$，定义样本均值为
     $$
@@ -186,7 +186,7 @@
     的概率约为 $95\%$，即接受该假设的置信度约为 $95\%$。
 \end{enumerate}
 
-\subsection{两个学习算法的差异}
+\subsection{两个学习算法的差异}\label{sec:algorithm-comparison}
 \begin{enumerate}
     \item \textbf{目标：}比较两个学习算法 $L_A$ 和 $L_B$ 的平均性能差异。一个合理定义是
     $$
