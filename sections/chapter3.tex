@@ -53,7 +53,7 @@
         \Delta w_i = \eta (t - o)x_i
         \]
         \begin{itemize}
-            \item \textbf{收敛的前提条件：}训练样例线性可分\footnote{存在一条直线（二维）、一个平面（三维）或更一般地一个超平面（高维），能够把所有正例和反例完全分开。}，且且使用了充分小的$\eta$。
+            \item \textbf{收敛的前提条件：}训练样例线性可分\footnote{存在一条直线（二维）、一个平面（三维）或更一般地一个超平面（高维），能够把所有正例和反例完全分开。}，且使用了充分小的$\eta$。
         \end{itemize}
         \item \textbf{delta法则}：使用梯度下降来搜索可能的权向量的假设空间，以找到最佳拟合训练样例的权向量。又称增量法则、LMS 法则、Adaline 法则、Widrow-Hoff 法则\footnote{delta 法则可用于训练非阈值线性单元，也可用于训练有阈值的感知器单元；delta 法则优化的是线性单元的连续输出误差；阈值分类是否正确只取决于输出符号，因此连续误差变小通常有助于分类，但并不保证分类误差也最小。}。
         \begin{itemize}
@@ -146,7 +146,7 @@
         \caption{典型的多层网络}
         \label{fig:placeholder}
     \end{figure}
-    \item \textbf{多层网络}：络能够表示种类繁多的非线性曲面，由单元来连接，要求该单元：
+    \item \textbf{多层网络}：能够表示种类繁多的非线性曲面，由单元来连接，要求该单元：
     \begin{itemize}
         \item 输出是输入的非线性函数
         \item 输出是输入的可微函数

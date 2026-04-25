@@ -226,7 +226,7 @@
             \mathrm{Consistent}(h,D) \iff (\forall \langle x,c(x)\rangle \in D)\, h(x)=c(x)
         \]
         \textcolor{red}{理解：样本是真正例，h 也判成正例；样本是真反例，h 也判成反例}
-        \item \textbf{变型空间（Version Space）：}与训练样例 $D$ 一致的所有假设组成的集合，包含了目标概念的所有合理的变变型。
+        \item \textbf{变型空间（Version Space）：}与训练样例 $D$ 一致的所有假设组成的集合，包含了目标概念的所有合理的变型。
         \item 关于假设空间 $H$ 和训练样例集 $D$ 的变型空间记为下式，是$H$中与训练样例$D$一致的所有假设构成的子集
         \[
             VS_{H,D}=\{\,h\in H \mid \mathrm{Consistent}(h,D)\,\}
@@ -723,7 +723,7 @@
     \item \textbf{归纳偏置的基本问题：}假设空间的表达能力不足。
     {\small\kaishu
     \begin{itemize}
-        \item \textbf{问题：}Find-S和候选消除算法都假设目标概念一定假设空间中，可是，当真如此吗？
+        \item \textbf{问题：}Find-S和候选消除算法都假设目标概念一定在假设空间中，可是，当真如此吗？
         \item \textbf{解决办法：}为保证假设空间包含目标概念，一个直接办法是扩大假设空间，使每个可能的假设都被包含在内。
         \item \textbf{有偏的假设空间：}例如EnjoySport，仍把假设空间限制为只包含属性值的合取（“和”），则它不能表示简单的析取形式（“或”）目标概念，例如“Sky = Sunny 或 Sky = Cloudy”。在这种情况下，即使训练样例本身正确，算法也可能得到空的变型空间。原因在于：学习器偏向于只考虑合取式假设，这里需要表达能力更强的假设空间。
     \end{itemize}
