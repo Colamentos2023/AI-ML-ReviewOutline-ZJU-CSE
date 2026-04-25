@@ -29,12 +29,12 @@
             \item 使用线性投影仪或多层感知器(\textbf{MLP})，通常为几层的神经网与非线性激活函数组合而成。
             \item 基于注意力机制。BLIP2引入\textbf{Q-Former}，一种轻量级转换器，使用一组可学习的查询向量从冻结的视觉模型中提取视觉特征。
             \item 投影基于\textbf{CNN}。MobileVLMv2提出了LDPv2，这是一种新的投影。由三部分组成:特征转换、Token压缩和位置信息增强。
-            \item 投影基于\textbf{mamba}。VL-Mamba在其视觉语言投影仪中实现了2D视觉选择性扫描(VSS)技术，促进了不同学习方法的融合。
+            \item 投影基于\textbf{mamba}\footnote{MAN！}。VL-Mamba在其视觉语言投影仪中实现了2D视觉选择性扫描(VSS)技术，促进了不同学习方法的融合。
         \end{itemize}
         \item \textbf{LLM Backbone}：两种方法：
         \begin{itemize}
-            \item 统一嵌入解码器架构
-            \item 跨模态注意力架构
+            \item 统一嵌入解码器架构\footnote{这个是说的那种，我们把图片每个patch也转换为一个token，然后把视觉token和文本token拼在一起送到一个注意力矩阵里面自回归}
+            \item 跨模态注意力架构\footnote{这个说的是，一个注意力矩阵，比如我们让视觉模态token不作为query，仅仅作为key}
         \end{itemize}
         
     \end{enumerate}

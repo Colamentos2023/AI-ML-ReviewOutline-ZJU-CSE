@@ -285,7 +285,7 @@
         
     \end{itemize}
 
-    \item \textbf{IDA*（迭代深入A*）}
+    \item \textbf{IDA*（迭代深入A*）}\footnote{这个名字我觉得起的很误导，理解一下：实际上就是DFS，但是DFS是无限往深搜。这里先介绍IDS，即迭代深入搜索（后面会有），相比于DFS它的改进是设置了一个深度阈值，一开始设为1，如果一层没搜到结果，那么阈值改为2，就最深搜到第二层，如果还不行就改为3，总之是到了第n层搜索就停止；进一步看IDA*，就是把深度阈值改为f阈值，仍然是按深度优先搜索，实际上搜索过程不是A*，即不是选f最小的那个，叫A*只是因为每一个节点都算了一下f值决定要不要停止搜索而已。这就是为什么说不需要判重，不需要排序，因为搜索根本不是按A*选择的。p.s.所以我觉得这课讲的顺序真的很神秘很诡异。}
     \begin{itemize}
         \item \textbf{动机：}A*对存储空间要求很高，因此需要减少存储要求：存储受限的启发式搜索
         \item \textbf{截断值：}$f$代价\footnote{普通的迭代加深算法截断值是搜索深度，而IDA*是$f$代价}
@@ -297,7 +297,11 @@
         \end{itemize}
     \end{itemize}
 \end{enumerate}
+\textcolor{red}{下面这个表格能理解最好，理解不了就把时间空间复杂度背下来吧，考选择。}
+以防有同学忘记：
 
+完备性：如果有解一定能找到（比如DFS如果是个图的话可能一直死循环找不到可行解）
+最优性：不是说算法最优，而是说能找到最优的解
 \begin{center}
 \renewcommand{\arraystretch}{1.2}
 \begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{2.8cm}

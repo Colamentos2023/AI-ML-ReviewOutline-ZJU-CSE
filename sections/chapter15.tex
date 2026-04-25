@@ -122,7 +122,7 @@
             \item \textbf{缺点：}只考虑局部最优，可能导致内容重复、缺乏多样性，产生“神经文本退化”。
         \end{itemize}
 
-        \item \textbf{束搜索（Beam Search）：}不只保留一个候选序列，而是维护一个大小为 $K$ 的候选序列集合；每一步扩展这 $K$ 个序列，再从中选出综合概率最高的 $K$ 个作为下一轮候选。
+        \item \textbf{束搜索（Beam Search）：\footnote{可以理解为一个树}}不只保留一个候选序列，而是维护一个大小为 $K$ 的候选序列集合；每一步扩展这 $K$ 个序列，再从中选出综合概率最高的 $K$ 个作为下一轮候选。
         \begin{itemize}
             \item \textbf{优点：}比贪心搜索更有前瞻性，生成文本通常更流畅、更连贯；
             \item \textbf{缺点：}计算成本更高；当 $K=1$ 时，束搜索退化为贪心搜索。
@@ -203,7 +203,7 @@
 \subsection{推理性能评估}
 \begin{enumerate}
     \item 一些经典benchmark：MMLU、HumanEval、TruthfulQA、MT-Bench
-    \item 推理性能基准：延迟（TTFT、ITL）、吞吐量、成本
+    \item 推理性能基准：\textbf{延迟（TTFT、ITL）、吞吐量、成本}
     \item 未来趋势：从传统的单一模型优化，向软硬件协同设计与多模型协同的范式演变。
 \end{enumerate}
 \end{document}

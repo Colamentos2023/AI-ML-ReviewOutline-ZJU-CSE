@@ -17,9 +17,9 @@
 \begin{enumerate}
     \item \textbf{概念学习}\footnote{概念学习是归纳学习里一个非常基础、非常典型的形式。}
     \begin{itemize}
-        \item \textbf{概念学习：}机器学习是人工智能 (AI) 的一个分支，它使计算机系统能够从数据中自动学习和改进，而无需进行显式编程。
+        \item \textbf{概念学习：}给定某一类别的若干正例和反例，从中获得该类别的一般定义\footnote{概念学习就是指从有关某个布尔函数的输入输出训练样例中推断出该布尔函数。}。
         \item \textbf{概念：}可被看作一个对象或事件集合，它是从更大的集合中选取的子集，或在这个较大集合中定义的布尔函数。
-        \item \textbf{概念学习问题：}给定一个样例集合以及每个样例是否属于某个概念的标注，怎样推断出该概念的一般定义。又称从样例中逼近布尔函数\footnote{概念学习就是指从有关某个布尔函数的输入输出训练样例中推断出该布尔函数。}。
+        \item \textbf{概念学习问题：}给定一个样例集合以及每个样例是否属于某个概念的标注，怎样推断出该概念的一般定义。又称从样例中逼近布尔函数。
         \small\kaishu{
         例子：
         \begin{itemize}
@@ -115,7 +115,7 @@
     }
     \item \textbf{关系定义}：
     \begin{itemize}
-         \item \textbf{“满足”：}对任意实例 $x$ 和假设 $h$，若 $h(x)=1$，则称实例 $x$ \textbf{满足}假设 $h$。
+         \item \textbf{“满足”：}对任意实例 $x$ 和假设 $h$，若 $h(x)=1$，则称实例 $x$ \textbf{满足}假设 $h$ \footnote{$x$被$h$划定的范围包括了}。
         \item \textbf{“更一般”：}设 $h_j$ 和 $h_k$ 是定义在实例空间 $X$ 上的布尔函数，若对任意 $x \in X$，只要 $h_k(x)=1$ 就必有 $h_j(x)=1$，即：
             \[
                 (\forall x \in X)\bigl[(h_k(x)=1)\rightarrow(h_j(x)=1)\bigr]
@@ -147,7 +147,7 @@
 
 \subsection{Find-S：寻找极大特殊假设}
 \begin{enumerate}
-    \item \textbf{Find-S 算法的基本思想：}Find-S 是一种利用 more\_general\_than 偏序在假设空间中进行搜索的算法\footnote{其搜索策略是：从假设空间 $H$ 中最特殊的假设开始，当当前假设不能覆盖正例时，再将其作最小必要的一般化。}
+    \item \textbf{Find-S 算法的基本思想：}Find-S 是一种利用 more\_general\_than 偏序\footnote{从特殊到一般}在假设空间中进行搜索的算法\footnote{其搜索策略是：从假设空间 $H$ 中最特殊的假设开始，当当前假设不能覆盖正例时，再将其作最小必要的一般化。}
 
     \item \textbf{Find-S 算法步骤}
     \begin{enumerate}
@@ -293,7 +293,7 @@
                 \[
                     g \geq_g h
                 \]
-                \item 从 $S$ 中删除所有比集合中其他成员更一般的假设。
+                \item 从 $S$ 中删除所有比集合中其他成员更一般的假设\footnote{实际上就是去重的意思，一般在上面的极小一般化式的过程中直接隐式地做掉了，不懂的话可以看一下下面的例子}。
             \end{itemize}
             \item 若 $d$ 为反例：
             \begin{itemize}
