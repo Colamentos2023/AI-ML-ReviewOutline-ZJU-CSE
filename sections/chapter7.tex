@@ -70,6 +70,8 @@
             \item 先获得奖赏，再进入下一状态：此时奖赏 $R_{t+1}$ 与当前状态 $S_t$ 和动作 $A_t$ 相关；
             \item 先进入下一状态，再获得奖赏：此时奖赏 $R_{t+1}$ 与当前状态 $S_t$、动作 $A_t$ 以及下一状态 $S_{t+1}$ 相关。
         \end{itemize}
+        \textcolor{red}{下面这个题我觉得构建状态转移概率的时候那个“if”（当...时）写的不太好，似乎把很多非法状态，比如撞墙都算进去了，我觉得其实可以写的更好。
+        }
         {\small\kaishu
         \item \textbf{常考：扫地机器人任务的MDP数学建模}
         \begin{enumerate}
@@ -187,9 +189,9 @@
     \end{enumerate}
 \end{enumerate}
 
-\begin{figure}
+\begin{figure}[H]
     \centering
-    \includegraphics[width=0.75\linewidth]{images/mdp.png}
+    \includegraphics[width=0.55\linewidth]{images/mdp.png}
     \caption{基于MDP强化学习的基本框架}
     \label{fig:placeholder}
 \end{figure}

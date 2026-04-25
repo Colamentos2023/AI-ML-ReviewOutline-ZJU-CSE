@@ -90,8 +90,8 @@
 
     \item \textbf{句子的 one-hot 编码表示}
     \begin{itemize}
-        \item \textbf{方式一：二维稀疏矩阵。}将句中每个 token 分别表示为一个 one-hot 向量，再按顺序堆叠成矩阵；
-        \item \textbf{方式二：一维稠密索引序列。}直接将每个 token 映射为词表中的编号
+        \item \textbf{方式一：二维稀疏矩阵。}将句中每个 token 分别表示为一个 one-hot 向量，再按顺序堆叠成矩阵（就是上面那个）；
+        \item \textbf{方式二：一维稠密索引序列。}直接将每个 token 映射为词表中的编号（比如“我”对应id 10086，“恨”对应id 114514，“人机”对应id 666，那么这句话就写成$[10086,114514,666]$）
     \end{itemize}
 
     \item \textbf{文本相似度}
@@ -261,7 +261,7 @@
         \end{itemize}
         \item \textbf{LSTM}
         \begin{itemize}
-        \begin{figure}
+        \begin{figure}[H]
             \centering
             \includegraphics[width=0.5\linewidth]{images/LSTM.png}
             \caption{LSTM结构示例}

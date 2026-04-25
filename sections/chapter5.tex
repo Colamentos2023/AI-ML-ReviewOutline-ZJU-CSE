@@ -1,7 +1,7 @@
 \documentclass[../main.tex]{subfiles}
 \begin{document}
 \section{评估假设}
-本章目的是假设的评估、对两个假设精度的比较、对两个学习算法精度的比较，使用概统方法，用有限数据样本上的观察，逼近整个数据分布上的真实精度。关键在于：
+本章目的是什么？其实就是用我们概统里面数理统计的知识，来做假设检验。具体而言是实现对假设的评估、对两个假设精度的比较、对两个学习算法精度的比较，使用概统方法，用有限数据样本上的观察，逼近整个数据分布上的真实精度。关键在于：
 \begin{itemize}
     \item 估计的偏差
     \item 估计的方差
@@ -29,6 +29,7 @@
         $$
         error_s(h)\pm z_N\sqrt{\frac{error_s(h)\left(1-error_s(h)\right)}{n}}
         $$
+        \textcolor{red}{根据截至2026年秋冬的历年考试题，这一章记住这一个公式就足够了}
         其中 $z_N$ 由置信度确定，如 $95\%$ 时 $z_N=1.96$ （该近似适用于离散值假设；样本量至少包含 $30$ 个样例，且当 $error_s(h)$ 不太接近 $0$ 或 $1$ 时更准确），更精确的适用条件可写为：
         $$
         n\cdot error_s(h)\left(1-error_s(h)\right)\geq 5
@@ -243,8 +244,8 @@
     \item \textbf{题目：}要测试一个假设 $h$，其 $error_D(h)$ 已知在 $0.2$ 到 $0.6$ 的范围内。要保证 $95\%$ 双侧置信区间的宽度小于 $0.1$，最少应采样多少个样例？
     \item \textbf{解：}由 $95\%$ 双侧置信区间公式
     $$
-    error_S(h)\pm 1.96\sqrt{\frac{error_S(h)\left(1-error_S(h)\right)}{n}}
-    $$
+    error_D(h)\pm 1.96\sqrt{\frac{error_D(h)\left(1-error_D(h)\right)}{n}}
+    $$\footnote{这里直接给了$D$的概率分布，就没必要用样本错误率$error_S(h)$来估计了}
     可知区间总宽度为
     $$
     2\times 1.96\sqrt{\frac{p(1-p)}{n}}<0.1
