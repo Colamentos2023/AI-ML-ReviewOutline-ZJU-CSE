@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999996 (TeX Live 2024) (preloaded format=xelatex 2024.12.8)  25 APR 2026 18:27
+This is XeTeX, Version 3.141592653-2.6-0.999996 (TeX Live 2024) (preloaded format=xelatex 2024.12.8)  26 APR 2026 09:39
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1451,11 +1451,11 @@ Overfull \hbox (51.46494pt too wide) in paragraph at lines 209--210
 
 
 [67]
+
+[68]
 File: sections/images/LDA.png Graphic file (type bmp)
 <sections/images/LDA.png>
 
-
-[68]
 
 [69]) (./sections/chapter9.tex
 
@@ -1477,16 +1477,16 @@ File: sections/images/UCS.png Graphic file (type bmp)
 [76]
 
 [77]
+
+[78]
 File: sections/images/monituihuo.png Graphic file (type bmp)
 <sections/images/monituihuo.png>
 
 
-[78]
+[79]
 File: images/yichuansuanfa.png Graphic file (type bmp)
 <images/yichuansuanfa.png>
 
-
-[79]
 
 [80]) (./sections/chapter10.tex
 
@@ -1995,7 +1995,7 @@ Package rerunfilecheck Info: File `main.out' has not changed.
 Here is how much of TeX's memory you used:
  30385 strings out of 473965
  694594 string characters out of 5728897
- 1029769 words of memory out of 5000000
+ 1029767 words of memory out of 5000000
  52691 multiletter control sequences out of 15000+600000
  572761 words of font info for 147 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191

@@ -23,7 +23,7 @@
     \item \textbf{问题求解智能体设计的基本步骤：}
     \begin{itemize}
         \item \textbf{目标形式化（goal formulation）：}“成功”的状态描述；
-        \item \textbf{问题形式化（problem formulation）：}根据所给的目标考虑行动和状态的描述\footnote{往往要将真实复杂情况抽象化，果我们能把任何抽象解扩展成为更细节的世界中的解，这种抽象就是有效的；选择好的抽象，包括：(1)在保持有效抽象前提下去除尽可能多的细节；(2)确保抽象后的行动容易完成；}；
+        \item \textbf{问题形式化（problem formulation）：}根据所给的目标考虑行动和状态的描述\footnote{往往要将真实复杂情况抽象化，如果我们能把任何抽象解扩展成为更细节的世界中的解，这种抽象就是有效的；选择好的抽象，包括：(1)在保持有效抽象前提下去除尽可能多的细节；(2)确保抽象后的行动容易完成；}；
         \item \textbf{搜索（search）：}通过对行动序列代价计算来选取最佳的行动序列；
         \item \textbf{执行（execute）：}给出“解”并执行行动。
     \end{itemize}
@@ -130,7 +130,7 @@
     \midrule
     状态重复 & 可能导致状态重复 & 通过检查重复状态避免重复 \\
     explored队列 & 不维护 & 额外维护一个 explored 队列 \\
-    explored队列作用 & 无 & 记录算法已经过的节点 \\
+    explored队列作用 & 无 & 记录算法已经经过的节点 \\
     frontier队列 & 维护 frontier 队列 & 也维护 frontier 队列 \\
     frontier队列作用 & 记录将要探索的节点 & 记录将要探索的节点 \\
     特点 & 结构简单，但可能重复搜索 & 开销更大，但能减少重复 \\
@@ -240,7 +240,6 @@
     \begin{itemize}
         \item \textbf{原理：}首先扩展未被扩展的节点中最深的那个
         \item \textbf{数据结构：}栈（LIFO）
-        \item \textbf{过程：}优先级队列，插入队列时按代价值排序，取出队列中代价值最小的节点即头节点，遍历该节点子节点并插入合适位置，此次类推；
     \end{itemize}
     \item \textbf{有限深度优先搜索（深度受限搜索）（Depth-limited Search, DLS）}
     \item \textbf{迭代加深搜索（迭代加深的深度优先搜索）（Iterative Deepening Search, IDS / Iterative Deepening Depth-first Search, IDDFS）}

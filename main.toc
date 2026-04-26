@@ -40,20 +40,20 @@
 \contentsline {subsection}{\numberline {7.1}马尔可夫决策过程（MDP）}{53}{subsection.7.1}%
 \contentsline {subsection}{\numberline {7.2}强化学习}{57}{subsection.7.2}%
 \contentsline {subsection}{\numberline {7.3}求解强化学习任务}{59}{subsection.7.3}%
-\contentsline {section}{\numberline {8}线性模型}{64}{section.8}%
+\contentsline {section}{\numberline {8}线性模型}{65}{section.8}%
 \contentsline {subsection}{\numberline {8.1}线性回归（linear regression）}{65}{subsection.8.1}%
 \contentsline {subsection}{\numberline {8.2}线性分类}{68}{subsection.8.2}%
 \contentsline {subsection}{\numberline {8.3}线性判别分析（LDA）}{69}{subsection.8.3}%
-\contentsline {subsection}{\numberline {8.4}关键问题扩展}{69}{subsection.8.4}%
-\contentsline {section}{\numberline {9}搜索与优化基础}{70}{section.9}%
-\contentsline {subsection}{\numberline {9.1}状态空间与搜索树}{70}{subsection.9.1}%
+\contentsline {subsection}{\numberline {8.4}关键问题扩展}{70}{subsection.8.4}%
+\contentsline {section}{\numberline {9}搜索与优化基础}{71}{section.9}%
+\contentsline {subsection}{\numberline {9.1}状态空间与搜索树}{71}{subsection.9.1}%
 \contentsline {subsection}{\numberline {9.2}搜索树结构与算法}{72}{subsection.9.2}%
 \contentsline {subsection}{\numberline {9.3}基础搜索算法}{74}{subsection.9.3}%
 \contentsline {subsection}{\numberline {9.4}启发式搜索算法}{76}{subsection.9.4}%
 \contentsline {subsection}{\numberline {9.5}局部搜索算法}{78}{subsection.9.5}%
 \contentsline {subsection}{\numberline {9.6}元启发式算法}{80}{subsection.9.6}%
-\contentsline {section}{\numberline {10}实时搜索、增量式搜索与知识驱动搜索}{81}{section.10}%
-\contentsline {subsection}{\numberline {10.1}实时搜索与增量式搜索}{81}{subsection.10.1}%
+\contentsline {section}{\numberline {10}实时搜索、增量式搜索与知识驱动搜索}{82}{section.10}%
+\contentsline {subsection}{\numberline {10.1}实时搜索与增量式搜索}{82}{subsection.10.1}%
 \contentsline {subsection}{\numberline {10.2}知识驱动的搜索}{88}{subsection.10.2}%
 \contentsline {section}{\numberline {11}基础智能体框架、任务规划与大模型智能体}{93}{section.11}%
 \contentsline {subsection}{\numberline {11.1}智能体理论框架}{93}{subsection.11.1}%
